@@ -56,8 +56,8 @@ export default function UploadPage() {
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-2xl font-bold text-gray-900">Upload Receipt</h1>
-          <p className="text-gray-600 mt-1">
+          <h1 className="text-2xl font-bold text-ci-black">Upload Receipt</h1>
+          <p className="text-ci-muted mt-1">
             Take a photo or upload an image of your receipt for AI processing
           </p>
         </div>
@@ -68,15 +68,15 @@ export default function UploadPage() {
             <Card className="p-6">
               <button
                 onClick={() => setUploadMethod('camera')}
-                className="w-full text-left p-4 rounded-lg border-2 border-dashed border-gray-300 hover:border-blue-400 hover:bg-blue-50 transition-colors"
+                className="w-full text-left p-4 rounded-lg border-2 border-dashed border-ci-muted hover:border-ci-main hover:bg-ci-main/80 transition-colors"
               >
                 <div className="flex items-center space-x-4">
-                  <div className="p-3 bg-blue-100 rounded-lg">
-                    <Camera className="h-8 w-8 text-blue-600" />
+                  <div className="p-3 bg-ci-main rounded-lg">
+                    <Camera className="h-8 w-8 text-ci-main" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-medium text-gray-900">Take Photo</h3>
-                    <p className="text-gray-500">Use your device camera to capture a receipt</p>
+                    <h3 className="text-lg font-medium text-ci-black">Take Photo</h3>
+                    <p className="text-ci-muted">Use your device camera to capture a receipt</p>
                   </div>
                 </div>
               </button>
@@ -85,15 +85,15 @@ export default function UploadPage() {
             <Card className="p-6">
               <button
                 onClick={() => setUploadMethod('file')}
-                className="w-full text-left p-4 rounded-lg border-2 border-dashed border-gray-300 hover:border-blue-400 hover:bg-blue-50 transition-colors"
+                className="w-full text-left p-4 rounded-lg border-2 border-dashed border-ci-muted hover:border-ci-main hover:bg-ci-main/80 transition-colors"
               >
                 <div className="flex items-center space-x-4">
                   <div className="p-3 bg-green-100 rounded-lg">
                     <Upload className="h-8 w-8 text-green-600" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-medium text-gray-900">Upload File</h3>
-                    <p className="text-gray-500">Choose an image file from your device</p>
+                    <h3 className="text-lg font-medium text-ci-black">Upload File</h3>
+                    <p className="text-ci-muted">Choose an image file from your device</p>
                   </div>
                 </div>
               </button>
@@ -125,10 +125,10 @@ export default function UploadPage() {
             <div className="text-green-500 mb-4">
               <CheckCircle className="mx-auto h-16 w-16" />
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">
+            <h3 className="text-xl font-semibold text-ci-black mb-2">
               Receipt Uploaded Successfully!
             </h3>
-            <p className="text-gray-600 mb-6">
+            <p className="text-ci-muted mb-6">
               Your receipt is being processed by AI. This usually takes 15-30 seconds.
             </p>
             <div className="space-y-3">
@@ -151,13 +151,13 @@ export default function UploadPage() {
             <div className="text-red-500 mb-4">
               <XCircle className="mx-auto h-16 w-16" />
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">
+            <h3 className="text-xl font-semibold text-ci-black mb-2">
               Upload Failed
             </h3>
-            <p className="text-gray-600 mb-2">
+            <p className="text-ci-muted mb-2">
               {error || 'Something went wrong while uploading your receipt.'}
             </p>
-            <p className="text-sm text-gray-500 mb-6">
+            <p className="text-sm text-ci-muted mb-6">
               Please check your internet connection and try again.
             </p>
             <div className="space-y-3">
@@ -174,8 +174,8 @@ export default function UploadPage() {
         {/* Tips */}
         {(uploadMethod === 'choose' || uploadStatus === 'idle') && (
           <Card className="p-6 mt-8">
-            <h4 className="font-medium text-gray-900 mb-3">📸 Tips for better results:</h4>
-            <ul className="text-sm text-gray-600 space-y-1">
+            <h4 className="font-medium text-ci-black mb-3">📸 Tips for better results:</h4>
+            <ul className="text-sm text-ci-muted space-y-1">
               <li>• Ensure the receipt is well-lit and all text is visible</li>
               <li>• Avoid shadows and reflections</li>
               <li>• Keep the receipt flat and straight</li>

@@ -73,10 +73,10 @@ export function FileUpload({ onFileSelect, onCancel, isUploading = false }: File
         <div className="bg-white rounded-lg p-6">
             {/* Header */}
             <div className="flex justify-between items-center mb-6">
-                <h3 className="text-lg font-medium text-gray-900">Upload Receipt</h3>
+                <h3 className="text-lg font-medium text-ci-black">Upload Receipt</h3>
                 <button
                     onClick={onCancel}
-                    className="p-2 text-gray-400 hover:text-gray-600 rounded-full"
+                    className="p-2 text-ci-muted hover:text-ci-muted rounded-full"
                 >
                     <X className="h-5 w-5" />
                 </button>
@@ -88,8 +88,8 @@ export function FileUpload({ onFileSelect, onCancel, isUploading = false }: File
                     className={`
                         relative border-2 border-dashed rounded-lg p-8 text-center transition-colors
                         ${dragActive
-                        ? 'border-blue-400 bg-blue-50'
-                        : 'border-gray-300 hover:border-gray-400'
+                        ? 'border-ci-main bg-ci-main/80'
+                        : 'border-ci-muted hover:border-ci-muted'
                     }
                     `}
                     onDragEnter={handleDrag}
@@ -97,21 +97,21 @@ export function FileUpload({ onFileSelect, onCancel, isUploading = false }: File
                     onDragOver={handleDrag}
                     onDrop={handleDrop}
                 >
-                    <FileImage className="mx-auto h-12 w-12 text-gray-400 mb-4" />
+                    <FileImage className="mx-auto h-12 w-12 text-ci-muted mb-4" />
                     <div className="space-y-2">
-                        <p className="text-lg font-medium text-gray-900">
+                        <p className="text-lg font-medium text-ci-black">
                             Drop your receipt here
                         </p>
-                        <p className="text-gray-500">
+                        <p className="text-ci-muted">
                             or{' '}
                             <button
                                 onClick={openFileDialog}
-                                className="text-blue-600 hover:text-blue-500 font-medium"
+                                className="text-ci-main hover:text-ci-main font-medium"
                             >
                                 browse files
                             </button>
                         </p>
-                        <p className="text-sm text-gray-400">
+                        <p className="text-sm text-ci-muted">
                             Supports: JPG, PNG (max 10MB)
                         </p>
                     </div>
@@ -145,12 +145,12 @@ export function FileUpload({ onFileSelect, onCancel, isUploading = false }: File
                     <div className="bg-gray-50 rounded-lg p-3">
                         <div className="flex items-center justify-between">
                             <div className="flex items-center space-x-2">
-                                <FileImage className="h-5 w-5 text-gray-400" />
+                                <FileImage className="h-5 w-5 text-ci-muted" />
                                 <div>
-                                    <p className="text-sm font-medium text-gray-900">
+                                    <p className="text-sm font-medium text-ci-black">
                                         {selectedFile.name}
                                     </p>
-                                    <p className="text-xs text-gray-500">
+                                    <p className="text-xs text-ci-muted">
                                         {(selectedFile.size / 1024 / 1024).toFixed(2)} MB
                                     </p>
                                 </div>

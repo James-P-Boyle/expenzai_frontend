@@ -104,8 +104,8 @@ export function CameraCapture({ onCapture, onCancel, isUploading = false }: Came
                 <div className="text-red-500 mb-4">
                     <Camera className="mx-auto h-12 w-12" />
                 </div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">Camera Access Error</h3>
-                <p className="text-gray-500 mb-4">{error}</p>
+                <h3 className="text-lg font-medium text-ci-black mb-2">Camera Access Error</h3>
+                <p className="text-ci-muted mb-4">{error}</p>
                 <div className="space-x-3">
                     <Button onClick={startCamera} variant="secondary">
                         Try Again
@@ -122,12 +122,12 @@ export function CameraCapture({ onCapture, onCancel, isUploading = false }: Came
         <div className="bg-white rounded-lg overflow-hidden">
             {/* Header */}
             <div className="flex justify-between items-center p-4 border-b">
-                <h3 className="text-lg font-medium text-gray-900">
+                <h3 className="text-lg font-medium text-ci-black">
                     {capturedImage ? 'Review Photo' : 'Take Photo'}
                 </h3>
                 <button
                     onClick={onCancel}
-                    className="p-2 text-gray-400 hover:text-gray-600 rounded-full"
+                    className="p-2 text-ci-muted hover:text-ci-muted rounded-full"
                 >
                     <X className="h-5 w-5" />
                 </button>

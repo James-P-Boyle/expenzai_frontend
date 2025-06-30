@@ -16,18 +16,18 @@ export function Button({
     ...props
 }: ButtonProps) {
 
-    const baseClasses = 'inline-flex items-center justify-center font-medium rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed'
+    const baseClasses = 'inline-flex items-center justify-center font-bold rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-all'
 
     const variantClasses = {
-        primary: 'bg-blue-600 hover:bg-blue-700 text-white focus:ring-blue-500',
-        secondary: 'bg-gray-200 hover:bg-gray-300 text-gray-900 focus:ring-gray-500',
+        primary: 'bg-ci-main hover:bg-ci-main text-black focus:ring-ci-main',
+        secondary: 'bg-gray-200 hover:bg-ci-muted text-ci-black focus:ring-ci-muted',
         danger: 'bg-red-600 hover:bg-red-700 text-white focus:ring-red-500',
     }
 
     const sizeClasses = {
-        sm: 'px-3 py-1.5 text-sm',
-        md: 'px-4 py-2 text-sm',
-        lg: 'px-6 py-3 text-base',
+        sm: 'px-3 py-2 text-sm',
+        md: 'px-4 py-3 text-sm',
+        lg: 'px-6 py-4 text-base',
     }
 
     const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`

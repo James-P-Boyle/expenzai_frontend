@@ -109,10 +109,10 @@ export default function DashboardPage() {
     <div className="p-6">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900">
+        <h1 className="text-2xl font-bold text-ci-black">
           Welcome back, {user?.name}!
         </h1>
-        <p className="text-gray-600 mt-1">
+        <p className="text-ci-muted mt-1">
           Here's your spending overview for this week
         </p>
       </div>
@@ -121,12 +121,12 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
         <Card className="p-6">
           <div className="flex items-center">
-            <div className="p-2 bg-blue-100 rounded-lg">
-              <Euro className="h-6 w-6 text-blue-600" />
+            <div className="p-2 bg-ci-main rounded-lg">
+              <Euro className="h-6 w-6 text-ci-main" />
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">This Week</p>
-              <p className="text-2xl font-bold text-gray-900">
+              <p className="text-sm font-medium text-ci-muted">This Week</p>
+              <p className="text-2xl font-bold text-ci-black">
                 €{currentWeekTotal.toFixed(2)}
               </p>
             </div>
@@ -139,8 +139,8 @@ export default function DashboardPage() {
               <ReceiptIcon className="h-6 w-6 text-green-600" />
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Receipts</p>
-              <p className="text-2xl font-bold text-gray-900">{currentWeekReceipts}</p>
+              <p className="text-sm font-medium text-ci-muted">Receipts</p>
+              <p className="text-2xl font-bold text-ci-black">{currentWeekReceipts}</p>
             </div>
           </div>
         </Card>
@@ -151,8 +151,8 @@ export default function DashboardPage() {
               <TrendingUp className="h-6 w-6 text-purple-600" />
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Last Month</p>
-              <p className="text-2xl font-bold text-gray-900">€{lastMonthTotal.toFixed(2)}</p>
+              <p className="text-sm font-medium text-ci-muted">Last Month</p>
+              <p className="text-2xl font-bold text-ci-black">€{lastMonthTotal.toFixed(2)}</p>
             </div>
           </div>
         </Card>
@@ -163,8 +163,8 @@ export default function DashboardPage() {
               <Calendar className="h-6 w-6 text-orange-600" />
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-gray-600">Weekly Avg</p>
-              <p className="text-2xl font-bold text-gray-900">€{avgWeeklySpending.toFixed(2)}</p>
+              <p className="text-sm font-medium text-ci-muted">Weekly Avg</p>
+              <p className="text-2xl font-bold text-ci-black">€{avgWeeklySpending.toFixed(2)}</p>
             </div>
           </div>
         </Card>
@@ -174,8 +174,8 @@ export default function DashboardPage() {
       <Card className="p-6 mb-8">
         <div className="flex justify-between items-center mb-6">
           <div>
-            <h3 className="text-lg font-semibold text-gray-900">Weekly Spending Trend</h3>
-            <p className="text-sm text-gray-500 mt-1">Last 8 weeks spending overview</p>
+            <h3 className="text-lg font-semibold text-ci-black">Weekly Spending Trend</h3>
+            <p className="text-sm text-ci-muted mt-1">Last 8 weeks spending overview</p>
           </div>
           <Link href="/dashboard/weekly">
             <Button variant="secondary" size="sm">View Details</Button>
@@ -221,9 +221,9 @@ export default function DashboardPage() {
             </ResponsiveContainer>
           </div>
         ) : (
-          <div className="h-80 flex items-center justify-center text-gray-500">
+          <div className="h-80 flex items-center justify-center text-ci-muted">
             <div className="text-center">
-              <TrendingUp className="mx-auto h-12 w-12 text-gray-300 mb-4" />
+              <TrendingUp className="mx-auto h-12 w-12 text-ci-muted mb-4" />
               <p>No spending data available yet</p>
               <p className="text-sm">Upload receipts to see your spending trends</p>
             </div>
@@ -234,7 +234,7 @@ export default function DashboardPage() {
       {/* Quick Actions */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <Card className="p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">
+          <h3 className="text-lg font-semibold text-ci-black mb-4">
             Quick Actions
           </h3>
           <div className="space-y-3">
@@ -255,7 +255,7 @@ export default function DashboardPage() {
 
         <Card className="p-6">
           <div className="flex justify-between items-center mb-4">
-            <h3 className="text-lg font-semibold text-gray-900">
+            <h3 className="text-lg font-semibold text-ci-black">
               Top Categories This Week
             </h3>
             {currentWeekSummary && currentWeekSummary.categories.length > 0 && (
@@ -274,12 +274,12 @@ export default function DashboardPage() {
                 >
                   <div className="flex justify-between items-center">
                     <div>
-                      <span className="font-medium text-gray-900">{category.category}</span>
-                      <p className="text-sm text-gray-500">{category.count} items</p>
+                      <span className="font-medium text-ci-black">{category.category}</span>
+                      <p className="text-sm text-ci-muted">{category.count} items</p>
                     </div>
                     <div className="text-right">
-                      <span className="font-semibold text-gray-900">€{category.total.toFixed(2)}</span>
-                      <p className="text-xs text-gray-500">
+                      <span className="font-semibold text-ci-black">€{category.total.toFixed(2)}</span>
+                      <p className="text-xs text-ci-muted">
                         avg €{(category.total / category.count).toFixed(2)}
                       </p>
                     </div>
@@ -288,7 +288,7 @@ export default function DashboardPage() {
               ))}
             </div>
           ) : (
-            <p className="text-gray-500 text-sm">
+            <p className="text-ci-muted text-sm">
               No receipts this week. Upload your first receipt to get started!
             </p>
           )}
@@ -298,7 +298,7 @@ export default function DashboardPage() {
       {/* Recent Receipts */}
       <Card className="p-6">
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-lg font-semibold text-gray-900">Recent Receipts</h3>
+          <h3 className="text-lg font-semibold text-ci-black">Recent Receipts</h3>
           <Link href="/dashboard/receipts">
             <Button variant="secondary" size="sm">View All</Button>
           </Link>
@@ -310,20 +310,20 @@ export default function DashboardPage() {
               <Link key={receipt.id} href={`/dashboard/receipts/${receipt.id}`}>
                 <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
                   <div>
-                    <p className="font-medium text-gray-900">
+                    <p className="font-medium text-ci-black">
                       {receipt.store_name || 'Unknown Store'}
                     </p>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-ci-muted">
                       {receipt.receipt_date || 'No date'} • {receipt.items.length} items
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="font-medium text-gray-900">{receipt.formatted_total}</p>
+                    <p className="font-medium text-ci-black">{receipt.formatted_total}</p>
                     <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${
                       receipt.status === 'completed' 
                         ? 'bg-green-100 text-green-800'
                         : receipt.status === 'processing'
-                        ? 'bg-yellow-100 text-yellow-800'
+                        ? 'bg-ci-main text-ci-main'
                         : 'bg-red-100 text-red-800'
                     }`}>
                       {receipt.status}
@@ -335,9 +335,9 @@ export default function DashboardPage() {
           </div>
         ) : (
           <div className="text-center py-8">
-            <ReceiptIcon className="mx-auto h-12 w-12 text-gray-400" />
-            <h3 className="mt-2 text-sm font-medium text-gray-900">No receipts yet</h3>
-            <p className="mt-1 text-sm text-gray-500">
+            <ReceiptIcon className="mx-auto h-12 w-12 text-ci-muted" />
+            <h3 className="mt-2 text-sm font-medium text-ci-black">No receipts yet</h3>
+            <p className="mt-1 text-sm text-ci-muted">
               Upload your first receipt to get started tracking expenses.
             </p>
             <div className="mt-6">

@@ -47,11 +47,11 @@ export default function ReceiptsPage() {
       case 'completed':
         return <CheckCircle className="h-5 w-5 text-green-500" />
       case 'processing':
-        return <Clock className="h-5 w-5 text-yellow-500" />
+        return <Clock className="h-5 w-5 text-ci-main" />
       case 'failed':
         return <XCircle className="h-5 w-5 text-red-500" />
       default:
-        return <Clock className="h-5 w-5 text-gray-500" />
+        return <Clock className="h-5 w-5 text-ci-muted" />
     }
   }
 
@@ -60,7 +60,7 @@ export default function ReceiptsPage() {
       case 'completed':
         return 'bg-green-100 text-green-800'
       case 'processing':
-        return 'bg-yellow-100 text-yellow-800'
+        return 'bg-ci-main text-ci-main'
       case 'failed':
         return 'bg-red-100 text-red-800'
       default:
@@ -98,8 +98,8 @@ export default function ReceiptsPage() {
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">My Receipts</h1>
-          <p className="text-gray-600 mt-1">
+          <h1 className="text-2xl font-bold text-ci-black">My Receipts</h1>
+          <p className="text-ci-muted mt-1">
             {receipts.length} receipt{receipts.length !== 1 ? 's' : ''} total
           </p>
         </div>
@@ -117,13 +117,13 @@ export default function ReceiptsPage() {
           {/* Search */}
           <div className="flex-1">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-ci-muted" />
               <input
                 type="text"
                 placeholder="Search receipts or items..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                className="w-full pl-10 pr-4 py-2 border border-ci-muted rounded-md focus:ring-ci-main focus:border-ci-main"
               />
             </div>
           </div>
@@ -133,7 +133,7 @@ export default function ReceiptsPage() {
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value as ReceiptStatus | 'all')}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-3 py-2 border border-ci-muted rounded-md focus:ring-ci-main focus:border-ci-main"
             >
               <option value="all">All Status</option>
               <option value="completed">Completed</option>
@@ -160,11 +160,11 @@ export default function ReceiptsPage() {
       {/* Receipts List */}
       {filteredReceipts.length === 0 ? (
         <Card className="p-12 text-center">
-          <ReceiptIcon className="mx-auto h-12 w-12 text-gray-400 mb-4" />
-          <h3 className="text-lg font-medium text-gray-900 mb-2">
+          <ReceiptIcon className="mx-auto h-12 w-12 text-ci-muted mb-4" />
+          <h3 className="text-lg font-medium text-ci-black mb-2">
             {searchTerm || statusFilter !== 'all' ? 'No matching receipts' : 'No receipts yet'}
           </h3>
-          <p className="text-gray-500 mb-6">
+          <p className="text-ci-muted mb-6">
             {searchTerm || statusFilter !== 'all' 
               ? 'Try adjusting your search or filters'
               : 'Upload your first receipt to get started tracking expenses'
@@ -187,18 +187,18 @@ export default function ReceiptsPage() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-4 flex-1">
                     <div className="p-2 bg-gray-100 rounded-lg">
-                      <ReceiptIcon className="h-6 w-6 text-gray-600" />
+                      <ReceiptIcon className="h-6 w-6 text-ci-muted" />
                     </div>
                     
                     <div className="flex-1">
                       <div className="flex items-center space-x-2 mb-1">
-                        <h3 className="font-medium text-gray-900">
+                        <h3 className="font-medium text-ci-black">
                           {receipt.store_name || 'Unknown Store'}
                         </h3>
                         {getStatusIcon(receipt.status)}
                       </div>
                       
-                      <div className="flex items-center space-x-4 text-sm text-gray-500">
+                      <div className="flex items-center space-x-4 text-sm text-ci-muted">
                         <div className="flex items-center">
                           <Calendar className="h-4 w-4 mr-1" />
                           {receipt.receipt_date || receipt.created_at.split('T')[0]}
@@ -207,7 +207,7 @@ export default function ReceiptsPage() {
                           {receipt.items.length} item{receipt.items.length !== 1 ? 's' : ''}
                         </div>
                         {receipt.status === 'completed' && (
-                          <div className="font-medium text-gray-700">
+                          <div className="font-medium text-ci-muted">
                             {receipt.formatted_total}
                           </div>
                         )}
@@ -221,7 +221,7 @@ export default function ReceiptsPage() {
                     </span>
                     <div className="text-right">
                       {receipt.status === 'completed' && (
-                        <div className="font-semibold text-gray-900">
+                        <div className="font-semibold text-ci-black">
                           {receipt.formatted_total}
                         </div>
                       )}

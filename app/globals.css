@@ -3,11 +3,19 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --ci-main: #FFEB3B;
+  --ci-white: #ffffff;
+  --ci-black: #000000;
+  --ci-muted: #E6E6E6;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-ci-main: var(--ci-main);
+  --color-ci-white: var(--ci-white);
+  --color-ci-black: var(--ci-black);
+  --color-ci-gray: var(--ci-gray);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
