@@ -19,7 +19,7 @@ export function Button({
     const baseClasses = 'inline-flex items-center justify-center font-bold rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-all'
 
     const variantClasses = {
-        primary: 'bg-ci-main hover:bg-ci-main text-black focus:ring-ci-main',
+        primary: 'bg-ci-main hover:bg-ci-main !text-ci-black focus:ring-ci-main',
         secondary: 'bg-gray-200 hover:bg-ci-muted text-ci-black focus:ring-ci-muted',
         danger: 'bg-red-600 hover:bg-red-700 text-white focus:ring-red-500',
     }

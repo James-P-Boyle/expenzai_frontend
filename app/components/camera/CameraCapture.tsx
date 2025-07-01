@@ -2,7 +2,8 @@
 
 import { useState, useRef, useCallback } from 'react'
 import { Camera, X, RotateCcw, Upload } from 'lucide-react'
-import { Button } from '../Button'
+import { Button } from '../ui/Button'
+
 
 interface CameraCaptureProps {
     onCapture: (file: File) => void
@@ -100,7 +101,7 @@ export function CameraCapture({ onCapture, onCancel, isUploading = false }: Came
 
     if (error) {
         return (
-            <div className="bg-white rounded-lg p-6 text-center">
+            <div className="rounded-lg p-6 text-center">
                 <div className="text-red-500 mb-4">
                     <Camera className="mx-auto h-12 w-12" />
                 </div>
@@ -119,7 +120,7 @@ export function CameraCapture({ onCapture, onCancel, isUploading = false }: Came
     }
 
     return (
-        <div className="bg-white rounded-lg overflow-hidden">
+        <div className="rounded-lg overflow-hidden">
             {/* Header */}
             <div className="flex justify-between items-center p-4 border-b">
                 <h3 className="text-lg font-medium text-ci-black">

@@ -4,10 +4,11 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Camera, Upload, CheckCircle, XCircle } from 'lucide-react'
 import { Card } from '@/app/components/ui/Card'
-import { CameraCapture } from '@/app/components/ui/camera/CameraCapture'
-import { FileUpload } from '@/app/components/ui/camera/FileUpload'
+
 import { Button } from '@/app/components/ui/Button'
 import { api } from '@/app/lib/api'
+import { CameraCapture } from '@/app/components/camera/CameraCapture'
+import { FileUpload } from '@/app/components/camera/FileUpload'
 
 
 type UploadMethod = 'choose' | 'camera' | 'file'

@@ -155,7 +155,7 @@ export default function ReceiptDetailsPage({ params }: ReceiptDetailsPageProps) 
       <div className="p-6">
         <Card className="p-12 text-center">
           <XCircle className="mx-auto h-12 w-12 text-red-500 mb-4" />
-          <h3 className="text-lg font-medium text-ci-black mb-2">Receipt Not Found</h3>
+          <h3 className="text-lg font-medium mb-2">Receipt Not Found</h3>
           <p className="text-ci-muted mb-6">{error || 'This receipt does not exist'}</p>
           <Link href="/dashboard/receipts">
             <Button>Back to Receipts</Button>
@@ -177,7 +177,7 @@ export default function ReceiptDetailsPage({ params }: ReceiptDetailsPageProps) 
             </Button>
           </Link>
           <div>
-            <h1 className="text-2xl font-bold text-ci-black">Receipt Details</h1>
+            <h1 className="text-2xl font-bold">Receipt Details</h1>
             <div className="flex items-center space-x-2 mt-1">
               {getStatusIcon(receipt.status)}
               <span className="text-ci-muted">
@@ -198,7 +198,7 @@ export default function ReceiptDetailsPage({ params }: ReceiptDetailsPageProps) 
         <div className="lg:col-span-2 space-y-6">
           {/* Summary Card */}
           <Card className="p-6">
-            <h3 className="text-lg font-semibold text-ci-black mb-4">Receipt Summary</h3>
+            <h3 className="text-lg font-semibold mb-4">Receipt Summary</h3>
             <div className="grid grid-cols-2 gap-4">
               <div className="flex items-center space-x-2">
                 <MapPin className="h-4 w-4 text-ci-muted" />
@@ -232,7 +232,7 @@ export default function ReceiptDetailsPage({ params }: ReceiptDetailsPageProps) 
 
           {/* Items List */}
           <Card className="p-6">
-            <h3 className="text-lg font-semibold text-ci-black mb-4">Items</h3>
+            <h3 className="text-lg font-semibold mb-4">Items</h3>
             {receipt.items.length === 0 ? (
               <p className="text-ci-muted text-center py-8">No items found</p>
             ) : (
@@ -241,7 +241,7 @@ export default function ReceiptDetailsPage({ params }: ReceiptDetailsPageProps) 
                   <div key={item.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                     <div className="flex-1">
                       <div className="flex items-center space-x-2">
-                        <h4 className="font-medium text-ci-black">{item.name}</h4>
+                        <h4 className="font-medium">{item.name}</h4>
                         {item.is_uncertain && (
                             <div className='flex items-center gap-2 text-ci-main'>
                                 <AlertTriangle className="h-4 w-4"/>
@@ -300,7 +300,7 @@ export default function ReceiptDetailsPage({ params }: ReceiptDetailsPageProps) 
                       </div>
                     </div>
                     <div className="text-right">
-                      <p className="font-medium text-ci-black">{item.formatted_price}</p>
+                      <p className="font-medium">{item.formatted_price}</p>
                     </div>
                   </div>
                 ))}
@@ -316,7 +316,7 @@ export default function ReceiptDetailsPage({ params }: ReceiptDetailsPageProps) 
             <Card className="p-4">
               <div className="text-center">
                 <Clock className="mx-auto h-8 w-8 text-ci-main mb-2" />
-                <p className="text-sm font-medium text-ci-black">Processing</p>
+                <p className="text-sm font-medium">Processing</p>
                 <p className="text-xs text-ci-muted mt-1">
                   AI is analyzing your receipt. This usually takes 15-30 seconds.
                 </p>
@@ -335,7 +335,7 @@ export default function ReceiptDetailsPage({ params }: ReceiptDetailsPageProps) 
           {/* Category Breakdown */}
           {receipt.status === 'completed' && receipt.items.length > 0 && (
             <Card className="p-4">
-              <h4 className="font-medium text-ci-black mb-3">Category Breakdown</h4>
+              <h4 className="font-medium mb-3">Category Breakdown</h4>
               <div className="space-y-2">
                 {Object.entries(
                   receipt.items.reduce((acc, item) => {
@@ -354,7 +354,7 @@ export default function ReceiptDetailsPage({ params }: ReceiptDetailsPageProps) 
 
           {/* Actions */}
           <Card className="p-4">
-            <h4 className="font-medium text-ci-black mb-3">Actions</h4>
+            <h4 className="font-medium mb-3">Actions</h4>
             <div className="space-y-2">
               <Link href="/dashboard/weekly">
                 <Button variant="secondary" size="sm" className="w-full justify-start">

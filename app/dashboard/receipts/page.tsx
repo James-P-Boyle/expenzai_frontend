@@ -98,7 +98,7 @@ export default function ReceiptsPage() {
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-ci-black">My Receipts</h1>
+          <h1 className="text-2xl font-bold">My Receipts</h1>
           <p className="text-ci-muted mt-1">
             {receipts.length} receipt{receipts.length !== 1 ? 's' : ''} total
           </p>
@@ -161,7 +161,7 @@ export default function ReceiptsPage() {
       {filteredReceipts.length === 0 ? (
         <Card className="p-12 text-center">
           <ReceiptIcon className="mx-auto h-12 w-12 text-ci-muted mb-4" />
-          <h3 className="text-lg font-medium text-ci-black mb-2">
+          <h3 className="text-lg font-medium mb-2">
             {searchTerm || statusFilter !== 'all' ? 'No matching receipts' : 'No receipts yet'}
           </h3>
           <p className="text-ci-muted mb-6">
@@ -192,7 +192,7 @@ export default function ReceiptsPage() {
                     
                     <div className="flex-1">
                       <div className="flex items-center space-x-2 mb-1">
-                        <h3 className="font-medium text-ci-black">
+                        <h3 className="font-medium">
                           {receipt.store_name || 'Unknown Store'}
                         </h3>
                         {getStatusIcon(receipt.status)}
@@ -221,7 +221,7 @@ export default function ReceiptsPage() {
                     </span>
                     <div className="text-right">
                       {receipt.status === 'completed' && (
-                        <div className="font-semibold text-ci-black">
+                        <div className="font-semibold">
                           {receipt.formatted_total}
                         </div>
                       )}

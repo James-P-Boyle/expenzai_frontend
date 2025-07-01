@@ -1,3 +1,5 @@
+import { LucideIcon } from "lucide-react"
+
 export interface User {
   id: number
   name: string
@@ -76,4 +78,10 @@ export interface RegisterCredentials {
   email: string
   password: string
   password_confirmation: string
+}
+
+export interface NavigationItem {
+  name: string
+  href: string
+  icon: LucideIcon
 }

@@ -139,7 +139,7 @@ export default function WeeklySummaryPage() {
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-ci-black">Weekly Summary</h1>
+          <h1 className="text-2xl font-bold">Weekly Summary</h1>
           <p className="text-ci-muted mt-1">Track your spending patterns and insights</p>
         </div>
         <Link href="/dashboard/upload">
@@ -160,7 +160,7 @@ export default function WeeklySummaryPage() {
           <div className="text-center">
             <div className="flex items-center space-x-2">
               <Calendar className="h-4 w-4 text-ci-muted" />
-              <span className="font-medium text-ci-black">
+              <span className="font-medium">
                 {weeklySummary ? getWeekRange(weeklySummary.week_start) : 'Loading...'}
               </span>
             </div>
@@ -194,7 +194,7 @@ export default function WeeklySummaryPage() {
       {!weeklySummary || weeklySummary.receipts_count === 0 ? (
         <Card className="p-12 text-center">
           <ReceiptIcon className="mx-auto h-12 w-12 text-ci-muted mb-4" />
-          <h3 className="text-lg font-medium text-ci-black mb-2">No receipts this week</h3>
+          <h3 className="text-lg font-medium mb-2">No receipts this week</h3>
           <p className="text-ci-muted mb-6">
             Upload receipts to see your weekly spending summary and insights.
           </p>
@@ -216,7 +216,7 @@ export default function WeeklySummaryPage() {
                 </div>
                 <div className="ml-4">
                   <p className="text-sm font-medium text-ci-muted">Total Spent</p>
-                  <p className="text-2xl font-bold text-ci-black">
+                  <p className="text-2xl font-bold">
                     €{weeklySummary.total_amount.toFixed(2)}
                   </p>
                 </div>
@@ -230,7 +230,7 @@ export default function WeeklySummaryPage() {
                 </div>
                 <div className="ml-4">
                   <p className="text-sm font-medium text-ci-muted">Receipts</p>
-                  <p className="text-2xl font-bold text-ci-black">
+                  <p className="text-2xl font-bold">
                     {weeklySummary.receipts_count}
                   </p>
                 </div>
@@ -244,7 +244,7 @@ export default function WeeklySummaryPage() {
                 </div>
                 <div className="ml-4">
                   <p className="text-sm font-medium text-ci-muted">Categories</p>
-                  <p className="text-2xl font-bold text-ci-black">
+                  <p className="text-2xl font-bold">
                     {weeklySummary.categories.length}
                   </p>
                 </div>
@@ -258,7 +258,7 @@ export default function WeeklySummaryPage() {
                 </div>
                 <div className="ml-4">
                   <p className="text-sm font-medium text-ci-muted">Avg per Receipt</p>
-                  <p className="text-2xl font-bold text-ci-black">
+                  <p className="text-2xl font-bold">
                     €{(weeklySummary.total_amount / weeklySummary.receipts_count).toFixed(2)}
                   </p>
                 </div>
@@ -270,7 +270,7 @@ export default function WeeklySummaryPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
             {/* Pie Chart */}
             <Card className="p-6">
-              <h3 className="text-lg font-semibold text-ci-black mb-4">
+              <h3 className="text-lg font-semibold mb-4">
                 Spending by Category
               </h3>
               <div className="h-80">
@@ -298,7 +298,7 @@ export default function WeeklySummaryPage() {
 
             {/* Bar Chart */}
             <Card className="p-6">
-              <h3 className="text-lg font-semibold text-ci-black mb-4">
+              <h3 className="text-lg font-semibold mb-4">
                 Category Breakdown
               </h3>
               <div className="h-80">
@@ -328,7 +328,7 @@ export default function WeeklySummaryPage() {
 
           {/* Category Details */}
           <Card className="p-6">
-            <h3 className="text-lg font-semibold text-ci-black mb-4">Category Details</h3>
+            <h3 className="text-lg font-semibold mb-4">Category Details</h3>
             <div className="overflow-x-auto">
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
@@ -361,18 +361,18 @@ export default function WeeklySummaryPage() {
                               className="w-3 h-3 rounded-full mr-3"
                               style={{ backgroundColor: COLORS[index % COLORS.length] }}
                             ></div>
-                            <span className="text-sm font-medium text-ci-black">
+                            <span className="text-sm font-medium">
                               {category.category}
                             </span>
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-ci-black">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm">
                           €{category.total.toFixed(2)}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-ci-black">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm">
                           {category.count}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-ci-black">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm">
                           €{(category.total / category.count).toFixed(2)}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">

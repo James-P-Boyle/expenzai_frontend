@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react'
 import { Upload, FileImage, X } from 'lucide-react'
-import { Button } from '../Button'
+import { Button } from '../ui/Button'
 
 interface FileUploadProps {
     onFileSelect: (file: File) => void
@@ -70,7 +70,7 @@ export function FileUpload({ onFileSelect, onCancel, isUploading = false }: File
     }
 
     return (
-        <div className="bg-white rounded-lg p-6">
+        <div className="rounded-lg p-6">
             {/* Header */}
             <div className="flex justify-between items-center mb-6">
                 <h3 className="text-lg font-medium text-ci-black">Upload Receipt</h3>
