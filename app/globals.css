@@ -6,7 +6,20 @@
   --ci-main: #FFEB3B;
   --ci-white: #ffffff;
   --ci-black: #000000;
-  --ci-muted: #E6E6E6;
+  --ci-muted: #928c8c;
+  --ci-muted-light: #928c8c5a;
+  
+  /* Pastel Chart Colors - Coordinated with yellow CI main */
+  --chart-color-1: #4A90E2; 
+  --chart-color-2: #7ED321; 
+  --chart-color-3: #F5A623; 
+  --chart-color-4: #D0021B; 
+  --chart-color-5: #9013FE; 
+  --chart-color-6: #50E3C2; 
+  --chart-color-7: #F8B500;
+  --chart-color-8: #8BC34A; 
+  --chart-color-9: #E91E63;
+  --chart-color-10: #9E9E9E; 
 }
 
 @theme inline {
@@ -15,7 +28,18 @@
   --color-ci-main: var(--ci-main);
   --color-ci-white: var(--ci-white);
   --color-ci-black: var(--ci-black);
-  --color-ci-gray: var(--ci-gray);
+  --color-ci-muted: var(--ci-muted);
+  --color-ci-muted-light: var(--ci-muted-light);
+  --color-chart-1: var(--chart-color-1);
+  --color-chart-2: var(--chart-color-2);
+  --color-chart-3: var(--chart-color-3);
+  --color-chart-4: var(--chart-color-4);
+  --color-chart-5: var(--chart-color-5);
+  --color-chart-6: var(--chart-color-6);
+  --color-chart-7: var(--chart-color-7);
+  --color-chart-8: var(--chart-color-8);
+  --color-chart-9: var(--chart-color-9);
+  --color-chart-10: var(--chart-color-10);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -24,6 +48,20 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --ci-muted: #a7a5a5;
+    --ci-muted-light: #c8c1c15a;
+    
+    /* Darker pastel variants for dark mode */
+    --chart-color-1: #4A6FA5;
+    --chart-color-2: #5A8B63;
+    --chart-color-3: #B8944A;
+    --chart-color-4: #B85A6F;
+    --chart-color-5: #8A5AB8;
+    --chart-color-6: #4A8B82;
+    --chart-color-7: #B8824A;
+    --chart-color-8: #6F8B5A;
+    --chart-color-9: #A54AB8;
+    --chart-color-10: #7A7A7A;
   }
 }
 

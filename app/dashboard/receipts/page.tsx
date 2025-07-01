@@ -94,23 +94,7 @@ export default function ReceiptsPage() {
   }
 
   return (
-    <div className="p-6">
-      {/* Header */}
-      <div className="flex justify-between items-center mb-8">
-        <div>
-          <h1 className="text-2xl font-bold">My Receipts</h1>
-          <p className="text-ci-muted mt-1">
-            {receipts.length} receipt{receipts.length !== 1 ? 's' : ''} total
-          </p>
-        </div>
-        <Link href="/dashboard/upload">
-          <Button>
-            <Upload className="mr-2 h-4 w-4" />
-            Upload Receipt
-          </Button>
-        </Link>
-      </div>
-
+    <div>
       {/* Filters */}
       <Card className="p-4 mb-6">
         <div className="flex flex-col sm:flex-row gap-4">

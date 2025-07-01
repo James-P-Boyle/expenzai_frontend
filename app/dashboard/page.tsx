@@ -106,17 +106,7 @@ export default function DashboardPage() {
   const avgWeeklySpending = getAverageWeeklySpending()
 
   return (
-    <div className="p-6">
-      {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold">
-          Welcome back, {user?.name}!
-        </h1>
-        <p className="text-ci-muted mt-1">
-          Here's your spending overview for this week
-        </p>
-      </div>
-
+    <div>
       {/* Quick Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
         <Card className="p-6">

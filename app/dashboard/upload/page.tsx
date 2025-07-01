@@ -53,16 +53,8 @@ export default function UploadPage() {
   }
 
   return (
-    <div className="p-6">
+    <div>
       <div className="max-w-2xl mx-auto">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-2xl font-bold text-ci-black">Upload Receipt</h1>
-          <p className="text-ci-muted mt-1">
-            Take a photo or upload an image of your receipt for AI processing
-          </p>
-        </div>
-
         {/* Upload Method Selection */}
         {uploadMethod === 'choose' && uploadStatus === 'idle' && (
           <div className="space-y-4">
