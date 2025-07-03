@@ -13,10 +13,10 @@ import {
 import { useState  } from 'react'
 import { useAuth } from '../context/AuthContext'
 import LoadingSpinner from '../components/ui/LoadingSpinner'
-import MobileMenu from './components/MobileMenu'
-import Sidebar from './components/Sidebar'
-import TopBar from './components/TopBar'
-import Header from './components/Header'
+import MobileMenu from '../components/dashboard/MobileMenu'
+import Sidebar from '../components/dashboard/Sidebar'
+import TopBar from '../components/dashboard/TopBar'
+import Header from '../components/dashboard/Header'
 
 const navigation = [
     { name: 'Dashboard', href: '/dashboard', icon: Home },

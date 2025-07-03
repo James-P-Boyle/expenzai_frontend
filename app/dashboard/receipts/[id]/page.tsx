@@ -2,19 +2,15 @@
 
 import { useState, useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
-import Link from 'next/link'
-import { XCircle } from 'lucide-react'
 import { Receipt } from '@/app/lib/types'
 import { api } from '@/app/lib/api'
-import { Card } from '@/app/components/ui/Card'
-import { Button } from '@/app/components/ui/Button'
-import { ReceiptHeader } from '../components/ReceiptHeader'
-import { ReceiptSummaryCard } from '../components/ReceiptSummary'
-import { ReceiptItemsCard } from '../components/ReceiptItemsCard'
-import { ProcessingStatus } from '../components/ProcessingStatus'
-import { ReceiptCategoryBreakdown } from '../components/CategoryBreakdown'
-import { ActionsCard } from '../components/ActionsCard'
-import { ErrorState } from '../components/ErrorState'
+import { ReceiptHeader } from '../../../components/receipts/ReceiptHeader'
+import { ReceiptSummaryCard } from '../../../components/receipts/ReceiptSummary'
+import { ReceiptItemsCard } from '../../../components/receipts/ReceiptItemsCard'
+import { ProcessingStatus } from '../../../components/receipts/ProcessingStatus'
+import { ReceiptCategoryBreakdown } from '../../../components/receipts/CategoryBreakdown'
+import { ActionsCard } from '../../../components/receipts/ActionsCard'
+import { ErrorState } from '../../../components/receipts/ErrorState'
 
 export default function ReceiptDetailsPage() {
     const [receipt, setReceipt] = useState<Receipt | null>(null)

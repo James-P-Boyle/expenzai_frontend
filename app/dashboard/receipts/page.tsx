@@ -4,10 +4,10 @@ import { useState, useEffect } from 'react'
 import { api } from '@/app/lib/api'
 import { Receipt, ReceiptStatus } from '@/app/lib/types'
 
-import { ReceiptFilters } from './components/ReceiptFilters'
-import { ErrorState } from './components/ErrorState'
-import EmptyState from './components/EmptyState'
-import { ReceiptsList } from './components/ReceiptList'
+import { ReceiptFilters } from '../../components/receipts/ReceiptFilters'
+import { ErrorState } from '../../components/receipts/ErrorState'
+import EmptyState from '../../components/receipts/EmptyState'
+import { ReceiptsList } from '../../components/receipts/ReceiptList'
 
 export default function ReceiptsIndexPage() {
     const [receipts, setReceipts] = useState<Receipt[]>([])

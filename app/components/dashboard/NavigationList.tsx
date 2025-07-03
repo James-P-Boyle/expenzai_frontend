@@ -29,7 +29,7 @@ export default function NavigationList({
     }
 
     return (
-        <nav className={`py-4 space-y-2 ${variant === 'desktop' ? 'mt-5 flex-1 px-2' : 'mt-5 px-2'}`}>
+        <nav className={`py-10 space-y-2 ${variant === 'desktop' ? 'flex-1 px-2' : 'px-2'}`}>
 
             {items.map((item) => {
 

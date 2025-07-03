@@ -2,7 +2,8 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { Camera, X, RotateCcw, Upload } from 'lucide-react'
-import { Button } from '../../../components/ui/Button'
+import { Button } from '../ui/Button'
+
 
 interface CameraCaptureProps {
     onCapture: (file: File) => void

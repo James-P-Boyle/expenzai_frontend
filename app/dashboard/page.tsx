@@ -10,6 +10,7 @@ import { useAuth } from '../context/AuthContext'
 import { Card } from '../components/ui/Card'
 import { api } from '../lib/api'
 import { Button } from '../components/ui/Button'
+import LoadingSpinner from '../components/ui/LoadingSpinner'
 
 interface WeeklyData {
   week: string
@@ -85,19 +86,7 @@ export default function DashboardPage() {
   }
 
   if (isLoading) {
-    return (
-      <div className="p-6">
-        <div className="animate-pulse space-y-6">
-          <div className="h-8 bg-gray-200 rounded w-1/4"></div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="h-32 bg-gray-200 rounded"></div>
-            ))}
-          </div>
-          <div className="h-80 bg-gray-200 rounded"></div>
-        </div>
-      </div>
-    )
+    return (<LoadingSpinner />)
   }
 
   const currentWeekTotal = currentWeekSummary?.total_amount || 0
@@ -112,10 +101,10 @@ export default function DashboardPage() {
         <Card className="p-6">
           <div className="flex items-center">
             <div className="p-2 bg-ci-main rounded-full">
-              <Euro className="h-6 w-6 text-ci-main" />
+              <Euro className="h-6 w-6 text-ci-black" />
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-ci-muted">This Week</p>
+              <p className="text-sm font-medium text-ci-muted font-serif">This Week</p>
               <p className="text-2xl font-bold">
                 €{currentWeekTotal.toFixed(2)}
               </p>
@@ -125,11 +114,11 @@ export default function DashboardPage() {
 
         <Card className="p-6">
           <div className="flex items-center">
-            <div className="p-2 bg-ci-success-light rounded-full">
-              <ReceiptIcon className="h-6 w-6 text-ci-success" />
+            <div className="p-2 bg-ci-main rounded-full">
+              <ReceiptIcon className="h-6 w-6 text-ci-black" />
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-ci-muted">Receipts</p>
+              <p className="text-sm font-medium text-ci-muted font-serif">Receipts</p>
               <p className="text-2xl font-bold">{currentWeekReceipts}</p>
             </div>
           </div>
@@ -137,11 +126,11 @@ export default function DashboardPage() {
 
         <Card className="p-6">
           <div className="flex items-center">
-            <div className="p-2 bg-purple-100 rounded-full">
-              <TrendingUp className="h-6 w-6 text-purple-600" />
+            <div className="p-2 bg-ci-main rounded-full">
+              <TrendingUp className="h-6 w-6 text-ci-black" />
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-ci-muted">Last Month</p>
+              <p className="text-sm font-medium text-ci-muted font-serif">Last Month</p>
               <p className="text-2xl font-bold">€{lastMonthTotal.toFixed(2)}</p>
             </div>
           </div>
@@ -149,11 +138,11 @@ export default function DashboardPage() {
 
         <Card className="p-6">
           <div className="flex items-center">
-            <div className="p-2 bg-orange-100 rounded-full">
-              <Calendar className="h-6 w-6 text-orange-600" />
+            <div className="p-2 bg-ci-main rounded-full">
+              <Calendar className="h-6 w-6 text-ci-black" />
             </div>
             <div className="ml-4">
-              <p className="text-sm font-medium text-ci-muted">Weekly Avg</p>
+              <p className="text-sm font-medium text-ci-muted font-serif">Weekly Avg</p>
               <p className="text-2xl font-bold">€{avgWeeklySpending.toFixed(2)}</p>
             </div>
           </div>
@@ -161,13 +150,13 @@ export default function DashboardPage() {
       </div>
 
       {/* Weekly Spending Chart */}
-      <Card className="p-6 mb-8">
-        <div className="flex justify-between items-center mb-6">
+      <Card className="sm:p-6">
+        <div className="flex flex-col sm:flex-row justify-start sm:justify-between sm:items-center mb-6 gap-2">
           <div>
-            <h3 className="text-lg font-semibold">Weekly Spending Trend</h3>
-            <p className="text-sm text-ci-muted mt-1">Last 8 weeks spending overview</p>
+            <h3 className="text-lg font-semibold font-sans">Weekly Spending Trend</h3>
+            <p className="text-sm text-ci-muted font-serif">Last 8 weeks spending overview</p>
           </div>
-          <Link href="/dashboard/weekly">
+          <Link href="/dashboard/weekly" className='ml-auto'>
             <Button variant="secondary" size="sm">View Details</Button>
           </Link>
         </div>
@@ -180,11 +169,11 @@ export default function DashboardPage() {
                 <XAxis 
                   dataKey="weekLabel" 
                   fontSize={12}
-                  tick={{ fill: '#6B7280' }}
+                  tick={{ fill: 'var(--ci-muted)' }}
                 />
                 <YAxis 
                   fontSize={12}
-                  tick={{ fill: '#6B7280' }}
+                  tick={{ fill: 'var(--ci-muted)' }}
                   tickFormatter={(value) => `€${value}`}
                 />
                 <Tooltip 
@@ -193,19 +182,20 @@ export default function DashboardPage() {
                     name === 'amount' ? 'Spent' : 'Receipts'
                   ]}
                   labelFormatter={(label) => `Week of ${label}`}
+               
                   contentStyle={{
-                    backgroundColor: '#ffffff',
-                    border: '1px solid #e5e7eb',
+                    backgroundColor: 'var(--ci-main)',
+                    color:  'var(--ci-black)',
                     borderRadius: '8px'
                   }}
                 />
                 <Line 
                   type="monotone" 
                   dataKey="amount" 
-                  stroke="#3B82F6" 
+                  stroke="var(--ci-main)" 
                   strokeWidth={3}
-                  dot={{ fill: '#3B82F6', strokeWidth: 2, r: 4 }}
-                  activeDot={{ r: 6, fill: '#1D4ED8' }}
+                  dot={{ fill: 'var(--ci-main)', strokeWidth: 2, r: 4 }}
+                  activeDot={{ r: 6, fill: 'var(--ci-main)' }}
                 />
               </LineChart>
             </ResponsiveContainer>
@@ -229,13 +219,14 @@ export default function DashboardPage() {
           </h3>
           <div className="space-y-3">
             <Link href="/dashboard/upload">
-              <Button className="w-full justify-start">
+              <Button>
                 <Upload className="mr-2 h-4 w-4" />
-                Upload New Receipt
+                <p>          Upload New Receipt</p>
+      
               </Button>
             </Link>
             <Link href="/dashboard/weekly">
-              <Button variant="secondary" className="w-full justify-start">
+              <Button variant="secondary">
                 <TrendingUp className="mr-2 h-4 w-4" />
                 View Weekly Summary
               </Button>
@@ -260,7 +251,7 @@ export default function DashboardPage() {
                 <Link 
                   key={index} 
                   href={`/dashboard/categories/${encodeURIComponent(category.category)}`}
-                  className="block p-3 bg-gray-50 rounded-full hover:bg-gray-100 transition-colors"
+                  className="block p-3 rounded-full transition-colors"
                 >
                   <div className="flex justify-between items-center">
                     <div>
@@ -298,7 +289,7 @@ export default function DashboardPage() {
           <div className="space-y-3">
             {recentReceipts.map((receipt) => (
               <Link key={receipt.id} href={`/dashboard/receipts/${receipt.id}`}>
-                <div className="flex justify-between items-center p-3 bg-gray-50 rounded-full hover:bg-gray-100 transition-colors">
+                <div className="flex justify-between items-center p-3 rounded-full  transition-colors">
                   <div>
                     <p className="font-medium">
                       {receipt.store_name || 'Unknown Store'}

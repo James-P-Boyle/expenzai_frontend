@@ -15,7 +15,7 @@ export default function Header({ title, subtitle, children }: HeaderProps) {
             <div>
                 <h1 className="text-2xl font-bold">{title}</h1>
                 {subtitle && (
-                    <p className="text-ci-muted">{subtitle}</p>
+                    <p className="text-ci-muted font-serif">{subtitle}</p>
                 )}
             </div>
             {children ? (

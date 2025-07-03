@@ -3,18 +3,17 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { api } from '@/app/lib/api'
-import UploadMethodSelector from './components/UploadMethodSelector'
-import UploadInterface from './components/UploadInterface'
-
-import Tips from './components/Tips'
-import UploadSuccessState from './components/SuccessState'
-import UploadErrorState from './components/ErrorState'
+import UploadSuccessState from '@/app/components/upload/SuccessState'
+import UploadErrorState from '@/app/components/upload/ErrorState'
+import UploadMethodSelector from '@/app/components/upload/UploadMethodSelector'
+import UploadInterface from '@/app/components/upload/UploadInterface'
+import Tips from '@/app/components/upload/Tips'
 
 type UploadMethod = 'choose' | 'camera' | 'file'
 type UploadStatus = 'idle' | 'uploading' | 'success' | 'error'
 
 export default function UploadPage() {
-    
+
     const [uploadMethod, setUploadMethod] = useState<UploadMethod>('choose')
     const [uploadStatus, setUploadStatus] = useState<UploadStatus>('idle')
     const [uploadedReceiptId, setUploadedReceiptId] = useState<number | null>(null)

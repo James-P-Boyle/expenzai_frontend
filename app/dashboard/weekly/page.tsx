@@ -3,12 +3,12 @@
 import { useState, useEffect } from 'react'
 import { WeeklySummary } from '@/app/lib/types'
 import { api } from '@/app/lib/api'
-import WeekNavigator from './components/WeekNavigator'
+import WeekNavigator from '../../components/weekly/WeekNavigator'
 import ErrorState from '@/app/components/ErrorState'
 import EmptyState from '@/app/components/EmptyState'
-import SummaryStats from './components/SummaryStats'
-import SpendingCharts from './components/SpendingCharts'
-import CategoryDetailsTable from './components/CategoryDetailsTable'
+import SummaryStats from '../../components/weekly/SummaryStats'
+import SpendingCharts from '../../components/weekly/SpendingCharts'
+import CategoryDetailsTable from '../../components/weekly/CategoryDetailsTable'
 
 export default function WeeklySummaryPage() {
     const [weeklySummary, setWeeklySummary] = useState<WeeklySummary | null>(null)
