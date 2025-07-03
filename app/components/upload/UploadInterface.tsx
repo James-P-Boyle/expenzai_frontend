@@ -1,5 +1,6 @@
-import { CameraCapture } from '@/app/dashboard/upload/components/CameraCapture'
-import { FileUpload } from '@/app/dashboard/upload/components/FileUpload'
+import { CameraCapture } from "./CameraCapture"
+import { FileUpload } from "./FileUpload"
+
 
 type UploadMethod = 'choose' | 'camera' | 'file'
 
