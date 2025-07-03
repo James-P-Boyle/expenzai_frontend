@@ -1,6 +1,9 @@
+import { Ref } from "react";
+
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     label?: string
     error?: string
+    ref?: Ref<HTMLInputElement>
 }
 
 export function Input({ label, error, className = '', ...props }: InputProps) {
@@ -13,7 +16,7 @@ export function Input({ label, error, className = '', ...props }: InputProps) {
             )}
             <input
                 className={`
-                    block w-full px-3 py-2 border border-ci-muted rounded-md shadow-sm placeholder-ci-muted focus:outline-none focus:ring-ci-main focus:border-ci-main
+                    block w-full px-3 py-2 border border-ci-muted-light rounded-md placeholder-ci-muted focus:outline-none focus:ring-ci-main focus:border-ci-main
                     ${error ? 'border-red-300 focus:ring-red-500 focus:border-red-500' : ''}
                     ${className}
                 `.trim()}

@@ -16,12 +16,12 @@ export function Button({
     ...props
 }: ButtonProps) {
 
-    const baseClasses = 'inline-flex items-center justify-center font-bold rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-all hover:scale-105'
+    const baseClasses = 'inline-flex font-serif items-center justify-center font-black rounded-full transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer transition-all hover:scale-105'
 
     const variantClasses = {
         primary: 'bg-ci-main hover:bg-ci-main !text-ci-black focus:ring-ci-main',
         secondary: 'hover:bg-ci-main/20 focus:ring-ci-main border border-ci-muted-light hover:border-ci-muted',
-        danger: 'bg-red-600 hover:bg-red-700 text-white focus:ring-red-500',
+        danger: 'border-red-600 border hover:bg-red-600/20 text-red-600 focus:ring-red-500',
     }
 
     const sizeClasses = {

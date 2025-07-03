@@ -9,16 +9,14 @@ import {
     Receipt,
     BarChart3,
 } from 'lucide-react'
-import Link from 'next/link'
 
-import { useState, ReactNode } from 'react'
+import { useState  } from 'react'
 import { useAuth } from '../context/AuthContext'
 import LoadingSpinner from '../components/ui/LoadingSpinner'
 import MobileMenu from './components/MobileMenu'
 import Sidebar from './components/Sidebar'
 import TopBar from './components/TopBar'
 import Header from './components/Header'
-import { Button } from '../components/ui/Button'
 
 const navigation = [
     { name: 'Dashboard', href: '/dashboard', icon: Home },
@@ -47,6 +45,15 @@ const getHeaderConfig = (pathname: string) => {
         '/dashboard/weekly': {
             title: 'Weekly Summary',
             subtitle: 'Track your spending patterns and insights'
+        },
+    }
+    
+    // Handle dynamic receipt detail pages
+    if (pathname.startsWith('/dashboard/receipts/') && pathname !== '/dashboard/receipts') {
+        return {
+            title: `Receipt Details`,
+            subtitle: 'View receipt details and edit item categories',
+            showUpload: false
         }
     }
     
@@ -108,7 +115,8 @@ export default function DashboardLayout({
                 onLogout={handleLogout}
             />
 
-            <div className="lg:pl-64 flex flex-col flex-1">
+            <div className="lg:pl-80 flex flex-col flex-1">
+
                 <TopBar
                     onMenuClick={openMobileMenu}
                     isAuthenticated={isAuthenticated}
@@ -116,7 +124,7 @@ export default function DashboardLayout({
                     onLogout={handleLogout}
                 />
 
-                <main className="flex-1 p-4 md:p-8 lg:p-10 flex flex-col gap-10">
+                <main className="flex-1 p-4 md:p-6 lg:p-10 flex flex-col gap-10">
 
                     <Header 
                         title={headerConfig.title}

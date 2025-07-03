@@ -1,9 +1,8 @@
 'use client'
 
-import { useState, useRef, useCallback } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import { Camera, X, RotateCcw, Upload } from 'lucide-react'
-import { Button } from '../ui/Button'
-
+import { Button } from '../../../components/ui/Button'
 
 interface CameraCaptureProps {
     onCapture: (file: File) => void
@@ -36,9 +35,21 @@ export function CameraCapture({ onCapture, onCancel, isUploading = false }: Came
             if (videoRef.current) {
                 videoRef.current.srcObject = mediaStream
             }
-        } catch (err) {
-            setError('Unable to access camera. Please check permissions.')
+        } catch (err: any) {
             console.error('Camera access error:', err)
+            
+            // Better error messages based on error type
+            if (err.name === 'NotAllowedError') {
+                setError('Camera access denied. Please allow camera permissions and try again.')
+            } else if (err.name === 'NotFoundError') {
+                setError('No camera found on this device.')
+            } else if (err.name === 'NotSupportedError') {
+                setError('Camera is not supported by this browser.')
+            } else if (err.name === 'NotReadableError') {
+                setError('Camera is already in use by another application.')
+            } else {
+                setError('Unable to access camera. Please check permissions and try again.')
+            }
         } finally {
             setIsLoading(false)
         }
@@ -67,14 +78,10 @@ export function CameraCapture({ onCapture, onCancel, isUploading = false }: Came
         // Draw video frame to canvas
         context.drawImage(video, 0, 0, canvas.width, canvas.height)
 
-        // Convert to blob and create file
-        canvas.toBlob((blob) => {
-            if (blob) {
-                const imageUrl = canvas.toDataURL('image/jpeg', 0.8)
-                setCapturedImage(imageUrl)
-                stopCamera()
-            }
-        }, 'image/jpeg', 0.8)
+        // Convert to data URL and set captured image
+        const imageUrl = canvas.toDataURL('image/jpeg', 0.8)
+        setCapturedImage(imageUrl)
+        stopCamera()
     }, [stopCamera])
 
     const retakePhoto = useCallback(() => {
@@ -93,20 +100,44 @@ export function CameraCapture({ onCapture, onCancel, isUploading = false }: Came
         }, 'image/jpeg', 0.8)
     }, [capturedImage, onCapture])
 
-    // Auto-start camera when component mounts
-    useState(() => {
+    // Use useEffect instead of useState for side effects
+    useEffect(() => {
         startCamera()
-        return () => stopCamera()
-    })
+        
+        // Cleanup function
+        return () => {
+            stopCamera()
+        }
+    }, []) // Empty dependency array to run only on mount
+
+    // Cleanup on unmount
+    useEffect(() => {
+        return () => {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop())
+            }
+        }
+    }, [stream])
 
     if (error) {
         return (
-            <div className="rounded-lg p-6 text-center">
+            <div className="p-6 text-center w-full">
                 <div className="text-red-500 mb-4">
                     <Camera className="mx-auto h-12 w-12" />
                 </div>
-                <h3 className="text-lg font-medium text-ci-black mb-2">Camera Access Error</h3>
+                <h3 className="text-lg font-medium text-ci-black mb-2">Camera Access Required</h3>
                 <p className="text-ci-muted mb-4">{error}</p>
+                
+                {/* Instructions for allowing camera */}
+                <div className="bg-ci-main/10 border border-ci-main/20 rounded-lg p-4 mb-4 text-left">
+                    <h4 className="font-medium text-ci-black mb-2">To allow camera access:</h4>
+                    <ul className="text-sm text-ci-muted space-y-1">
+                        <li>• Click the <strong>🔒 lock icon</strong> in your address bar</li>
+                        <li>• Set Camera to <strong>"Allow"</strong></li>
+                        <li>• Refresh the page or click "Try Again"</li>
+                    </ul>
+                </div>
+                
                 <div className="space-x-3">
                     <Button onClick={startCamera} variant="secondary">
                         Try Again
@@ -120,32 +151,31 @@ export function CameraCapture({ onCapture, onCancel, isUploading = false }: Came
     }
 
     return (
-        <div className="rounded-lg overflow-hidden">
+        <div className="p-6">
             {/* Header */}
-            <div className="flex justify-between items-center p-4 border-b">
-                <h3 className="text-lg font-medium text-ci-black">
-                    {capturedImage ? 'Review Photo' : 'Take Photo'}
-                </h3>
-                <button
+            <div className="flex justify-end items-center pb-2">
+                <Button
                     onClick={onCancel}
-                    className="p-2 text-ci-muted hover:text-ci-muted rounded-full"
+                    variant='secondary'
+                    size='sm'
+                    className="text-ci-muted hover:text-ci-muted rounded-full"
                 >
                     <X className="h-5 w-5" />
-                </button>
+                </Button>
             </div>
 
             {/* Camera/Preview Area */}
-            <div className="relative bg-black">
+            <div className="relative bg-ci-muted-light rounded-lg overflow-hidden max-w-[700px] mx-auto">
                 {isLoading && (
                     <div className="flex items-center justify-center h-64">
-                        <div className="text-white text-center">
-                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto mb-2"></div>
+                        <div className="text-center">
+                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-ci-main mx-auto mb-2"></div>
                             <p>Starting camera...</p>
                         </div>
                     </div>
                 )}
 
-                {!isLoading && !capturedImage && (
+                {!isLoading && !capturedImage && stream && (
                     <div className="relative">
                         <video
                             ref={videoRef}
@@ -156,7 +186,7 @@ export function CameraCapture({ onCapture, onCancel, isUploading = false }: Came
                         />
                         {/* Camera overlay */}
                         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                            <div className="border-2 border-white border-dashed rounded-lg w-80 h-48 opacity-50"></div>
+                            <div className="border-2 border-white border-dashed rounded-lg w-80 h-48 opacity-70"></div>
                         </div>
                     </div>
                 )}
@@ -201,7 +231,6 @@ export function CameraCapture({ onCapture, onCancel, isUploading = false }: Came
                         </Button>
                         <Button
                             onClick={confirmPhoto}
-                            isLoading={isUploading}
                             disabled={isUploading}
                         >
                             <Upload className="mr-2 h-4 w-4" />

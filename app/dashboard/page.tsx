@@ -111,7 +111,7 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
         <Card className="p-6">
           <div className="flex items-center">
-            <div className="p-2 bg-ci-main rounded-lg">
+            <div className="p-2 bg-ci-main rounded-full">
               <Euro className="h-6 w-6 text-ci-main" />
             </div>
             <div className="ml-4">
@@ -125,8 +125,8 @@ export default function DashboardPage() {
 
         <Card className="p-6">
           <div className="flex items-center">
-            <div className="p-2 bg-green-100 rounded-lg">
-              <ReceiptIcon className="h-6 w-6 text-green-600" />
+            <div className="p-2 bg-ci-success-light rounded-full">
+              <ReceiptIcon className="h-6 w-6 text-ci-success" />
             </div>
             <div className="ml-4">
               <p className="text-sm font-medium text-ci-muted">Receipts</p>
@@ -137,7 +137,7 @@ export default function DashboardPage() {
 
         <Card className="p-6">
           <div className="flex items-center">
-            <div className="p-2 bg-purple-100 rounded-lg">
+            <div className="p-2 bg-purple-100 rounded-full">
               <TrendingUp className="h-6 w-6 text-purple-600" />
             </div>
             <div className="ml-4">
@@ -149,7 +149,7 @@ export default function DashboardPage() {
 
         <Card className="p-6">
           <div className="flex items-center">
-            <div className="p-2 bg-orange-100 rounded-lg">
+            <div className="p-2 bg-orange-100 rounded-full">
               <Calendar className="h-6 w-6 text-orange-600" />
             </div>
             <div className="ml-4">
@@ -260,7 +260,7 @@ export default function DashboardPage() {
                 <Link 
                   key={index} 
                   href={`/dashboard/categories/${encodeURIComponent(category.category)}`}
-                  className="block p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors"
+                  className="block p-3 bg-gray-50 rounded-full hover:bg-gray-100 transition-colors"
                 >
                   <div className="flex justify-between items-center">
                     <div>
@@ -298,7 +298,7 @@ export default function DashboardPage() {
           <div className="space-y-3">
             {recentReceipts.map((receipt) => (
               <Link key={receipt.id} href={`/dashboard/receipts/${receipt.id}`}>
-                <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                <div className="flex justify-between items-center p-3 bg-gray-50 rounded-full hover:bg-gray-100 transition-colors">
                   <div>
                     <p className="font-medium">
                       {receipt.store_name || 'Unknown Store'}
@@ -311,7 +311,7 @@ export default function DashboardPage() {
                     <p className="font-medium">{receipt.formatted_total}</p>
                     <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${
                       receipt.status === 'completed' 
-                        ? 'bg-green-100 text-green-800'
+                        ? 'bg-ci-success-light text-ci-success'
                         : receipt.status === 'processing'
                         ? 'bg-ci-main text-ci-main'
                         : 'bg-red-100 text-red-800'

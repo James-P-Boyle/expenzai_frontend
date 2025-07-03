@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -6,6 +7,8 @@
   --ci-main: #FFEB3B;
   --ci-white: #ffffff;
   --ci-black: #000000;
+  --ci-success: #3BC14A;
+  --ci-success-light: #3bc14b40;
   --ci-muted: #928c8c;
   --ci-muted-light: #928c8c5a;
   
@@ -28,6 +31,8 @@
   --color-ci-main: var(--ci-main);
   --color-ci-white: var(--ci-white);
   --color-ci-black: var(--ci-black);
+  --color-ci-success: var(--ci-success);
+  --color-ci-success-light: var(--ci-success-light);
   --color-ci-muted: var(--ci-muted);
   --color-ci-muted-light: var(--ci-muted-light);
   --color-chart-1: var(--chart-color-1);
@@ -40,8 +45,8 @@
   --color-chart-8: var(--chart-color-8);
   --color-chart-9: var(--chart-color-9);
   --color-chart-10: var(--chart-color-10);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-league-spartan), "League Spartan", system-ui, sans-serif;
+  --font-serif: var(--font-libre-baskerville), "Libre Baskerville", Georgia, serif;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -68,5 +73,5 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-league-spartan), "League Spartan", system-ui, sans-serif;
 }

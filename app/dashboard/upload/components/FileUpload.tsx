@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react'
 import { Upload, FileImage, X } from 'lucide-react'
-import { Button } from '../ui/Button'
+import { Button } from '../../../components/ui/Button'
 
 interface FileUploadProps {
     onFileSelect: (file: File) => void
@@ -70,26 +70,27 @@ export function FileUpload({ onFileSelect, onCancel, isUploading = false }: File
     }
 
     return (
-        <div className="rounded-lg p-6">
+        <div className="p-6">
             {/* Header */}
-            <div className="flex justify-between items-center mb-6">
-                <h3 className="text-lg font-medium text-ci-black">Upload Receipt</h3>
-                <button
+            <div className="flex justify-end items-center pb-2">
+                <Button
                     onClick={onCancel}
-                    className="p-2 text-ci-muted hover:text-ci-muted rounded-full"
+                    variant='secondary'
+                    size='sm'
+                    className="text-ci-muted hover:text-ci-muted rounded-full"
                 >
                     <X className="h-5 w-5" />
-                </button>
+                </Button>
             </div>
 
             {!selectedFile ? (
                 /* Upload Area */
                 <div
                     className={`
-                        relative border-2 border-dashed rounded-lg p-8 text-center transition-colors
+                        relative border-2 border-dashed rounded-full p-6 text-center transition-colors
                         ${dragActive
                         ? 'border-ci-main bg-ci-main/80'
-                        : 'border-ci-muted hover:border-ci-muted'
+                        : 'border-ci-muted-light hover:border-ci-muted-light'
                     }
                     `}
                     onDragEnter={handleDrag}
@@ -97,16 +98,16 @@ export function FileUpload({ onFileSelect, onCancel, isUploading = false }: File
                     onDragOver={handleDrag}
                     onDrop={handleDrop}
                 >
-                    <FileImage className="mx-auto h-12 w-12 text-ci-muted mb-4" />
-                    <div className="space-y-2">
-                        <p className="text-lg font-medium text-ci-black">
+                    <FileImage className="mx-auto size-10 text-ci-muted-light" />
+                    <div>
+                        <p className="text-lg font-semibold">
                             Drop your receipt here
                         </p>
                         <p className="text-ci-muted">
                             or{' '}
                             <button
                                 onClick={openFileDialog}
-                                className="text-ci-main hover:text-ci-main font-medium"
+                                className="text-ci-main hover:text-ci-main hover:underline cursor-pointer transition-all"
                             >
                                 browse files
                             </button>
@@ -123,31 +124,24 @@ export function FileUpload({ onFileSelect, onCancel, isUploading = false }: File
                         accept="image/*"
                         onChange={handleInputChange}
                     />
+
                 </div>
             ) : (
                 /* Preview Area */
                 <div className="space-y-4">
-                    <div className="relative">
-                        <img
-                            src={previewUrl!}
-                            alt="Receipt preview"
-                            className="w-full h-64 object-cover rounded-lg border"
-                        />
-                        <button
-                            onClick={removeFile}
-                            className="absolute top-2 right-2 p-1 bg-red-500 text-white rounded-full hover:bg-red-600"
-                            disabled={isUploading}
-                        >
-                            <X className="h-4 w-4" />
-                        </button>
-                    </div>
-
-                    <div className="bg-gray-50 rounded-lg p-3">
-                        <div className="flex items-center justify-between">
+               
+                    <img
+                        src={previewUrl!}
+                        alt="Receipt preview"
+                        className="w-full h-full max-h-[400px] max-w-[400px] mx-auto object-cover rounded-xl"
+                    />
+            
+                    <div className="rounded-full mx-auto">
+                        <div className="flex items-center justify-center">
                             <div className="flex items-center space-x-2">
                                 <FileImage className="h-5 w-5 text-ci-muted" />
                                 <div>
-                                    <p className="text-sm font-medium text-ci-black">
+                                    <p className="text-sm font-medium">
                                         {selectedFile.name}
                                     </p>
                                     <p className="text-xs text-ci-muted">

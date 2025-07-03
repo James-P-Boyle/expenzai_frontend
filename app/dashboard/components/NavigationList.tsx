@@ -15,21 +15,21 @@ export default function NavigationList({
     variant = 'desktop'
 }: NavigationListProps) {
 
-    const baseClasses = "group flex items-center text-sm"
+    const baseClasses = "group flex items-center text-sm lg:text-lg"
     const desktopClasses = "px-4 py-2 rounded-full"
     const mobileClasses = "px-2 py-2 rounded-md font-medium"
 
     const getItemClasses = (isActive: boolean) => {
         const variantClasses = variant === 'desktop' ? desktopClasses : mobileClasses
         const activeClasses = isActive
-            ? 'bg-ci-main font-bold text-ci-black'
-            : 'text-ci-muted hover:bg-gray-50 dark:hover:bg-ci-main/10 hover:text-ci-white'
+            ? 'font-black '
+            : 'text-ci-muted hover:bg-gray-50 dark:hover:bg-ci-main/10'
 
         return `${baseClasses} ${variantClasses} ${activeClasses}`
     }
 
     return (
-        <nav className={`py-4 ${variant === 'desktop' ? 'mt-5 flex-1 px-2 space-y-1' : 'mt-5 px-2 space-y-1'}`}>
+        <nav className={`py-4 space-y-2 ${variant === 'desktop' ? 'mt-5 flex-1 px-2' : 'mt-5 px-2'}`}>
 
             {items.map((item) => {
 
@@ -42,7 +42,7 @@ export default function NavigationList({
                         className={getItemClasses(isActive)}
                         onClick={onItemClick}
                     >
-                        <item.icon  className="mr-3 size-5" />
+                        <item.icon  className={`mr-3 size-5 lg:size-8 ${isActive && 'text-ci-main'}`} />
                         {item.name}
                     </Link>
                 )
