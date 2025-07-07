@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useCallback, useEffect } from 'react'
+import Image from "next/image"
 import { Camera, X, RotateCcw, Upload } from 'lucide-react'
 import { Button } from '../ui/Button'
 
@@ -35,18 +36,21 @@ export function CameraCapture({ onCapture, onCancel, isUploading = false }: Came
             if (videoRef.current) {
                 videoRef.current.srcObject = mediaStream
             }
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error('Camera access error:', err)
             
-            // Better error messages based on error type
-            if (err.name === 'NotAllowedError') {
-                setError('Camera access denied. Please allow camera permissions and try again.')
-            } else if (err.name === 'NotFoundError') {
-                setError('No camera found on this device.')
-            } else if (err.name === 'NotSupportedError') {
-                setError('Camera is not supported by this browser.')
-            } else if (err.name === 'NotReadableError') {
-                setError('Camera is already in use by another application.')
+            if (err instanceof DOMException) {
+                if (err.name === 'NotAllowedError') {
+                    setError('Camera access denied. Please allow camera permissions and try again.')
+                } else if (err.name === 'NotFoundError') {
+                    setError('No camera found on this device.')
+                } else if (err.name === 'NotSupportedError') {
+                    setError('Camera is not supported by this browser.')
+                } else if (err.name === 'NotReadableError') {
+                    setError('Camera is already in use by another application.')
+                } else {
+                    setError('Unable to access camera. Please check permissions and try again.')
+                }
             } else {
                 setError('Unable to access camera. Please check permissions and try again.')
             }
@@ -193,7 +197,7 @@ export function CameraCapture({ onCapture, onCancel, isUploading = false }: Came
 
                 {capturedImage && (
                     <div className="relative">
-                        <img
+                        <Image
                             src={capturedImage}
                             alt="Captured receipt"
                             className="w-full h-auto max-h-96 object-cover"

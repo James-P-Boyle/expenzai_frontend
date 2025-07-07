@@ -52,9 +52,9 @@ export default function ReceiptDetailsPage() {
         }
     }
 
-    const goToDashboard = () => {
-        router.push('/dashboard')
-    }
+    // const goToDashboard = () => {
+    //     router.push('/dashboard')
+    // }
 
     const handleUpdateItem = async (itemId: number, category: string) => {
         setIsUpdating(true)

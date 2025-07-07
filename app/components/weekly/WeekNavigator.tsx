@@ -7,14 +7,12 @@ interface WeekNavigatorProps {
     weekStart: string | null
     onPreviousWeek: () => void
     onNextWeek: () => void
-    onCurrentWeek: () => void
 }
 
 export default function WeekNavigator({
     weekStart,
     onPreviousWeek,
     onNextWeek,
-    onCurrentWeek
 }: WeekNavigatorProps) {
 
     const label = weekStart ? getWeekRange(weekStart) : 'Loading...'

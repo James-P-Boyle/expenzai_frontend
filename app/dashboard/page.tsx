@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import { Receipt, WeeklySummary } from '../lib/types'
-import { useAuth } from '../context/AuthContext'
 import { api } from '../lib/api'
 import LoadingSpinner from '../components/ui/LoadingSpinner'
 import { QuickActions } from '../components/dashboard/QuickActions'
@@ -27,7 +26,6 @@ interface Category {
 }
 
 export default function DashboardPage() {
-    const { user } = useAuth()
     const [recentReceipts, setRecentReceipts] = useState<Receipt[]>([])
     const [currentWeekSummary, setCurrentWeekSummary] = useState<WeeklySummary | null>(null)
     const [weeklyData, setWeeklyData] = useState<WeeklyData[]>([])
@@ -57,7 +55,7 @@ export default function DashboardPage() {
 
                 const weeklyResponses = await Promise.all(weeklyPromises)
 
-                const chartData = weeklyResponses.reverse().map((week, index) => {
+                const chartData = weeklyResponses.reverse().map((week) => {
                     const weekStart = new Date(week.week_start)
                     const weekLabel = weekStart.toLocaleDateString('en-US', {
                         month: 'short',

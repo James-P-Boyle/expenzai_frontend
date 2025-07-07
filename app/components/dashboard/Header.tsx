@@ -1,6 +1,3 @@
-import { Button } from "@/app/components/ui/Button"
-import { Upload } from "lucide-react"
-import Link from "next/link"
 import { ReactNode } from "react"
 
 interface HeaderProps {

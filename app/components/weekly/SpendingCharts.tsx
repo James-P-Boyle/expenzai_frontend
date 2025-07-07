@@ -26,7 +26,7 @@ export default function SpendingCharts({ weeklySummary }: SpendingChartsProps) {
         color: COLORS[index % COLORS.length]
     }))
 
-    const barChartData = weeklySummary.categories.map((category, index) => ({
+    const barChartData = weeklySummary.categories.map((category) => ({
         category: category.category.length > 12
             ? category.category.substring(0, 10) + '...'
             : category.category,

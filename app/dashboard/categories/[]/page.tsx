@@ -63,7 +63,7 @@ export default function CategoryDetailPage() {
         <Package className="mx-auto h-12 w-12 text-ci-muted mb-4" />
         <h3 className="text-lg font-medium font-sans">Category not found</h3>
         <p className="text-ci-muted font-serif mb-6">
-          The category "{categoryName}" doesn't exist or has no data.
+          The category {categoryName} doesnt exist or has no data.
         </p>
         <Link href="/dashboard/categories">
           <Button>

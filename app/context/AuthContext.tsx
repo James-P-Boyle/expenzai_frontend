@@ -35,6 +35,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
                 setUser(JSON.parse(savedUser))
             } catch (error) {
                 // Clear invalid data
+                console.log(error)
                 localStorage.removeItem('auth_token')
                 localStorage.removeItem('user')
             }
