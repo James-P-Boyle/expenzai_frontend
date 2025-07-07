@@ -9,7 +9,7 @@ export default function Section ({
 }) {
 
     return (
-        <section className={`text-center min-h-[70vh] flex flex-col justify-center gap-10 ${className}`}>
+        <section className={`text-center min-h-[70vh] flex flex-col justify-center gap-6 ${className}`}>
             {children}
         </section>
     )

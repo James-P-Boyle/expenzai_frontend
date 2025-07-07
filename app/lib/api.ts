@@ -9,6 +9,19 @@ import {
   ApiError,
 } from "./types"
 
+// Add this interface for categories
+interface CategorySummary {
+  category: string
+  count: number
+  total: number
+  avgPrice: number
+  lastPurchase?: string
+}
+
+interface CategoriesResponse {
+  data: CategorySummary[]
+}
+
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL
 
 class ApiClient {
@@ -191,7 +204,40 @@ class ApiClient {
     return this.handleResponse<ReceiptItem>(response)
   }
 
-  // Analytics
+  // Categories
+  async getCategories(token?: string): Promise<CategoriesResponse> {
+    const response = await fetch(`${API_BASE_URL}/categories`, {
+      method: "GET",
+      headers: this.getAuthHeaders(token),
+    })
+
+    return this.handleResponse<CategoriesResponse>(response)
+  }
+
+  async getWeeklyCategories(date?: string, token?: string): Promise<CategoriesResponse> {
+    const url = new URL(`${API_BASE_URL}/categories/weekly`)
+    
+    if (date) {
+      url.searchParams.append("date", date)
+    }
+
+    const response = await fetch(url.toString(), {
+      method: "GET",
+      headers: this.getAuthHeaders(token),
+    })
+
+    return this.handleResponse<CategoriesResponse>(response)
+  }
+
+  async getCategoryDetails(category: string, token?: string): Promise<any> {
+    const response = await fetch(`${API_BASE_URL}/categories/${encodeURIComponent(category)}`, {
+      method: "GET",
+      headers: this.getAuthHeaders(token),
+    })
+
+    return this.handleResponse<any>(response)
+  }
+
   async getWeeklySummary(
     date?: string,
     token?: string
@@ -223,3 +269,4 @@ class ApiClient {
 }
 
 export const api = new ApiClient()
+export type { CategorySummary, CategoriesResponse }

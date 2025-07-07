@@ -8,6 +8,7 @@ import {
     Upload,
     Receipt,
     BarChart3,
+    Tag
 } from 'lucide-react'
 
 import { useState  } from 'react'
@@ -19,23 +20,24 @@ import TopBar from '../components/dashboard/TopBar'
 import Header from '../components/dashboard/Header'
 
 const navigation = [
-    { name: 'Dashboard', href: '/dashboard', icon: Home },
     { name: 'Upload Receipt', href: '/dashboard/upload', icon: Upload },
+    { name: 'Dashboard', href: '/dashboard', icon: Home },
     { name: 'My Receipts', href: '/dashboard/receipts', icon: Receipt },
     { name: 'Weekly Summary', href: '/dashboard/weekly', icon: BarChart3 },
+    { name: 'Categories', href: '/dashboard/categories', icon: Tag },
 ]
 
 const getHeaderConfig = (pathname: string) => {
     const configs: Record<string, { title: string; subtitle: string; showUpload?: boolean }> = {
-        '/dashboard': {
-            title: 'Dashboard',
-            subtitle: 'Overview of your expenses',
-            showUpload: true
-        },
         '/dashboard/upload': {
             title: 'Upload Receipt',
             subtitle: 'Take a photo or upload an image of your receipt for AI processing',
             showUpload: false
+        },
+        '/dashboard': {
+            title: 'Dashboard',
+            subtitle: 'Overview of your expenses',
+            showUpload: true
         },
         '/dashboard/receipts': {
             title: 'My Receipts',
@@ -45,6 +47,10 @@ const getHeaderConfig = (pathname: string) => {
         '/dashboard/weekly': {
             title: 'Weekly Summary',
             subtitle: 'Track your spending patterns and insights'
+        },
+        '/dashboard/categories': {
+            title: 'Categories Overview',
+            subtitle: 'Track your spending patterns by category'
         },
     }
     
@@ -124,7 +130,7 @@ export default function DashboardLayout({
                     onLogout={handleLogout}
                 />
 
-                <main className="flex-1 p-4 md:p-6 lg:p-10 flex flex-col gap-10">
+                <main className="flex-1 p-4 md:p-6 lg:p-10 flex flex-col gap-6">
 
                     <Header 
                         title={headerConfig.title}

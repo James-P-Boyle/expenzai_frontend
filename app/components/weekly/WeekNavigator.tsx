@@ -27,10 +27,10 @@ export default function WeekNavigator({
                     <ChevronLeft className="size-5" />
                 </Button>
 
-                <div className="text-center row-start-1 col-span-2">
+                <div className="text-center row-start-1 col-span-2 w-full block">
 
-                    <div className="flex items-center justify-center space-x-2">
-                        <Calendar className="size-5 text-ci-muted" />
+                    <div className="flex items-center justify-center space-x-2 h-full">
+                        <Calendar className="size-5 mb-1 text-ci-muted" />
                         <span className="font-medium">{label}</span>
                     </div>
 

@@ -36,7 +36,7 @@ export default function SpendingCharts({ weeklySummary }: SpendingChartsProps) {
     }))
 
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             {/* Pie Chart */}
             <Card>
                 <h3 className="font-bold pb-2">
