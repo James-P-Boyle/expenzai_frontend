@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { WeeklySummary } from '@/app/lib/types'
 import { api } from '@/app/lib/api'
 import WeekNavigator from '../../components/weekly/WeekNavigator'
@@ -9,26 +9,27 @@ import EmptyState from '@/app/components/EmptyState'
 import SummaryStats from '../../components/weekly/SummaryStats'
 import SpendingCharts from '../../components/weekly/SpendingCharts'
 import CategoryDetailsTable from '../../components/weekly/CategoryDetailsTable'
+import { getErrorMessage } from '@/app/lib/error-utils'
 
 export default function WeeklySummaryPage() {
     const [weeklySummary, setWeeklySummary] = useState<WeeklySummary | null>(null)
     const [selectedDate, setSelectedDate] = useState(new Date())
     const [error, setError] = useState<string | null>(null)
 
-    useEffect(() => {
-        fetchWeeklySummary()
-    }, [selectedDate])
-
-    const fetchWeeklySummary = async () => {
+    const fetchWeeklySummary = useCallback(async () => {
         try {
             const dateStr = selectedDate.toISOString().split('T')[0]
             const response = await api.getWeeklySummary(dateStr)
             setWeeklySummary(response)
             setError(null)
-        } catch (err: any) {
-            setError(err.message || 'Failed to fetch weekly summary')
+        } catch (err: unknown) {
+            setError(getErrorMessage(err, 'Failed to fetch weekly summary'))
         }
-    }
+    }, [selectedDate])
+
+    useEffect(() => {
+        fetchWeeklySummary()
+    }, [selectedDate, fetchWeeklySummary])
 
     const goToPreviousWeek = () => {
         const newDate = new Date(selectedDate)
@@ -42,9 +43,9 @@ export default function WeeklySummaryPage() {
         setSelectedDate(newDate)
     }
 
-    const goToCurrentWeek = () => {
-        setSelectedDate(new Date())
-    }
+    // const goToCurrentWeek = () => {
+    //     setSelectedDate(new Date())
+    // }
 
     return (
         <>
@@ -52,7 +53,7 @@ export default function WeeklySummaryPage() {
                 weekStart={weeklySummary?.week_start || null}
                 onPreviousWeek={goToPreviousWeek}
                 onNextWeek={goToNextWeek}
-                onCurrentWeek={goToCurrentWeek}
+                // onCurrentWeek={goToCurrentWeek}
             />
 
             {error && (

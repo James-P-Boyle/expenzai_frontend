@@ -6,21 +6,11 @@ import {
   UploadResponse,
   WeeklySummary,
   ReceiptItem,
-  ApiError,
+  CategoriesResponse,
+  CategorySummary,
+  CategoryDetails,
+  MonthlySummary,
 } from "./types"
-
-// Add this interface for categories
-interface CategorySummary {
-  category: string
-  count: number
-  total: number
-  avgPrice: number
-  lastPurchase?: string
-}
-
-interface CategoriesResponse {
-  data: CategorySummary[]
-}
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL
 
@@ -53,10 +43,12 @@ class ApiClient {
         response.status,
         response.statusText
       )
-
-      let error: any
       try {
-        error = JSON.parse(responseText)
+        const error = JSON.parse(responseText) as {
+          message?: string
+          errors?: Record<string, string[]>
+        }
+
         console.error("❌ Parsed error:", error)
 
         if (response.status === 422 && error.errors) {
@@ -88,7 +80,6 @@ class ApiClient {
 
   // Authentication
   async register(credentials: RegisterCredentials): Promise<AuthResponse> {
-
     const response = await fetch(`${API_BASE_URL}/register`, {
       method: "POST",
       headers: {
@@ -102,7 +93,6 @@ class ApiClient {
   }
 
   async login(credentials: LoginCredentials): Promise<AuthResponse> {
-
     const response = await fetch(`${API_BASE_URL}/login`, {
       method: "POST",
       headers: {
@@ -116,7 +106,6 @@ class ApiClient {
   }
 
   async logout(token?: string): Promise<{ message: string }> {
-
     const response = await fetch(`${API_BASE_URL}/logout`, {
       method: "POST",
       headers: this.getAuthHeaders(token),
@@ -130,7 +119,6 @@ class ApiClient {
     imageFile: File,
     token?: string
   ): Promise<UploadResponse> {
-
     const formData = new FormData()
     formData.append("image", imageFile)
 
@@ -154,7 +142,6 @@ class ApiClient {
   }
 
   async getReceipts(token?: string): Promise<{ data: Receipt[] }> {
-
     const response = await fetch(`${API_BASE_URL}/receipts`, {
       method: "GET",
       headers: this.getAuthHeaders(token),
@@ -164,7 +151,6 @@ class ApiClient {
   }
 
   async getReceipt(id: number, token?: string): Promise<Receipt> {
-
     const response = await fetch(`${API_BASE_URL}/receipts/${id}`, {
       method: "GET",
       headers: this.getAuthHeaders(token),
@@ -177,7 +163,6 @@ class ApiClient {
     id: number,
     token?: string
   ): Promise<{ message: string }> {
-
     const response = await fetch(`${API_BASE_URL}/receipts/${id}`, {
       method: "DELETE",
       headers: this.getAuthHeaders(token),
@@ -191,7 +176,6 @@ class ApiClient {
     data: { category: string; is_uncertain: boolean },
     token?: string
   ): Promise<ReceiptItem> {
-
     const response = await fetch(`${API_BASE_URL}/items/${id}`, {
       method: "PUT",
       headers: {
@@ -214,9 +198,12 @@ class ApiClient {
     return this.handleResponse<CategoriesResponse>(response)
   }
 
-  async getWeeklyCategories(date?: string, token?: string): Promise<CategoriesResponse> {
+  async getWeeklyCategories(
+    date?: string,
+    token?: string
+  ): Promise<CategoriesResponse> {
     const url = new URL(`${API_BASE_URL}/categories/weekly`)
-    
+
     if (date) {
       url.searchParams.append("date", date)
     }
@@ -229,20 +216,25 @@ class ApiClient {
     return this.handleResponse<CategoriesResponse>(response)
   }
 
-  async getCategoryDetails(category: string, token?: string): Promise<any> {
-    const response = await fetch(`${API_BASE_URL}/categories/${encodeURIComponent(category)}`, {
-      method: "GET",
-      headers: this.getAuthHeaders(token),
-    })
-
-    return this.handleResponse<any>(response)
+  async getCategoryDetails(
+    category: string,
+    token?: string
+  ): Promise<{ data: CategoryDetails }> {
+    const response = await fetch(
+      `${API_BASE_URL}/categories/${encodeURIComponent(category)}`,
+      {
+        method: "GET",
+        headers: this.getAuthHeaders(token),
+      }
+    )
+  
+    return this.handleResponse<{ data: CategoryDetails }>(response)
   }
 
   async getWeeklySummary(
     date?: string,
     token?: string
   ): Promise<WeeklySummary> {
-
     const url = new URL(`${API_BASE_URL}/expenses/weekly`)
 
     if (date) {
@@ -257,14 +249,13 @@ class ApiClient {
     return this.handleResponse<WeeklySummary>(response)
   }
 
-  async getMonthlySummary(token?: string): Promise<any> {
-
+  async getMonthlySummary(token?: string): Promise<MonthlySummary> {
     const response = await fetch(`${API_BASE_URL}/expenses/summary`, {
       method: "GET",
       headers: this.getAuthHeaders(token),
     })
 
-    return this.handleResponse<any>(response)
+    return this.handleResponse<MonthlySummary>(response)
   }
 }
 

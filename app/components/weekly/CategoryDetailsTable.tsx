@@ -59,7 +59,7 @@ export default function CategoryDetailsTable({ weeklySummary }: CategoryDetailsT
                   €{(category.total / category.count).toFixed(2)}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  {category.uncertain_count > 0 ? (
+                  {category.uncertain_count && category.uncertain_count > 0 ? (
                     <span className="inline-flex items-center py-1 px-2 rounded-full text-xs font-bold bg-ci-main text-ci-black">
                       <AlertTriangle className="size-4 mr-1" />
                       {category.uncertain_count}

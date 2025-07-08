@@ -8,6 +8,7 @@ import { ReceiptFilters } from '../../components/receipts/ReceiptFilters'
 import { ErrorState } from '../../components/receipts/ErrorState'
 import EmptyState from '../../components/receipts/EmptyState'
 import { ReceiptsList } from '../../components/receipts/ReceiptList'
+import { getErrorMessage } from '@/app/lib/error-utils'
 
 export default function ReceiptsIndexPage() {
     const [receipts, setReceipts] = useState<Receipt[]>([])
@@ -26,8 +27,8 @@ export default function ReceiptsIndexPage() {
             const response = await api.getReceipts()
             setReceipts(response.data)
             setError(null)
-        } catch (err: any) {
-            setError(err.message || 'Failed to fetch receipts')
+        } catch (err: unknown) {
+            setError(getErrorMessage(err, 'Failed to fetch receipts'))
         } finally {
             setIsLoading(false)
         }

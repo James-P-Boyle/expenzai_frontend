@@ -49,7 +49,7 @@ export default function DashboardPage() {
 
                 const weeklyResponses = await Promise.all(weeklyPromises)
 
-                const chartData = weeklyResponses.reverse().map((week, index) => {
+                const chartData = weeklyResponses.reverse().map((week) => {
                     const weekStart = new Date(week.week_start)
                     const weekLabel = weekStart.toLocaleDateString('en-US', {
                         month: 'short',

@@ -4,59 +4,89 @@ import { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, Receipt as ReceiptIcon, Euro, Calendar, TrendingUp, Package } from 'lucide-react'
-import { Receipt, ReceiptItem } from '@/app/lib/types'
+import { CategoryDetails } from '@/app/lib/types'
 import { api } from '@/app/lib/api'
 import LoadingSpinner from '@/app/components/ui/LoadingSpinner'
 import { Button } from '@/app/components/ui/Button'
-
 import { Card } from '@/app/components/ui/Card'
 import Header from '@/app/components/dashboard/Header'
 import { StatCard } from '@/app/components/dashboard/StatsCard'
 
-interface CategoryDetails {
-  category: string
-  total_spent: number
-  item_count: number
-  receipt_count: number
-  avg_price: number
-  first_purchase: string
-  last_purchase: string
-  receipts: Receipt[]
-  items: (ReceiptItem & { receipt: Receipt, store_name?: string })[]
-  monthly_breakdown?: {
-    month: string
-    total: number
-    count: number
-  }[]
-}
-
 export default function CategoryDetailPage() {
   const params = useParams()
-  const categoryName = decodeURIComponent(params.category as string)
   const [categoryDetails, setCategoryDetails] = useState<CategoryDetails | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  // Add safety check for params - now using 'slug' instead of 'category'
+  const categoryName = params?.slug ? decodeURIComponent(params.slug as string) : null
 
   useEffect(() => {
     const fetchCategoryDetails = async () => {
+      if (!categoryName) {
+        setIsLoading(false)
+        return
+      }
+
       try {
+        setError(null)
         const response = await api.getCategoryDetails(categoryName)
-        setCategoryDetails(response)
+        setCategoryDetails(response.data) 
       } catch (error) {
         console.error('Failed to fetch category details:', error)
+        setError(error instanceof Error ? error.message : 'Failed to load category details')
       } finally {
         setIsLoading(false)
       }
     }
 
-    if (categoryName) {
-      fetchCategoryDetails()
-    }
+    fetchCategoryDetails()
   }, [categoryName])
 
+  // Handle loading state
   if (isLoading) {
     return <LoadingSpinner />
   }
 
+  // Handle error state
+  if (error) {
+    return (
+      <div className="text-center py-12">
+        <Package className="mx-auto h-12 w-12 text-red-400 mb-4" />
+        <h3 className="text-lg font-medium font-sans">Error Loading Category</h3>
+        <p className="text-ci-muted font-serif mb-6">
+          {error}
+        </p>
+        <Link href="/dashboard/categories">
+          <Button>
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Categories
+          </Button>
+        </Link>
+      </div>
+    )
+  }
+
+  // Handle missing category name
+  if (!categoryName) {
+    return (
+      <div className="text-center py-12">
+        <Package className="mx-auto h-12 w-12 text-ci-muted mb-4" />
+        <h3 className="text-lg font-medium font-sans">Invalid Category</h3>
+        <p className="text-ci-muted font-serif mb-6">
+          No category specified.
+        </p>
+        <Link href="/dashboard/categories">
+          <Button>
+            <ArrowLeft className="mr-2 h-4 w-4" />
+            Back to Categories
+          </Button>
+        </Link>
+      </div>
+    )
+  }
+
+  // Handle category not found
   if (!categoryDetails) {
     return (
       <div className="text-center py-12">

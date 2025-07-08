@@ -7,6 +7,7 @@ import { useAuth } from '@/app/context/AuthContext'
 import { Card } from '@/app/components/ui/Card'
 import { Input } from '@/app/components/ui/Input'
 import { Button } from '@/app/components/ui/Button';
+import { getErrorMessage } from '@/app/lib/error-utils'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -25,8 +26,8 @@ export default function LoginPage() {
     try {
       await login({ email, password })
       router.push('/dashboard')
-    } catch (err: any) {
-      setError(err.message || 'Login failed')
+    } catch (err: unknown) {
+      setError(getErrorMessage(err, ' Login failed'))
     } finally {
       setIsLoading(false)
     }

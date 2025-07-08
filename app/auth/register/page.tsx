@@ -7,6 +7,7 @@ import { useAuth } from '@/app/context/AuthContext'
 import { Card } from '@/app/components/ui/Card'
 import { Input } from '@/app/components/ui/Input'
 import { Button } from '@/app/components/ui/Button'
+import { getErrorMessage } from '@/app/lib/error-utils'
 
 export default function RegisterPage() {
   const [name, setName] = useState('')
@@ -45,8 +46,8 @@ export default function RegisterPage() {
         password_confirmation: passwordConfirmation 
       })
       router.push('/dashboard')
-    } catch (err: any) {
-      setError(err.message || 'Registration failed')
+    } catch (err: unknown) {
+      setError(getErrorMessage(err, ' Registration failed'))
     } finally {
       setIsLoading(false)
     }

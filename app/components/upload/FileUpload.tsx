@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef } from 'react'
+import Image from 'next/image'
 import { Upload, FileImage, X } from 'lucide-react'
 import { Button } from '../ui/Button'
 
@@ -18,13 +19,13 @@ export function FileUpload({ onFileSelect, onCancel, isUploading = false }: File
     const fileInputRef = useRef<HTMLInputElement>(null)
 
     const handleFileChange = (file: File) => {
-        if (file && file.type.startsWith('image/')) {
+        if (file && file.type && file.type.startsWith('image/')) {
             setSelectedFile(file)
             const url = URL.createObjectURL(file)
             setPreviewUrl(url)
         }
     }
-
+    
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]
         if (file) handleFileChange(file)
@@ -90,9 +91,9 @@ export function FileUpload({ onFileSelect, onCancel, isUploading = false }: File
                     className={`
                         relative border-2 border-dashed rounded-full p-6 text-center transition-colors
                         ${dragActive
-                        ? 'border-ci-main bg-ci-main/80'
-                        : 'border-ci-muted-light hover:border-ci-muted-light'
-                    }
+                            ? 'border-ci-main bg-ci-main/80'
+                            : 'border-ci-muted-light hover:border-ci-muted-light'
+                        }
                     `}
                     onDragEnter={handleDrag}
                     onDragLeave={handleDrag}
@@ -130,13 +131,13 @@ export function FileUpload({ onFileSelect, onCancel, isUploading = false }: File
             ) : (
                 /* Preview Area */
                 <div className="space-y-4">
-               
-                    <img
+
+                    <Image
                         src={previewUrl!}
                         alt="Receipt preview"
                         className="w-full h-full max-h-[400px] max-w-[400px] mx-auto object-cover rounded-xl"
                     />
-            
+
                     <div className="rounded-full mx-auto">
                         <div className="flex items-center justify-center">
                             <div className="flex items-center space-x-2">

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { Receipt } from '@/app/lib/types'
 import { api } from '@/app/lib/api'
@@ -11,10 +11,11 @@ import { ProcessingStatus } from '../../../components/receipts/ProcessingStatus'
 import { ReceiptCategoryBreakdown } from '../../../components/receipts/CategoryBreakdown'
 import { ActionsCard } from '../../../components/receipts/ActionsCard'
 import { ErrorState } from '../../../components/receipts/ErrorState'
+import { getErrorMessage } from '@/app/lib/error-utils'
 
 export default function ReceiptDetailsPage() {
     const [receipt, setReceipt] = useState<Receipt | null>(null)
-    const [isLoading, setIsLoading] = useState(true)
+    // const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
     const [isUpdating, setIsUpdating] = useState(false)
     const router = useRouter()
@@ -33,24 +34,32 @@ export default function ReceiptDetailsPage() {
         'Other'
     ]
 
+    const fetchReceipt = useCallback(async () => {
+        try {
+            // setIsLoading(true)
+            const response = await api.getReceipt(parseInt(params.id as string))
+            setReceipt(response)
+            setError(null)
+        } catch (err: unknown) {
+            setError(err instanceof Error ? err.message : 'Failed to fetch receipt')
+        }
+        
+        // finally {
+        //     // setIsLoading(false)
+        // }
+    }, [params.id])
+
     useEffect(() => {
         if (params.id) {
             fetchReceipt()
         }
-    }, [params.id])
+    }, [params.id, fetchReceipt])
 
-    const fetchReceipt = async () => {
-        try {
-            setIsLoading(true)
-            const response = await api.getReceipt(parseInt(params.id as string))
-            setReceipt(response)
-            setError(null)
-        } catch (err: any) {
-            setError(err.message || 'Failed to fetch receipt')
-        } finally {
-            setIsLoading(false)
+    useEffect(() => {
+        if (params.id) {
+            fetchReceipt()
         }
-    }
+    }, [params.id, fetchReceipt])
 
     // const goToDashboard = () => {
     //     router.push('/dashboard')
@@ -74,8 +83,8 @@ export default function ReceiptDetailsPage() {
                     )
                 })
             }
-        } catch (err: any) {
-            alert(err.message || 'Failed to update item')
+        } catch (err: unknown) {
+            alert(err instanceof Error ? err.message : 'Failed to update item')
             throw err
         } finally {
             setIsUpdating(false)
@@ -88,8 +97,9 @@ export default function ReceiptDetailsPage() {
         try {
             await api.deleteReceipt(receipt.id)
             router.push('/dashboard/receipts')
-        } catch (err: any) {
-            alert(err.message || 'Failed to delete receipt')
+        } catch (err: unknown) {
+            alert(getErrorMessage(err, 'Failed to delete receipt'))
+            throw err
         }
     }
 

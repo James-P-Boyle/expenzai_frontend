@@ -1,87 +1,142 @@
-import { LucideIcon } from "lucide-react"
+import { LucideIcon } from "lucide-react";
 
 export interface User {
-  id: number
-  name: string
-  email: string
-  created_at: string
-  updated_at: string
+  id: number;
+  name: string;
+  email: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface AuthResponse {
-  user: User
-  token: string
+  user: User;
+  token: string;
 }
 
 export interface ReceiptItem {
-  id: number
-  receipt_id: number
-  name: string
-  price: string
-  category: string
-  is_uncertain: boolean
-  formatted_price: string
-  created_at: string
-  updated_at: string
+  id: number;
+  receipt_id: number;
+  name: string;
+  price: string;
+  category: string;
+  is_uncertain: boolean;
+  formatted_price: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface Receipt {
-  id: number
-  user_id: number
-  image_path: string
-  total_amount: string | null
-  store_name: string | null
-  receipt_date: string | null
-  status: "processing" | "completed" | "failed"
-  week_of: string | null
-  formatted_total: string
-  created_at: string
-  updated_at: string
-  items: ReceiptItem[]
+  id: number;
+  user_id: number;
+  image_path: string;
+  total_amount: string | null;
+  store_name: string | null;
+  receipt_date: string | null;
+  status: "processing" | "completed" | "failed";
+  week_of: string | null;
+  formatted_total: string;
+  created_at: string;
+  updated_at: string;
+  items: ReceiptItem[];
 }
 
 export interface UploadResponse {
-  id: number
-  status: string
-  message: string
-}
-
-export interface CategorySummary {
-  category: string
-  total: number
-  count: number
-  uncertain_count: number
+  id: number;
+  status: string;
+  message: string;
 }
 
 export interface WeeklySummary {
-  week_start: string
-  total_amount: number
-  receipts_count: number
-  categories: CategorySummary[]
-  receipts: Receipt[]
+  week_start: string;
+  total_amount: number;
+  receipts_count: number;
+  categories: CategorySummary[];
+  receipts: Receipt[];
 }
 
 export interface ApiError {
-  message: string
-  errors?: Record<string, string[]>
+  message: string;
+  errors?: Record<string, string[]>;
 }
 
-export type ReceiptStatus = "processing" | "completed" | "failed"
+export type ReceiptStatus = "processing" | "completed" | "failed";
 
 export interface LoginCredentials {
-  email: string
-  password: string
+  email: string;
+  password: string;
 }
 
 export interface RegisterCredentials {
-  name: string
-  email: string
-  password: string
-  password_confirmation: string
+  name: string;
+  email: string;
+  password: string;
+  password_confirmation: string;
 }
 
 export interface NavigationItem {
-  name: string
-  href: string
-  icon: LucideIcon
+  name: string;
+  href: string;
+  icon: LucideIcon;
+}
+
+export type ErrorHandler = (error: unknown, fallback?: string) => string;
+
+export interface CategoryDetails {
+  id: number;
+  name: string;
+  description?: string;
+  total_spent: number;
+  transaction_count: number;
+  average_amount: number;
+  recent_transactions?: ReceiptItem[];
+  created_at: string;
+  updated_at: string;
+}
+
+export interface MonthlySummary {
+  month: string;
+  year: number;
+  total_amount: number;
+  receipts_count: number;
+  categories: CategorySummary[];
+  daily_breakdown: {
+    date: string;
+    total: number;
+    receipts_count: number;
+  }[];
+  top_categories: {
+    category: string;
+    total: number;
+    percentage: number;
+  }[];
+}
+
+export interface CategorySummary {
+  category: string;
+  count: number;
+  total: number;
+  avgPrice: number;
+  lastPurchase?: string;
+  uncertain_count?: number;
+}
+
+export interface CategoriesResponse {
+  data: CategorySummary[];
+}
+
+export interface CategoryDetails {
+  category: string;
+  total_spent: number;
+  item_count: number;
+  receipt_count: number;
+  avg_price: number;
+  first_purchase: string;
+  last_purchase: string;
+  receipts: Receipt[];
+  items: (ReceiptItem & { receipt: Receipt; store_name?: string })[];
+  monthly_breakdown?: {
+    month: string;
+    total: number;
+    count: number;
+  }[];
 }

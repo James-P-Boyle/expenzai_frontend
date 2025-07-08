@@ -8,6 +8,7 @@ import UploadErrorState from '@/app/components/upload/ErrorState'
 import UploadMethodSelector from '@/app/components/upload/UploadMethodSelector'
 import UploadInterface from '@/app/components/upload/UploadInterface'
 import Tips from '@/app/components/upload/Tips'
+import { getErrorMessage } from '@/app/lib/error-utils'
 
 type UploadMethod = 'choose' | 'camera' | 'file'
 type UploadStatus = 'idle' | 'uploading' | 'success' | 'error'
@@ -28,8 +29,8 @@ export default function UploadPage() {
             const response = await api.uploadReceipt(file)
             setUploadedReceiptId(response.id)
             setUploadStatus('success')
-        } catch (err: any) {
-            setError(err.message || 'Upload failed')
+        } catch (err: unknown) {
+            setError(getErrorMessage(err, 'Upload failed'))
             setUploadStatus('error')
         }
     }

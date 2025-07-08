@@ -54,14 +54,14 @@ const getHeaderConfig = (pathname: string) => {
         },
     }
     
-    // Handle dynamic receipt detail pages
-    if (pathname.startsWith('/dashboard/receipts/') && pathname !== '/dashboard/receipts') {
-        return {
-            title: `Receipt Details`,
-            subtitle: 'View receipt details and edit item categories',
-            showUpload: false
-        }
-    }
+    // // Handle dynamic receipt detail pages
+    // if (pathname && pathname.startsWith('/dashboard/receipts/') && pathname !== '/dashboard/receipts') {
+    //     return {
+    //         title: `Receipt Details`,
+    //         subtitle: 'View receipt details and edit item categories',
+    //         showUpload: false
+    //     }
+    // }
     
     return configs[pathname] || {
         title: 'Dashboard',

@@ -112,7 +112,7 @@ export function CameraCapture({ onCapture, onCancel, isUploading = false }: Came
         return () => {
             stopCamera()
         }
-    }, []) // Empty dependency array to run only on mount
+    }, [startCamera, stopCamera]) 
 
     // Cleanup on unmount
     useEffect(() => {
@@ -137,8 +137,8 @@ export function CameraCapture({ onCapture, onCancel, isUploading = false }: Came
                     <h4 className="font-medium text-ci-black mb-2">To allow camera access:</h4>
                     <ul className="text-sm text-ci-muted space-y-1">
                         <li>• Click the <strong>🔒 lock icon</strong> in your address bar</li>
-                        <li>• Set Camera to <strong>"Allow"</strong></li>
-                        <li>• Refresh the page or click "Try Again"</li>
+                        <li>• Set Camera to <strong>Allow</strong></li>
+                        <li>• Refresh the page or click Try Again</li>
                     </ul>
                 </div>
                 
