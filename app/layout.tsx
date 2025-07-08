@@ -17,7 +17,7 @@ const libreBaskerville = Libre_Baskerville({
     display: "swap",
 })
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
+const baseUrl = process.env.NEXT_FRONTEND_URL || 'http://localhost:3000'
 
 export const metadata: Metadata = {
     title: {
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
         'receipt OCR',
         'spending analysis'
     ],
-    authors: [{ name: 'Receipt Tracker Team' }],
+    authors: [{ name: 'James Boyle - Boylerplate' }],
     creator: 'BoylerPlate',
     openGraph: {
         type: 'website',
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
         siteName: 'Receipt Tracker',
         images: [
             {
-                url: '/og-image.png',
+                url: `${baseUrl}/og-image.png`,
                 width: 1200,
                 height: 630,
                 alt: 'Receipt Tracker - AI Expense Management Dashboard'
