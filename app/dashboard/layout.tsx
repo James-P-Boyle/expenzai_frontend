@@ -54,14 +54,14 @@ const getHeaderConfig = (pathname: string) => {
         },
     }
     
-    // // Handle dynamic receipt detail pages
-    // if (pathname && pathname.startsWith('/dashboard/receipts/') && pathname !== '/dashboard/receipts') {
-    //     return {
-    //         title: `Receipt Details`,
-    //         subtitle: 'View receipt details and edit item categories',
-    //         showUpload: false
-    //     }
-    // }
+    // Handle dynamic receipt detail pages
+    if (pathname && pathname.startsWith('/dashboard/receipts/') && pathname !== '/dashboard/receipts') {
+        return {
+            title: `Receipt Details`,
+            subtitle: 'View receipt details and edit item categories',
+            showUpload: false
+        }
+    }
     
     return configs[pathname] || {
         title: 'Dashboard',
@@ -130,7 +130,7 @@ export default function DashboardLayout({
                     onLogout={handleLogout}
                 />
 
-                <main className="flex-1 p-4 md:p-6 lg:p-10 flex flex-col gap-6">
+                <main className="flex-1 p-4 md:p-6 lg:p-10 flex flex-col">
 
                     <Header 
                         title={headerConfig.title}

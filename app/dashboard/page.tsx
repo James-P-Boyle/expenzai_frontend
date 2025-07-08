@@ -127,7 +127,7 @@ export default function DashboardPage() {
 
     return (
         <>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2 lg:gap-6">
                 <StatCard
                     title="This Week"
                     value={`€${currentWeekTotal.toFixed(2)}`}
@@ -153,7 +153,7 @@ export default function DashboardPage() {
             <WeeklyChart data={weeklyData} />
             <QuickActions />
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-2lg:gap-6">
                 <RecentReceipts receipts={recentReceipts} />
                 <TopCategories
                     categories={topCategories}
