@@ -72,7 +72,7 @@ export function FileUpload({ onFileSelect, onCancel, isUploading = false }: File
     }
 
     return (
-        <div className="p-6">
+        <div className="p-4 lg:p-6">
             {/* Header */}
             <div className="flex justify-end items-center pb-2">
                 <Button

@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Button } from "../ui/Button"
+import Logo from "../ui/Logo"
 
 export default function Header({
     isAuthenticated,
@@ -14,8 +15,8 @@ export default function Header({
             <div className="flex justify-between items-center flex-col md:flex-row gap-2 lg:gap-4">
                 {!loading && (
                     <>
-                        <h1 className="text-2xl font-bold">Receipt Tracker</h1>
-
+                        <Logo />
+                   
                         <div className="flex flex-row gap-4">
                             {!isAuthenticated ? (
                                 <Link href="/dashboard">

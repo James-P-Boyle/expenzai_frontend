@@ -137,9 +137,9 @@ export default function DashboardLayout({
                         subtitle={headerConfig.subtitle}
                     />
 
-                    <>
+                    <div>
                         {children}
-                    </>
+                    </div>
              
                 </main>
             </div>

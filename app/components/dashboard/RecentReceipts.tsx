@@ -21,7 +21,7 @@ export function RecentReceipts({ receipts }: RecentReceiptsProps) {
     }
 
     return (
-        <Card className="p-6">
+        <Card className="p-4 lg:p-6">
             <div className="flex justify-between items-center mb-4">
                 <h3 className="text-lg font-semibold font-sans">Recent Receipts</h3>
                 <Link href="/dashboard/receipts">

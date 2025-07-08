@@ -12,7 +12,7 @@ export default function CategoryDetailsTable({ weeklySummary }: CategoryDetailsT
   const sortedCategories = weeklySummary.categories.sort((a, b) => b.total - a.total)
 
   return (
-    <Card className="p-6">
+    <Card className="p-4 lg:p-6">
       <h3 className="text-lg font-semibold mb-4">Category Details</h3>
       <div className="overflow-x-auto">
         <table className="min-w-full">

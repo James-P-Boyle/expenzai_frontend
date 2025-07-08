@@ -8,7 +8,7 @@ interface ReceiptSummaryCardProps {
 
 export function ReceiptSummaryCard({ receipt }: ReceiptSummaryCardProps) {
     return (
-        <Card className="p-6">
+        <Card className="p-4 lg:p-6">
             <h3 className="text-lg font-semibold mb-4">Receipt Summary</h3>
             <div className="grid grid-cols-2 gap-4">
                 <div className="flex items-center space-x-2">

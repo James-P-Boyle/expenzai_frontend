@@ -72,7 +72,7 @@ export default function CategoriesIndexPage() {
       </div>
 
       {/* This Week's Top Categories */}
-      <Card className="p-6">
+      <Card className="p-4 lg:p-6">
         <h2 className="text-lg font-semibold font-sans">Top Categories This Week</h2>
         
         {weeklyCategories.length > 0 ? (
@@ -107,7 +107,7 @@ export default function CategoriesIndexPage() {
       </Card>
 
       {/* All Categories */}
-      <Card className="p-6">
+      <Card className="p-4 lg:p-6">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-lg font-semibold font-sans">All Categories</h2>
           <p className="text-sm text-ci-muted font-serif">

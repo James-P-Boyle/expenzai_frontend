@@ -18,7 +18,7 @@ export default function WeekNavigator({
     const label = weekStart ? getWeekRange(weekStart) : 'Loading...'
 
     return (
-        <Card className="px-4">
+        <Card className="p-4">
             <div className="grid grid-cols-2 grid-rows-2 gap-1 md:flex items-center justify-between">
 
                 <Button onClick={onPreviousWeek} variant="secondary" size="sm">

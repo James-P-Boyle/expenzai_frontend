@@ -1,6 +1,7 @@
 import UserCard from '@/app/components/UserCard'
 import { NavigationItem, User } from '@/app/lib/types'
 import NavigationList from './NavigationList'
+import Logo from '../ui/Logo'
 
 interface SidebarProps {
     navigation: NavigationItem[]
@@ -20,8 +21,12 @@ export default function Sidebar({
 
     return (
         <div className="hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0">
-            <div className="flex-1 flex flex-col min-h-0">
-    
+            <div className="flex-1 flex flex-col min-h-0 pt-4">
+
+                <div className='mx-auto'>
+                    <Logo />
+                </div>
+        
                 <NavigationList
                     items={navigation}
                     currentPath={currentPath}

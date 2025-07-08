@@ -15,7 +15,7 @@ export default function NavigationList({
     variant = 'desktop'
 }: NavigationListProps) {
 
-    const baseClasses = "group flex items-center text-sm lg:text-lg"
+    const baseClasses = "group flex items-center text-lg"
     const desktopClasses = "px-4 py-2 rounded-full"
     const mobileClasses = "px-2 py-2 rounded-md font-medium"
 
@@ -29,7 +29,7 @@ export default function NavigationList({
     }
 
     return (
-        <nav className={`py-10 space-y-2 ${variant === 'desktop' ? 'flex-1 px-2' : 'px-2'}`}>
+        <nav className={`py-4 space-y-2 ${variant === 'desktop' ? 'flex-1 px-2' : 'px-2'}`}>
 
             {items.map((item) => {
 

@@ -8,7 +8,7 @@ interface HeaderProps {
 
 export default function Header({ title, subtitle, children }: HeaderProps) {
     return (
-        <div className="flex flex-col md:flex-row md:justify-between gap-2 md:items-center">
+        <div className="flex flex-col md:flex-row md:justify-between gap-2 md:items-center mb-4">
             <div>
                 <h1 className="text-2xl font-bold">{title}</h1>
                 {subtitle && (

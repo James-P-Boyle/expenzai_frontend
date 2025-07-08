@@ -127,7 +127,7 @@ export default function DashboardPage() {
 
     return (
         <>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-2 lg:gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-4 lg:gap-6 my-4">
                 <StatCard
                     title="This Week"
                     value={`€${currentWeekTotal.toFixed(2)}`}

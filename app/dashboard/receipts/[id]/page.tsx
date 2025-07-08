@@ -110,7 +110,7 @@ export default function ReceiptDetailsPage() {
     }
 
     return (
-        <div className="p-6">
+        <div className="p-4 lg:p-6">
             <ReceiptHeader
                 receipt={receipt}
                 onDelete={handleDeleteReceipt}
