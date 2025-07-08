@@ -12,7 +12,7 @@ export default function HeroImages({ }) {
                     alt="Receipt Tracker Mobile App"
                     width={280}
                     height={560}
-                    className="block dark:hidden drop-shadow-2xl w-auto h-auto max-w-[280px] max-h-[560px]"
+                    className="block dark:hidden drop-shadow-2xl w-auto h-auto max-w-[280px] max-h-[360px] md:max-h-[560px]"
                     priority
                 />
                 <Image

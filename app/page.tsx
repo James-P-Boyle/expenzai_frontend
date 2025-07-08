@@ -8,11 +8,11 @@ import HeroImages from './components/HeroImages'
 import Hero from './components/Hero'
 
 export default function HomePage() {
-    const { isAuthenticated } = useAuth()
+    const { isAuthenticated, isLoading } = useAuth()
 
     return (
         <div className="min-h-screen px-2 lg:px-8">
-            <Header isAuthenticated={isAuthenticated} />
+            <Header isAuthenticated={isAuthenticated} loading={isLoading} />
 
             <Hero 
                 title="Smart Expense Tracking"

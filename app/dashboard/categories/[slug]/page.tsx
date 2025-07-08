@@ -51,7 +51,7 @@ export default function CategoryDetailPage() {
   // Handle error state
   if (error) {
     return (
-      <div className="text-center py-12">
+      <div className="text-center py-6 lg:py-12 ">
         <Package className="mx-auto h-12 w-12 text-red-400 mb-4" />
         <h3 className="text-lg font-medium font-sans">Error Loading Category</h3>
         <p className="text-ci-muted font-serif mb-6">
@@ -70,7 +70,7 @@ export default function CategoryDetailPage() {
   // Handle missing category name
   if (!categoryName) {
     return (
-      <div className="text-center py-12">
+      <div className="text-center py-6 lg:py-12 ">
         <Package className="mx-auto h-12 w-12 text-ci-muted mb-4" />
         <h3 className="text-lg font-medium font-sans">Invalid Category</h3>
         <p className="text-ci-muted font-serif mb-6">
@@ -89,7 +89,7 @@ export default function CategoryDetailPage() {
   // Handle category not found
   if (!categoryDetails) {
     return (
-      <div className="text-center py-12">
+      <div className="text-center py-6 lg:py-12 ">
         <Package className="mx-auto h-12 w-12 text-ci-muted mb-4" />
         <h3 className="text-lg font-medium font-sans">Category not found</h3>
         <p className="text-ci-muted font-serif mb-6">
