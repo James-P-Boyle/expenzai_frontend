@@ -101,7 +101,14 @@ class ApiClient {
       },
       body: JSON.stringify(credentials),
     })
-
+    console.log('API_BASE_URL:', process.env.NEXT_PUBLIC_API_URL,`${API_BASE_URL}/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(credentials),
+    })
     return this.handleResponse<AuthResponse>(response)
   }
 
