@@ -80,6 +80,7 @@ class ApiClient {
 
   // Authentication
   async register(credentials: RegisterCredentials): Promise<AuthResponse> {
+
     const response = await fetch(`${API_BASE_URL}/register`, {
       method: "POST",
       headers: {
