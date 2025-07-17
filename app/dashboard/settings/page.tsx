@@ -125,7 +125,7 @@ export default function PrivacySettings() {
           Delete My Account
         </button>
       </div>
-      <Link href="/privacy-policy" className="text-ci-main hover:underline">
+      <Link href="/privacy" className="text-ci-main hover:underline">
         View Privacy Policy
       </Link>
     </div>
