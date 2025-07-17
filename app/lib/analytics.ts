@@ -26,8 +26,8 @@ export const initGA = () => {
     window.dataLayer = window.dataLayer || []
     
     // Define gtag function
-    window.gtag = function gtag() {
-        window.dataLayer.push(...arguments)
+    window.gtag = function gtag(...args: any[]) {
+        window.dataLayer.push(args)
     }
 
     // Set default consent
