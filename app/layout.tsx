@@ -177,7 +177,7 @@ export default function RootLayout({
                 {/* Favicons - Complete set */}
                 <link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32" />
                 <link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16" />
-                <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png" />
+                {/* <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png" /> */}
                 <link rel="manifest" href="/manifest.json" />
                 
                 {/* Theme color */}

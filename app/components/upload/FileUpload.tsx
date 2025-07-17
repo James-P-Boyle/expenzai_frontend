@@ -74,12 +74,12 @@ export function FileUpload({ onFileSelect, onCancel, isUploading = false }: File
     return (
         <div className="p-4 lg:p-6">
             {/* Header */}
-            <div className="flex justify-end items-center pb-2">
+            <div className="flex pb-2">
                 <Button
                     onClick={onCancel}
                     variant='secondary'
                     size='sm'
-                    className="text-ci-muted hover:text-ci-muted rounded-full"
+                    className="text-ci-muted hover:text-ci-muted !w-auto ml-auto border-0"
                 >
                     <X className="h-5 w-5" />
                 </Button>
@@ -135,9 +135,11 @@ export function FileUpload({ onFileSelect, onCancel, isUploading = false }: File
                     <Image
                         src={previewUrl!}
                         alt="Receipt preview"
+                        width={400}
+                        height={400}
                         className="w-full h-full max-h-[400px] max-w-[400px] mx-auto object-cover rounded-xl"
                     />
-
+ 
                     <div className="rounded-full mx-auto">
                         <div className="flex items-center justify-center">
                             <div className="flex items-center space-x-2">
@@ -154,12 +156,12 @@ export function FileUpload({ onFileSelect, onCancel, isUploading = false }: File
                         </div>
                     </div>
 
-                    <div className="flex space-x-3">
+                    <div className="flex flex-col md:flex-col flex-wrap gap-2 items-center">
                         <Button
                             onClick={removeFile}
                             variant="secondary"
                             disabled={isUploading}
-                            className="flex-1"
+                         
                         >
                             Choose Different
                         </Button>
@@ -167,7 +169,7 @@ export function FileUpload({ onFileSelect, onCancel, isUploading = false }: File
                             onClick={handleUpload}
                             isLoading={isUploading}
                             disabled={isUploading}
-                            className="flex-1"
+             
                         >
                             <Upload className="mr-2 h-4 w-4" />
                             {isUploading ? 'Uploading...' : 'Upload Receipt'}

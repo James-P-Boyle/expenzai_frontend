@@ -11,7 +11,7 @@ interface HeroProps {
 export default function Hero({ title, subtitle, children, images }: HeroProps) {
     return (
         <Section>
-            <div className="grid grid-cols-1 lg:grid-cols-2 items-center min-h-[80vh] lg:py-12 gap-4 md:gap-8 lg:gap-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 items-center min-h-[80vh] lg:py-12 gap-4 md:gap-8 lg:gap-12 py-10">
                 {/* Left Content */}
                 <div className="text-left grid place-items-center order-2 lg:order-1">
                     <div className='text-center flex flex-col justify-center gap-2 lg:gap-6'>

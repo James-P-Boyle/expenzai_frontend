@@ -34,10 +34,10 @@ export default function Navbar({
                                     <Link 
                                         key={link.href}
                                         href={link.href} 
-                                        className={`text-xs font-medium transition-colors hover:text-blue-600 ${
+                                        className={`text-sm font-medium transition-colors text-ci-main ${
                                             pathname === link.href 
-                                                ? 'text-blue-600 border-b border-blue-600 pb-0.5' 
-                                                : 'text-ci-main hover:underline'
+                                                ? 'border-b-2 border-ci-main pb-1' 
+                                                : 'text-ci-main'
                                         }`}
                                     >
                                         {link.label}

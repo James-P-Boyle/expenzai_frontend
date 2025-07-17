@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Button } from './components/ui/Button'
-import { Home, Search } from 'lucide-react'
+import { Home, Upload } from 'lucide-react'
 
 export default function NotFound() {
     return (
@@ -25,10 +25,10 @@ export default function NotFound() {
                         </Button>
                     </Link>
 
-                    <Link href="/dashboard" className="block">
+                    <Link href="/dashboard/upload" className="block">
                         <Button variant="secondary" className="w-full">
-                            <Search className="mr-2 h-4 w-4" />
-                            Go to Dashboard
+                            <Upload className="mr-2 h-4 w-4" />
+                            Upload
                         </Button>
                     </Link>
                 </div>
