@@ -13,7 +13,7 @@ import {
 } from "./types"
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL
-
+console.log('Current API URL:', API_BASE_URL)
 class ApiClient {
   private getAuthHeaders(token?: string) {
     const headers: Record<string, string> = {
