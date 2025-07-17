@@ -17,12 +17,16 @@ const libreBaskerville = Libre_Baskerville({
     display: "swap",
 })
 
-const baseUrl = process.env.NEXT_FRONTEND_URL || 'http://localhost:3000'
+// Use production URL from your setup document
+const baseUrl = process.env.NODE_ENV === 'production' 
+    ? 'https://www.expenzai.app' 
+    : 'http://localhost:3002'
 
 export const metadata: Metadata = {
+    metadataBase: new URL(baseUrl), // Fix for metadataBase warning
     title: {
-        default: 'Receipt Tracker - AI-Powered Expense Management',
-        template: '%s | Receipt Tracker'
+        default: 'ExpenzAI - AI-Powered Expense Management',
+        template: '%s | ExpenzAI'
     },
     description: 'Transform your expense tracking with AI-powered receipt scanning. Automatically categorize purchases, analyze spending patterns, and manage your finances effortlessly.',
     keywords: [
@@ -33,31 +37,36 @@ export const metadata: Metadata = {
         'expense analytics',
         'financial tracking',
         'receipt OCR',
-        'spending analysis'
+        'spending analysis',
+        'ExpenzAI'
     ],
     authors: [{ name: 'James Boyle - Boylerplate' }],
     creator: 'BoylerPlate',
+    publisher: 'ExpenzAI',
+    category: 'Finance',
+    classification: 'Business',
     openGraph: {
         type: 'website',
         locale: 'en_US',
         url: baseUrl,
-        title: 'Receipt Tracker - AI-Powered Expense Management',
+        title: 'ExpenzAI - AI-Powered Expense Management',
         description: 'Transform your expense tracking with AI-powered receipt scanning. Automatically categorize purchases and analyze spending patterns.',
-        siteName: 'Receipt Tracker',
+        siteName: 'ExpenzAI',
         images: [
             {
-                url: `${baseUrl}/og-image.png`,
+                url: '/og-image.png',
                 width: 1200,
                 height: 630,
-                alt: 'Receipt Tracker - AI Expense Management Dashboard'
+                alt: 'ExpenzAI - AI Expense Management Dashboard'
             }
         ]
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Receipt Tracker - AI-Powered Expense Management',
+        title: 'ExpenzAI - AI-Powered Expense Management',
         description: 'Transform your expense tracking with AI-powered receipt scanning.',
-        images: ['/og-image.png']
+        images: ['/og-image.png'],
+        creator: '@expenzai'
     },
     robots: {
         index: true,
@@ -69,6 +78,85 @@ export const metadata: Metadata = {
             'max-image-preview': 'large',
             'max-snippet': -1,
         },
+    },
+    alternates: {
+        canonical: baseUrl,
+    },
+    verification: {
+        // Add when you have these
+        // google: 'your-google-verification-code',
+        // yandex: 'your-yandex-verification-code',
+        // yahoo: 'your-yahoo-verification-code',
+    },
+}
+
+// JSON-LD Structured Data
+const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "ExpenzAI",
+    "description": "AI-powered expense management application that automatically categorizes receipts and analyzes spending patterns",
+    "url": baseUrl,
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web Browser",
+    "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+    },
+    "creator": {
+        "@type": "Person",
+        "name": "James Boyle",
+        "jobTitle": "Developer"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "BoylerPlate",
+        "url": baseUrl
+    },
+    "featureList": [
+        "AI-powered receipt scanning",
+        "Automatic expense categorization",
+        "Spending analytics and trends",
+        "Weekly spending summaries",
+        "Receipt image storage",
+        "Manual categorization editing"
+    ],
+    "screenshot": `${baseUrl}/og-image.png`,
+    "softwareVersion": "1.0.0",
+    "datePublished": new Date().toISOString(),
+    "dateModified": new Date().toISOString(),
+    "inLanguage": "en-US",
+    "isAccessibleForFree": true,
+    "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "ExpenzAI Features",
+        "itemListElement": [
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": "Receipt Scanning",
+                    "description": "AI-powered receipt scanning and text extraction"
+                }
+            },
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": "Expense Categorization",
+                    "description": "Automatic categorization of expenses using AI"
+                }
+            },
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": "Spending Analytics",
+                    "description": "Interactive charts and spending trend analysis"
+                }
+            }
+        ]
     }
 }
 
@@ -84,21 +172,35 @@ export default function RootLayout({
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
                 
-                {/* Favicons */}
-                <link rel="icon" href="/favicon.ico" sizes="any" />
-                <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-                <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+                {/* Favicons - Complete set */}
+                <link rel="icon" type="image/png" href="/favicons/favicon-32x32.png" sizes="32x32" />
+                <link rel="icon" type="image/png" href="/favicons/favicon-16x16.png" sizes="16x16" />
+                <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png" />
                 <link rel="manifest" href="/manifest.json" />
                 
                 {/* Theme color */}
                 <meta name="theme-color" content="#3b82f6" />
                 <meta name="msapplication-TileColor" content="#3b82f6" />
                 
-                {/* Additional meta tags */}
+                {/* Additional meta tags for better SEO */}
                 <meta name="format-detection" content="telephone=no" />
                 <meta name="mobile-web-app-capable" content="yes" />
                 <meta name="apple-mobile-web-app-capable" content="yes" />
                 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+                <meta name="apple-mobile-web-app-title" content="ExpenzAI" />
+                
+                {/* Prevent indexing in development */}
+                {process.env.NODE_ENV !== 'production' && (
+                    <meta name="robots" content="noindex, nofollow" />
+                )}
+                
+                {/* JSON-LD Structured Data */}
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify(jsonLd)
+                    }}
+                />
             </head>
             <body className={`${leagueSpartan.variable} ${libreBaskerville.variable} font-sans antialiased`}>
                 <AuthProvider>

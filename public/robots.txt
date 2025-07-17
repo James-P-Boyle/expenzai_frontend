@@ -1,0 +1,19 @@
+# Robots.txt for ExpenzAI
+User-agent: *
+Allow: /
+
+# Block admin and API routes
+Disallow: /admin
+Disallow: /api/
+Disallow: /dashboard/settings
+Disallow: /auth/
+
+# Allow important pages
+Allow: /
+Allow: /about
+Allow: /privacy
+Allow: /terms
+Allow: /contact
+
+# Sitemap location
+Sitemap: https://www.expenzai.app/sitemap.xml
