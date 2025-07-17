@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { League_Spartan, Libre_Baskerville } from 'next/font/google'
 import './globals.css'
 import { AuthProvider } from './context/AuthContext'
+import ConsentBanner from './components/CookieConsentBanner'
+import { ConsentProvider } from './context/CookieConsent'
 
 const leagueSpartan = League_Spartan({
     variable: "--font-league-spartan",
@@ -203,9 +205,15 @@ export default function RootLayout({
                 />
             </head>
             <body className={`${leagueSpartan.variable} ${libreBaskerville.variable} font-sans antialiased`}>
-                <AuthProvider>
-                    {children}
-                </AuthProvider>
+                <ConsentProvider>
+                    <AuthProvider>
+                        <div className="min-h-screen px-2 lg:px-8">
+                            {children}
+                            <ConsentBanner />
+                        </div>
+                    
+                    </AuthProvider>
+                </ConsentProvider>
             </body>
         </html>
     )

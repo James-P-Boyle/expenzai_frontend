@@ -1,6 +1,6 @@
 'use client'
 
-import Header from './components/partials/Header'
+import Navbar from './components/partials/Navbar'
 import { useAuth } from './context/AuthContext'
 import { Button } from './components/ui/Button'
 import Link from 'next/link'
@@ -11,8 +11,8 @@ export default function HomePage() {
     const { isAuthenticated, isLoading } = useAuth()
 
     return (
-        <div className="min-h-screen px-2 lg:px-8">
-            <Header isAuthenticated={isAuthenticated} loading={isLoading} />
+        <>
+            <Navbar isAuthenticated={isAuthenticated} loading={isLoading} />
 
             <Hero 
                 title="Smart Expense Tracking"
@@ -25,6 +25,6 @@ export default function HomePage() {
                     </Button>
                 </Link>
             </Hero>
-        </div>
+        </>
     )
 }

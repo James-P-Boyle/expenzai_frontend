@@ -20,9 +20,9 @@ export default function MobileMenu({
 
     return (
         <div className="fixed inset-0 z-40 lg:hidden">
-            <div className="fixed inset-0 bg-ci-white/80 dark:bg-ci-black/80 border" onClick={onClose} />
+            <div className="fixed inset-0 bg-ci-white/80 dark:bg-ci-black/80" onClick={onClose} />
 
-            <div className="relative flex-1 flex flex-col w-full bg-ci-white dark:bg-ci-black border">
+            <div className="relative flex-1 flex flex-col w-full bg-ci-white dark:bg-ci-black">
                 <div className="absolute top-0 right-0 sm:-mr-9 pt-2">
                     <button
                         className="ml-1 flex items-center justify-center size-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
@@ -34,7 +34,7 @@ export default function MobileMenu({
 
                 <div className="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                     
-                    <div className="mx-auto  border">
+                    <div className="mx-auto">
                         <Logo />
                     </div>
                     <div className=''> 

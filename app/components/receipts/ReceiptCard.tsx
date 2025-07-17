@@ -8,6 +8,7 @@ import {
 } from 'lucide-react'
 import { Card } from '@/app/components/ui/Card'
 import { Receipt, ReceiptStatus } from '@/app/lib/types'
+import { formatDate } from '@/app/lib/utils'
 
 interface ReceiptCardProps {
     receipt: Receipt
@@ -41,7 +42,7 @@ export function ReceiptCard({ receipt }: ReceiptCardProps) {
     }
 
     return (
-        <Card className="p-6 group">
+        <Card className="px-6 py-4 group">
 
             <Link 
                 href={`/dashboard/receipts/${receipt.id}`} 
@@ -49,8 +50,9 @@ export function ReceiptCard({ receipt }: ReceiptCardProps) {
             >
 
                 <div className="flex items-center justify-between">
+
                     <div className="flex items-center space-x-4 flex-1">
-                        <div className="p-2 rounded-full bg-ci-main">
+                        <div className="p-2 rounded-full bg-ci-main hidden lg:blcok">
                             <ReceiptIcon className="h-6 w-6 text-ci-black" />
                         </div>
 
@@ -62,19 +64,14 @@ export function ReceiptCard({ receipt }: ReceiptCardProps) {
                                 {getStatusIcon(receipt.status)}
                             </div>
 
-                            <div className="flex items-center space-x-4 text-sm text-ci-muted">
+                            <div className="flex flex-col md:flex-row md:items-center space-x-4 text-sm text-ci-muted">
                                 <div className="flex items-center">
                                     <Calendar className="h-4 w-4 mr-1" />
-                                    {receipt.receipt_date || receipt.created_at.split('T')[0]}
+                                    {formatDate(receipt.receipt_date || receipt.created_at.split('T')[0])}
                                 </div>
                                 <div>
                                     {receipt.items.length} item{receipt.items.length !== 1 ? 's' : ''}
                                 </div>
-                                {receipt.status === 'completed' && (
-                                    <div className="font-medium text-ci-muted">
-                                        {receipt.formatted_total}
-                                    </div>
-                                )}
                             </div>
                         </div>
                     </div>
@@ -83,13 +80,7 @@ export function ReceiptCard({ receipt }: ReceiptCardProps) {
                         <span className={`px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(receipt.status)}`}>
                             {receipt.status}
                         </span>
-                        <div className="text-right">
-                            {receipt.status === 'completed' && (
-                                <div className="font-semibold">
-                                    {receipt.formatted_total}
-                                </div>
-                            )}
-                        </div>
+    
                     </div>
                 </div>
             </Link>

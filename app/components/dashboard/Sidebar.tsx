@@ -2,6 +2,7 @@ import UserCard from '@/app/components/UserCard'
 import { NavigationItem, User } from '@/app/lib/types'
 import NavigationList from './NavigationList'
 import Logo from '../ui/Logo'
+import { Link, Cog } from 'lucide-react'
 
 interface SidebarProps {
     navigation: NavigationItem[]
@@ -32,7 +33,7 @@ export default function Sidebar({
                     currentPath={currentPath}
                     variant="desktop"
                 />
-
+                
                 <UserCard
                     isAuthenticated={isAuthenticated}
                     user={user}

@@ -101,14 +101,19 @@ class ApiClient {
       },
       body: JSON.stringify(credentials),
     })
-    console.log('API_BASE_URL:', process.env.NEXT_PUBLIC_API_URL,`${API_BASE_URL}/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(credentials),
-    })
+    console.log(
+      "API_BASE_URL:",
+      process.env.NEXT_PUBLIC_API_URL,
+      `${API_BASE_URL}/login`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(credentials),
+      }
+    )
     return this.handleResponse<AuthResponse>(response)
   }
 
@@ -234,7 +239,7 @@ class ApiClient {
         headers: this.getAuthHeaders(token),
       }
     )
-  
+
     return this.handleResponse<{ data: CategoryDetails }>(response)
   }
 
@@ -263,6 +268,42 @@ class ApiClient {
     })
 
     return this.handleResponse<MonthlySummary>(response)
+  }
+
+  async updateEmail(
+    email: string,
+    token?: string
+  ): Promise<{ message: string }> {
+    const response = await fetch(`${API_BASE_URL}/update-email`, {
+      method: "POST",
+      headers: {
+        ...this.getAuthHeaders(token),
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email }),
+    })
+
+    return this.handleResponse<{ message: string }>(response)
+  }
+
+  // Delete Account
+  async deleteAccount(token?: string): Promise<{ message: string }> {
+    const response = await fetch(`${API_BASE_URL}/delete-account`, {
+      method: "DELETE",
+      headers: this.getAuthHeaders(token),
+    })
+
+    return this.handleResponse<{ message: string }>(response)
+  }
+
+  // Request Data Export
+  async requestData(token?: string): Promise<{ message: string }> {
+    const response = await fetch(`${API_BASE_URL}/request-data`, {
+      method: "POST",
+      headers: this.getAuthHeaders(token),
+    })
+
+    return this.handleResponse<{ message: string }>(response)
   }
 }
 

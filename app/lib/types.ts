@@ -1,5 +1,17 @@
 import { LucideIcon } from "lucide-react";
 
+declare global {
+  interface Window {
+      gtag: (
+          command: 'config' | 'event' | 'consent',
+          targetId: string,
+          config?: {
+              [key: string]: any
+          }
+      ) => void
+      dataLayer: any[]
+  }
+}
 export interface User {
   id: number;
   name: string;

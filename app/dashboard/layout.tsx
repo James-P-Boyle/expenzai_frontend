@@ -8,7 +8,8 @@ import {
     Upload,
     Receipt,
     BarChart3,
-    Tag
+    Tag,
+    Cog
 } from 'lucide-react'
 
 import { useState  } from 'react'
@@ -25,6 +26,7 @@ const navigation = [
     { name: 'My Receipts', href: '/dashboard/receipts', icon: Receipt },
     { name: 'Weekly Summary', href: '/dashboard/weekly', icon: BarChart3 },
     { name: 'Categories', href: '/dashboard/categories', icon: Tag },
+    { name: 'Settings', href: '/dashboard/settings', icon: Cog },
 ]
 
 const getHeaderConfig = (pathname: string) => {
@@ -51,6 +53,10 @@ const getHeaderConfig = (pathname: string) => {
         '/dashboard/categories': {
             title: 'Categories Overview',
             subtitle: 'Track your spending patterns by category'
+        },
+        '/dashboard/settings': {
+            title: 'Update Settings',
+            subtitle: 'Mange your consent settings'
         },
     }
     
