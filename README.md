@@ -1,4 +1,4 @@
-# Receipt Tracker
+# Expenzai
 
 An AI-powered expense tracking app that automatically categorizes your receipts using computer vision. Simply take a photo of your receipt and let AI handle the rest!
 

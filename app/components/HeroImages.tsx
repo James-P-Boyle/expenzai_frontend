@@ -9,7 +9,7 @@ export default function HeroImages({ }) {
             <div className="block lg:hidden">
                 <Image
                     src="/images/phone-upload-light.png"
-                    alt="Receipt Tracker Mobile App"
+                    alt="ExpenzAi Mobile App"
                     width={280}
                     height={560}
                     className="block dark:hidden drop-shadow-2xl w-auto h-auto max-w-[280px] max-h-[360px] md:max-h-[560px] upload-image"
@@ -21,7 +21,7 @@ export default function HeroImages({ }) {
                 />
                 <Image
                     src="/images/phone-upload-dark.png"
-                    alt="Receipt Tracker Mobile App"
+                    alt="ExpenzAi Mobile App"
                     width={280}
                     height={560}
                     className="hidden dark:block drop-shadow-2xl w-auto h-auto max-w-[280px] max-h-[560px] upload-image"
@@ -39,7 +39,7 @@ export default function HeroImages({ }) {
                 <div className="relative">
                     <Image
                         src="/images/dash-d-light.png"
-                        alt="Receipt Tracker Desktop Dashboard"
+                        alt="ExpenzAi Desktop Dashboard"
                         width={500}
                         height={343}
                         className="block dark:hidden drop-shadow-xl w-auto h-auto 
@@ -51,7 +51,7 @@ export default function HeroImages({ }) {
 
                     <Image
                         src="/images/dash-d-dark.png"
-                        alt="Receipt Tracker Desktop Dashboard"
+                        alt="ExpenzAi Desktop Dashboard"
                         width={500}
                         height={343}
                         className="hidden dark:block drop-shadow-xl w-auto h-auto 
@@ -66,7 +66,7 @@ export default function HeroImages({ }) {
                 <div className="absolute -bottom-12 -left-4 lg:-bottom-12 xl:-bottom-14 2xl:-bottom-16">
                     <Image
                         src="/images/phone-upload-light.png"
-                        alt="Receipt Tracker Mobile App"
+                        alt="ExpenzAi Mobile App"
                         width={180}
                         height={360}
                         className="block dark:hidden drop-shadow-2xl -rotate-6 w-auto h-auto
@@ -78,7 +78,7 @@ export default function HeroImages({ }) {
 
                     <Image
                         src="/images/phone-upload-dark.png"
-                        alt="Receipt Tracker Mobile App"
+                        alt="ExpenzAi Mobile App"
                         width={180}
                         height={360}
                         className="hidden dark:block drop-shadow-2xl -rotate-6 w-auto h-auto
