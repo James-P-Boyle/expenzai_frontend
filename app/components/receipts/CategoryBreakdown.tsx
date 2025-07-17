@@ -13,10 +13,10 @@ export function ReceiptCategoryBreakdown({ receipt }: ReceiptCategoryBreakdownPr
 
   return (
     <Card className="p-4">
-      <h4 className="font-medium mb-3">Category Breakdown</h4>
+      <h4 className="text-xl font-medium mb-3">Category Breakdown</h4>
       <div className="space-y-2">
         {Object.entries(categoryTotals).map(([category, total]) => (
-          <div key={category} className="flex justify-between text-sm">
+          <div key={category} className="flex justify-between text-sm lg:text-lg">
             <span className="text-ci-muted">{category}</span>
             <span className="font-medium">€{total.toFixed(2)}</span>
           </div>

@@ -27,7 +27,7 @@ export default function UploadErrorState({
             <p className="text-sm text-ci-muted mb-6">
                 Please check your internet connection and try again.
             </p>
-            <div className="space-y-2 flex flex-col sm:flex-row gap-2">
+            <div className="flex flex-col md:flex-col flex-wrap gap-2 items-center">
                 <Button onClick={onTryAgain} className="w-full">
                     Try Again
                 </Button>

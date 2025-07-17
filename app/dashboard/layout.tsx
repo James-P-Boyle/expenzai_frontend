@@ -136,7 +136,7 @@ export default function DashboardLayout({
                     onLogout={handleLogout}
                 />
 
-                <main className="flex-1 p-2 sm:p-4 md:p-6 lg:p-10 flex flex-col">
+                <main className="flex-1 p-2 sm:p-4 md:p-6 flex flex-col">
 
                     <Header 
                         title={headerConfig.title}

@@ -21,7 +21,7 @@ export function Button({
     const variantClasses = {
         primary: 'bg-ci-main hover:bg-ci-main !text-ci-black focus:ring-ci-main',
         secondary: 'hover:bg-ci-main/20 focus:ring-ci-main border border-ci-muted-light hover:border-ci-muted',
-        danger: 'border-red-600 border hover:bg-red-600/20 text-red-600 focus:ring-red-500',
+        danger: 'border-ci-danger border hover:bg-ci-danger/20 text-ci-danger focus:ring-ci-danger',
     }
 
     const sizeClasses = {

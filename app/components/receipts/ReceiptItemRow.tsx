@@ -31,12 +31,12 @@ export function ReceiptItemRow({ item, categories, onUpdateItem, isUpdating }: R
     }
 
     return (
-        <div className="flex items-center justify-between p-3 bg-gray-50 rounded-full">
+        <div className="flex items-center justify-between p-2 rounded-full">
             <div className="flex-1">
                 <div className="flex items-center space-x-2">
                     <h4 className="font-medium">{item.name}</h4>
                     {item.is_uncertain && (
-                        <div className='flex items-center gap-2 text-ci-main'>
+                        <div className='flex items-center gap-2 text-ci-danger'>
                             <AlertTriangle className="h-4 w-4" />
                             <span className="text-sm">Uncertain category</span>
                         </div>
@@ -65,7 +65,7 @@ export function ReceiptItemRow({ item, categories, onUpdateItem, isUpdating }: R
                             <button
                                 onClick={cancelEditing}
                                 disabled={isUpdating}
-                                className="p-1 text-red-600 hover:text-red-800"
+                                className="p-1 text-ci-danger hover:text-ci-danger/80"
                             >
                                 <X className="h-4 w-4" />
                             </button>
@@ -73,8 +73,8 @@ export function ReceiptItemRow({ item, categories, onUpdateItem, isUpdating }: R
                     ) : (
                         <div className="flex items-center space-x-2">
                             <span className={`text-sm px-2 py-1 rounded-full ${item.is_uncertain
-                                    ? 'bg-ci-main text-ci-main'
-                                    : 'bg-ci-main text-ci-main'
+                                    ? 'bg-ci-main/40 text-ci-black'
+                                    : 'bg-ci-main/40 text-ci-black'
                                 }`}>
                                 {item.category}
                             </span>
