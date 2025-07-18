@@ -140,9 +140,9 @@ class ApiClient {
     delete headers["Content-Type"]
 
     try {
-      const response = await fetch(`${API_BASE_URL}/receipts`, {
+      const response = await fetch(`${API_BASE_URL}/debug-upload`, {
         method: "POST",
-        headers: headers,
+        // headers: headers,
         body: formData,
       })
 
