@@ -13,7 +13,6 @@ import {
 } from "./types"
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL
-
 class ApiClient {
   private getAuthHeaders(token?: string) {
     const headers: Record<string, string> = {
@@ -140,9 +139,9 @@ class ApiClient {
     delete headers["Content-Type"]
 
     try {
-      const response = await fetch(`${API_BASE_URL}/debug-upload`, {
+      const response = await fetch(`${API_BASE_URL}/receipts`, {
         method: "POST",
-        // headers: headers,
+        headers: headers,
         body: formData,
       })
 

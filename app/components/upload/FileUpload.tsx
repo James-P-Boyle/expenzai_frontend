@@ -5,7 +5,6 @@ import Image from 'next/image'
 import { Upload, FileImage, X } from 'lucide-react'
 import { Button } from '../ui/Button'
 
-
 interface FileUploadProps {
     onFileSelect: (file: File) => void
     onCancel: () => void
