@@ -152,3 +152,25 @@ export interface CategoryDetails {
     count: number;
   }[];
 }
+
+export interface PresignedUrlResponse {
+  presigned_url: string
+  file_key: string
+  expires_in: number
+}
+
+export interface MultiUploadResponse {
+  message: string
+  receipts: Array<{
+    id: number
+    status: string
+    original_filename: string
+  }>
+  total_uploaded: number
+}
+
+export interface UploadFileData {
+  file_key: string
+  original_name: string
+  file_size: number
+}

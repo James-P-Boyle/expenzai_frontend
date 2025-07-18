@@ -10,6 +10,9 @@ import {
   CategorySummary,
   CategoryDetails,
   MonthlySummary,
+  PresignedUrlResponse,
+  MultiUploadResponse,
+  UploadFileData,
 } from "./types"
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL
@@ -79,7 +82,6 @@ class ApiClient {
 
   // Authentication
   async register(credentials: RegisterCredentials): Promise<AuthResponse> {
-
     const response = await fetch(`${API_BASE_URL}/register`, {
       method: "POST",
       headers: {
@@ -126,29 +128,116 @@ class ApiClient {
     return this.handleResponse<{ message: string }>(response)
   }
 
-  // Receipts
+  // Add these methods to your existing ApiClient class
+
+  // S3 Upload Methods
+  async getPresignedUrl(
+    file: File,
+    token?: string
+  ): Promise<PresignedUrlResponse> {
+    const response = await fetch(`${API_BASE_URL}/upload/presigned-url`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...this.getAuthHeaders(token),
+      },
+      body: JSON.stringify({
+        filename: file.name,
+        content_type: file.type,
+        file_size: file.size,
+      }),
+    })
+
+    return this.handleResponse<PresignedUrlResponse>(response)
+  }
+
+  async uploadToS3(presignedUrl: string, file: File): Promise<void> {
+    const response = await fetch(presignedUrl, {
+      method: "PUT",
+      body: file,
+      headers: {
+        "Content-Type": file.type,
+      },
+    })
+
+    if (!response.ok) {
+      throw new Error(`S3 upload failed: ${response.status}`)
+    }
+  }
+
+  async confirmUploads(
+    files: UploadFileData[],
+    token?: string
+  ): Promise<MultiUploadResponse> {
+    const response = await fetch(`${API_BASE_URL}/upload/confirm`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...this.getAuthHeaders(token),
+      },
+      body: JSON.stringify({ files }),
+    })
+
+    return this.handleResponse<MultiUploadResponse>(response)
+  }
+  
   async uploadReceipt(
     imageFile: File,
     token?: string
   ): Promise<UploadResponse> {
-    const formData = new FormData()
-    formData.append("image", imageFile)
-
-    const headers = this.getAuthHeaders(token)
-
-    delete headers["Content-Type"]
-
     try {
-      const response = await fetch(`${API_BASE_URL}/receipts`, {
-        method: "POST",
-        headers: headers,
-        body: formData,
-      })
-
-      console.log("📤 Upload request completed")
-      return this.handleResponse<UploadResponse>(response)
+      console.log("📤 Single file upload - using S3 method")
+      
+      // Use the new S3 method internally
+      const response = await this.uploadReceipts([imageFile], token)
+      
+      // Convert multi-upload response to single-upload format for backward compatibility
+      return {
+        id: response.receipts[0].id,
+        status: response.receipts[0].status,
+        message: 'Receipt uploaded successfully! We\'re extracting the data now.',
+      }
     } catch (error) {
       console.error("📤 Upload request failed:", error)
+      throw error
+    }
+  }
+
+  // Multi-file upload method
+  async uploadReceipts(
+    files: File[],
+    token?: string
+  ): Promise<MultiUploadResponse> {
+    try {
+      console.log(`🚀 Starting multi-file upload for ${files.length} files`)
+
+      // Step 1: Get presigned URLs for all files
+      console.log("📝 Getting presigned URLs...")
+      const presignedUrls = await Promise.all(
+        files.map((file) => this.getPresignedUrl(file, token))
+      )
+
+      // Step 2: Upload all files to S3 in parallel
+      console.log("☁️ Uploading files to S3...")
+      await Promise.all(
+        files.map((file, index) =>
+          this.uploadToS3(presignedUrls[index].presigned_url, file)
+        )
+      )
+
+      // Step 3: Confirm uploads with backend
+      console.log("✅ Confirming uploads with backend...")
+      const confirmData: UploadFileData[] = files.map((file, index) => ({
+        file_key: presignedUrls[index].file_key,
+        original_name: file.name,
+        file_size: file.size,
+      }))
+
+      const result = await this.confirmUploads(confirmData, token)
+      console.log("🎉 Multi-file upload completed successfully")
+      return result
+    } catch (error) {
+      console.error("❌ Multi-file upload failed:", error)
       throw error
     }
   }
