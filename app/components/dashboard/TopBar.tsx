@@ -25,7 +25,7 @@ export default function TopBar({
                 <Menu className="h-6 w-6" />
             </button>
 
-            <h1 className="text-lg font-bold">Expenze<span className='text-ci-main'>Ai</span></h1>
+            <h1 className="text-lg font-bold">Expenz<span className='text-ci-main'>Ai</span></h1>
 
             <UserCard
                 isAuthenticated={isAuthenticated}
