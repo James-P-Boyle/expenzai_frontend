@@ -10,9 +10,10 @@ interface UploadMethodSelectorProps {
 export default function UploadMethodSelector({ onMethodSelect }: UploadMethodSelectorProps) {
     return (
         <div className="space-y-4 lg:space-y-0 flex flex-col lg:flex-row gap-4 w-full">
-            <Card className="w-full">
+            {/* <Card className="w-full ">
                 <button
                     onClick={() => onMethodSelect('camera')}
+                    disabled
                     className="w-full text-left p-4 rounded-full border-2 border-dashed border-ci-muted-light hover:border-ci-main hover:bg-ci-main/10 cursor-pointer transition-colors"
                 >
                     <div className="flex items-center space-x-4">
@@ -25,7 +26,7 @@ export default function UploadMethodSelector({ onMethodSelect }: UploadMethodSel
                         </div>
                     </div>
                 </button>
-            </Card>
+            </Card> */}
 
             <Card className="w-full">
                 <button
