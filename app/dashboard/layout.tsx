@@ -127,7 +127,7 @@ export default function DashboardLayout({
                 onLogout={handleLogout}
             />
 
-            <div className="lg:pl-80 flex flex-col flex-1">
+            <div className="lg:pl-64 flex flex-col flex-1">
 
                 <TopBar
                     onMenuClick={openMobileMenu}
