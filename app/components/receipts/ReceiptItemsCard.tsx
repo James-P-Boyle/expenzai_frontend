@@ -4,7 +4,7 @@ import { ReceiptItemRow } from './ReceiptItemRow'
 
 interface ReceiptItemsCardProps {
     receipt: Receipt
-    categories: string[]
+    categories: readonly string[]
     onUpdateItem: (itemId: number, category: string) => Promise<void>
     isUpdating: boolean
 }

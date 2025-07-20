@@ -4,7 +4,7 @@ import { ReceiptItem } from '@/app/lib/types'
 
 interface ReceiptItemRowProps {
     item: ReceiptItem
-    categories: string[]
+    categories: readonly string[]
     onUpdateItem: (itemId: number, category: string) => Promise<void>
     isUpdating: boolean
 }
