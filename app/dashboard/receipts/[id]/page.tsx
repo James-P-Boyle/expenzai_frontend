@@ -12,6 +12,7 @@ import { ReceiptCategoryBreakdown } from '../../../components/receipts/CategoryB
 import { ActionsCard } from '../../../components/receipts/ActionsCard'
 import { ErrorState } from '../../../components/receipts/ErrorState'
 import { getErrorMessage } from '@/app/lib/error-utils'
+import LoadingSpinner from '@/app/components/ui/LoadingSpinner'
 
 const CATEGORIES = [
     'Food & Groceries',
@@ -105,8 +106,9 @@ export default function ReceiptDetailsPage() {
         fetchReceipt()
     }, [fetchReceipt])
 
+ 
     if (isLoading) {
-        return <ReceiptSkeleton />
+        return (<LoadingSpinner />)
     }
 
     if (error || !receipt) {
@@ -144,61 +146,6 @@ export default function ReceiptDetailsPage() {
                     )}
                     
                     <ActionsCard />
-                </div>
-            </div>
-        </div>
-    )
-}
-
-
-function ReceiptSkeleton() {
-    return (
-        <div className="p-4 lg:p-6 animate-pulse space-y-6">
-            <div className="flex justify-between items-center mb-6">
-                <div className="h-8 dark: dark:bg-ci-black/50 bg-ci-white rounded w-48"></div>
-                <div className="h-10 dark: dark:bg-ci-black/50 bg-ci-white rounded w-32"></div>
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                
-                <div className="lg:col-span-2 space-y-20">
-                    {/* Summary card skeleton */}
-                    <div className="bg-white dark:bg-ci-black/50 rounded-lg p-6">
-                        <div className="h-6 dark:bg-ci-black bg-ci-white rounded w-32 mb-4"></div>
-                        <div className="space-y-3">
-                            <div className="h-4 dark:bg-ci-black bg-ci-white rounded w-24"></div>
-                            <div className="h-4 dark:bg-ci-black bg-ci-white rounded w-32"></div>
-                            <div className="h-4 dark:bg-ci-black bg-ci-white rounded w-28"></div>
-                        </div>
-                    </div>
-
-                    {/* Items card skeleton */}
-                    <div className="bg-white dark:bg-ci-black/50 rounded-lg p-6">
-                        <div className="h-6 dark:bg-ci-black bg-ci-white rounded w-24 mb-4"></div>
-                        <div className="space-y-4">
-                            {[1, 2, 3].map(i => (
-                                <div key={i} className="flex justify-between items-center py-3">
-                                    <div className="flex-1">
-                                        <div className="h-4 dark:bg-ci-black bg-ci-white rounded w-32 mb-2"></div>
-                                        <div className="h-3 dark:bg-ci-black bg-ci-white rounded w-20"></div>
-                                    </div>
-                                    <div className="h-4 dark:bg-ci-black bg-ci-white rounded w-16"></div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-
-                {/* Sidebar skeleton */}
-                <div className="space-y-6">
-                    <div className="bg-white dark:bg-ci-black/50 rounded-lg p-6">
-                        <div className="h-6 dark:bg-ci-black bg-ci-white rounded w-32 mb-4"></div>
-                        <div className="space-y-3">
-                            <div className="h-4 dark:bg-ci-black bg-ci-white rounded w-full"></div>
-                            <div className="h-4 dark:bg-ci-black bg-ci-white rounded w-3/4"></div>
-                            <div className="h-4 dark:bg-ci-black bg-ci-white rounded w-full"></div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
