@@ -16,7 +16,7 @@ export function ReceiptSummaryCard({ receipt }: ReceiptSummaryCardProps) {
                     <MapPin className="h-4 w-4 text-ci-muted" />
                     <div>
                         <p className="text-sm text-ci-muted">Store</p>
-                        <p className="font-medium">{receipt.store_name || 'Unknown'}</p>
+                        <p className="font-medium line-clamp-1">{receipt.store_name || 'Unknown'}</p>
                     </div>
                 </div>
                 <div className="flex items-center space-x-2">

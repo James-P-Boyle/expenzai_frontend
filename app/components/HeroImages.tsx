@@ -3,7 +3,7 @@ import Image from 'next/image'
 export default function HeroImages({ }) {
 
     return (
-        <div className="relative flex justify-center order-1 lg:order-2">
+        <div className="relative flex justify-center order-1 lg:order-2 min-h-[350px]">
 
             {/* Mobile Only - Responsive sizing */}
             <div className="block lg:hidden">

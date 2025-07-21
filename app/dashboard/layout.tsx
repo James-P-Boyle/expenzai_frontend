@@ -20,6 +20,9 @@ import Sidebar from '../components/dashboard/Sidebar'
 import TopBar from '../components/dashboard/TopBar'
 import Header from '../components/dashboard/Header'
 
+import FlashMessages from '../components/FlashMessages'
+import { FlashProvider } from '../context/FlashContext'
+
 const navigation = [
     { name: 'Upload Receipt', href: '/dashboard/upload', icon: Upload },
     { name: 'Dashboard', href: '/dashboard', icon: Home },
@@ -111,7 +114,7 @@ export default function DashboardLayout({
     }
 
     return (
-        <>
+        <FlashProvider>
             <MobileMenu
                 isOpen={isMobileMenuOpen}
                 onClose={closeMobileMenu}
@@ -127,7 +130,7 @@ export default function DashboardLayout({
                 onLogout={handleLogout}
             />
 
-            <div className="lg:pl-64 flex flex-col flex-1">
+            <div className="lg:pl-64 py-6 lex flex-col flex-1">
 
                 <TopBar
                     onMenuClick={openMobileMenu}
@@ -149,6 +152,8 @@ export default function DashboardLayout({
              
                 </main>
             </div>
-        </>
+            
+            <FlashMessages />
+        </FlashProvider>
     )
 }
