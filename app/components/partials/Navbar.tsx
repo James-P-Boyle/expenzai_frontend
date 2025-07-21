@@ -20,13 +20,14 @@ export default function Navbar({
     ]
 
     return (
-        <header className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 lg:py-6 min-h-[100px]">
+        <header className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[292px] md:min-h-0">
             <div className="flex justify-between items-center flex-col md:flex-row gap-2 lg:gap-4">
                 {!loading && (
-                    <>
-                        {/* Logo */}
-                        <Logo />
-
+                    <> 
+                        <div className="min-h-[140px] lg:h-full">
+                            <Logo />
+                        </div>
+                      
                         {/* Mobile Navigation Links - Stacked on top of auth buttons */}
                         <nav className="flex md:hidden flex-col gap-2 order-1">
                             <div className="flex gap-4 justify-center">
