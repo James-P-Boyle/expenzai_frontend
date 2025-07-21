@@ -92,7 +92,7 @@ export function MultiFileUpload({ onFilesUpload, onCancel, isUploading = false }
   const totalSizeMB = (totalSize / 1024 / 1024).toFixed(2)
 
   return (
-    <div className="p-4 lg:p-6">
+    <div className="sm:p-4 lg:p-6">
       {/* Header */}
       <div className="flex justify-between items-center pb-4">
         <h3 className="text-lg font-semibold">

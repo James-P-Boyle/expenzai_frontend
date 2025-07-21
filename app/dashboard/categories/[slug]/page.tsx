@@ -255,7 +255,7 @@ export default function CategoryDetailPage() {
       </Card>
 
       {/* Related Receipts */}
-      <Card className="p-4 lg:p-6">
+      <Card className="sm:p-4 lg:p-6">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-lg font-semibold font-sans">Related Receipts</h2>
           <p className="text-sm text-ci-muted font-serif">

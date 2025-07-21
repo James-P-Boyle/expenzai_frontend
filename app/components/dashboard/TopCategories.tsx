@@ -15,7 +15,7 @@ interface TopCategoriesProps {
 
 export function TopCategories({ categories, hasCategories }: TopCategoriesProps) {
     return (
-        <Card className="p-4 lg:p-6">
+        <Card className="sm:p-4 lg:p-6">
             <div className="flex justify-between items-center mb-4">
                 <h3 className="text-lg font-semibold font-sans">
                     Top Categories This Week

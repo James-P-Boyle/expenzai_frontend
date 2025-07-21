@@ -1,6 +1,7 @@
 import { Calendar, MapPin, Euro } from 'lucide-react'
 import { Card } from '@/app/components/ui/Card'
 import { Receipt } from '@/app/lib/types'
+import { formatDate } from '@/app/lib/utils'
 
 interface ReceiptSummaryCardProps {
     receipt: Receipt
@@ -8,7 +9,7 @@ interface ReceiptSummaryCardProps {
 
 export function ReceiptSummaryCard({ receipt }: ReceiptSummaryCardProps) {
     return (
-        <Card className="p-4 lg:p-6">
+        <Card className="sm:p-4 lg:p-6">
             <h3 className="text-lg font-semibold mb-4">Receipt Summary</h3>
             <div className="grid grid-cols-2 gap-4">
                 <div className="flex items-center space-x-2">
@@ -23,7 +24,7 @@ export function ReceiptSummaryCard({ receipt }: ReceiptSummaryCardProps) {
                     <div>
                         <p className="text-sm text-ci-muted">Date</p>
                         <p className="font-medium">
-                            {receipt.receipt_date || receipt.created_at.split('T')[0]}
+                            {formatDate(receipt.receipt_date || receipt.created_at.split('T')[0])}
                         </p>
                     </div>
                 </div>

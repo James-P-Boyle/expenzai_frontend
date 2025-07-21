@@ -207,11 +207,10 @@ export default function RootLayout({
             <body className={`${leagueSpartan.variable} ${libreBaskerville.variable} font-sans antialiased`}>
                 <ConsentProvider>
                     <AuthProvider>
-                        <div className="min-h-screen px-2 lg:px-8">
+                        <div className="min-h-screen">
                             {children}
                             <ConsentBanner />
                         </div>
-                    
                     </AuthProvider>
                 </ConsentProvider>
             </body>

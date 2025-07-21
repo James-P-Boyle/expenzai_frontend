@@ -39,9 +39,7 @@ export function ReceiptHeader({ receipt, onDelete }: ReceiptHeaderProps) {
                 </span>
             </div>
     
-     
-
-            <Button onClick={onDelete} variant="danger" size="sm" className='ml-auto !w-auto'>
+            <Button onClick={onDelete} variant="danger" size="sm" className='lg:ml-auto !w-auto'>
                 <Trash2 className="mr-2 h-4 w-4" />
                 Delete
             </Button>

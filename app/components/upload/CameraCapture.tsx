@@ -155,7 +155,7 @@ export function CameraCapture({ onCapture, onCancel, isUploading = false }: Came
     }
 
     return (
-        <div className="p-4 lg:p-6">
+        <div className="sm:p-4 lg:p-6">
             {/* Header */}
             <div className="flex justify-end items-center pb-2">
                 <Button
