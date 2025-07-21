@@ -4,7 +4,7 @@ import Link from "next/link"
 import Navbar from "../components/partials/Navbar"
 import { Button } from "../components/ui/Button"
 import { useAuth } from "../context/AuthContext"
-import { Camera, Zap, TrendingUp, Shield, CheckCircle, Eye } from "lucide-react"
+import { Camera, Zap, TrendingUp, Shield, CheckCircle, Eye, Upload } from "lucide-react"
 
 export default function AboutPageClient() {
     const { isAuthenticated, isLoading } = useAuth()
@@ -133,8 +133,11 @@ export default function AboutPageClient() {
                         Join users who have simplified their expense tracking with AI
                     </p>
                  
-                    <Link href="/dashboard/upload">   
-                        <Button>
+                    <Link href="/dashboard/upload">
+                        <Button
+                            title="Go to uploading interface"
+                        >
+                            <Upload className="mr-2 h-4 w-4" />
                             Get Started
                         </Button>
                     </Link>

@@ -67,8 +67,8 @@ export default function Navbar({
 
                             {/* Auth Buttons */}
                             {isAuthenticated ? (
-                                <Link href="/dashboard">
-                                    <Button>Go to Dashboard</Button>
+                                <Link href="/dashboard/upload">
+                                    <Button>Upload Receipt</Button>
                                 </Link>
                             ) : (
                                 <>

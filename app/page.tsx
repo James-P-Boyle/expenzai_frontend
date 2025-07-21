@@ -6,6 +6,7 @@ import { Button } from './components/ui/Button'
 import Link from 'next/link'
 import HeroImages from './components/HeroImages'
 import Hero from './components/Hero'
+import { Upload } from 'lucide-react'
 
 export default function HomePage() {
     const { isAuthenticated, isLoading } = useAuth()
@@ -20,8 +21,11 @@ export default function HomePage() {
                 images={<HeroImages />}
             >
                 <Link href="/dashboard/upload">
-                    <Button variant='secondary'>
-                        Start Tracking Now
+                    <Button
+                        title="Go to uploading interface"
+                    >
+                        <Upload className="mr-2 h-4 w-4" />
+                        Start Tracking
                     </Button>
                 </Link>
             </Hero>
