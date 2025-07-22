@@ -15,7 +15,7 @@ export default function UploadErrorState({
 }: UploadErrorStateProps) {
     return (
         <Card className="p-6 text-center">
-            <div className="text-red-500 mb-4">
+            <div className="text-ci-danger mb-4">
                 <XCircle className="mx-auto h-16 w-16" />
             </div>
             <h3 className="text-xl font-semibold mb-2">

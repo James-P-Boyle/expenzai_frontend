@@ -1,5 +1,5 @@
+import { Button } from '@/app/components/ui/Button'
 import { CheckCircle } from 'lucide-react'
-import { Button } from '../ui/Button'
 
 interface UploadSuccessStateProps {
   onViewReceipt?: (() => void) | undefined  

@@ -22,7 +22,7 @@ export function ReceiptCard({ receipt }: ReceiptCardProps) {
             case 'processing':
                 return <Clock className="h-5 w-5 text-ci-main" />
             case 'failed':
-                return <XCircle className="h-5 w-5 text-red-500" />
+                return <XCircle className="h-5 w-5 text-ci-danger" />
             default:
                 return <Clock className="h-5 w-5 text-ci-muted" />
         }

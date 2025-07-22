@@ -1,4 +1,4 @@
-import { Camera, Upload } from 'lucide-react'
+import { Upload } from 'lucide-react'
 import { Card } from '@/app/components/ui/Card'
 
 type UploadMethod = 'choose' | 'camera' | 'file'

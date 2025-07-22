@@ -17,7 +17,7 @@ export function Input({ label, error, className = '', ...props }: InputProps) {
             <input
                 className={`
                     block w-full px-3 py-2 border border-ci-muted-light rounded-md placeholder-ci-muted focus:outline-none focus:ring-ci-main focus:border-ci-main
-                    ${error ? 'border-red-300 focus:ring-red-500 focus:border-red-500' : ''}
+                    ${error ? 'border-red-300 focus:ring-ci-danger focus:border-ci-danger' : ''}
                     ${className}
                 `.trim()}
                 {...props}

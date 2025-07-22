@@ -1,7 +1,6 @@
 import { CameraCapture } from "./CameraCapture"
 import { FileUpload } from "./FileUpload"
 
-
 type UploadMethod = 'choose' | 'camera' | 'file'
 
 interface UploadInterfaceProps {

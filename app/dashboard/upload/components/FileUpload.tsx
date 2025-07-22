@@ -3,7 +3,8 @@
 import { useState, useRef } from 'react'
 import Image from 'next/image'
 import { Upload, FileImage, X } from 'lucide-react'
-import { Button } from '../ui/Button'
+import { Button } from '@/app/components/ui/Button'
+
 
 interface FileUploadProps {
     onFileSelect: (file: File) => void
