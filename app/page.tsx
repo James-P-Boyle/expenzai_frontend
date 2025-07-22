@@ -14,27 +14,27 @@ export default function HomePage() {
 
     return (
         <>
-        <section className="!min-h-screen flex flex-col">
-            <Navbar isAuthenticated={isAuthenticated} loading={isLoading} />
+            <section className="!min-h-screen flex flex-col">
+                <Navbar isAuthenticated={isAuthenticated} loading={isLoading} />
 
-            <Hero 
-                title="Smart Expense Tracking"
-                subtitle="Transform your receipt management with AI-powered categorization..."
-                images={<HeroImages />}
-            >
-                <Link href="/dashboard/upload">
-                    <Button
-                        title="Go to uploading interface"
-                    >
-                        <Upload className="mr-2 h-4 w-4" />
-                        Start Tracking
-                    </Button>
-                </Link>
-            </Hero>
+                <Hero
+                    title="Smart Expense Tracking"
+                    subtitle="Transform your receipt management with AI-powered categorization..."
+                    images={<HeroImages />}
+                >
+                    <Link href="/dashboard/upload">
+                        <Button
+                            title="Go to uploading interface"
+                        >
+                            <Upload className="mr-2 h-4 w-4" />
+                            Start Tracking
+                        </Button>
+                    </Link>
+                </Hero>
 
 
-        </section>
-                    <Footer />
-                    </>
+            </section>
+            <Footer />
+        </>
     )
 }

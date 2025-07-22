@@ -19,13 +19,12 @@ const libreBaskerville = Libre_Baskerville({
     display: "swap",
 })
 
-// Use production URL from your setup document
 const baseUrl = process.env.NODE_ENV === 'production' 
     ? 'https://www.expenzai.app' 
     : 'http://localhost:3002'
 
 export const metadata: Metadata = {
-    metadataBase: new URL(baseUrl), // Fix for metadataBase warning
+    metadataBase: new URL(baseUrl), 
     title: {
         default: 'ExpenzAI - AI-Powered Expense Management',
         template: '%s | ExpenzAI'
@@ -33,6 +32,7 @@ export const metadata: Metadata = {
     description: 'Transform your expense tracking with AI-powered receipt scanning. Automatically categorize purchases, analyze spending patterns, and manage your finances effortlessly.',
     keywords: [
         'receipt scanner',
+        'receipt ai',
         'expense tracker',
         'AI expense management',
         'receipt categorization',

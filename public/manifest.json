@@ -1,37 +1,69 @@
 {
-    "name": "ExpenzAI - AI-Powered Expense Management",
-    "short_name": "ExpenzAI",
-    "description": "Transform your expense tracking with AI-powered receipt scanning",
-    "start_url": "/",
-    "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#3b82f6",
-    "orientation": "portrait-primary",
-    "categories": ["finance", "productivity", "business"],
-    "icons": [
-      {
-        "src": "/favicons/favicon-16x16.png",
-        "sizes": "16x16",
-        "type": "image/png"
-      },
-      {
-        "src": "/favicons/favicon-32x32.png",
-        "sizes": "32x32",
-        "type": "image/png"
-      }
-    ],
-    "screenshots": [
-      {
-        "src": "/images/dash-d-dark.png",
-        "sizes": "1280x720",
-        "type": "image/png",
-        "form_factor": "wide"
-      },
-      {
-        "src": "/images/dash-d-dark.png",
-        "sizes": "390x844",
-        "type": "image/png",
-        "form_factor": "narrow"
-      }
-    ]
+  "name": "ExpenzAI - AI-Powered Expense Management",
+  "short_name": "ExpenzAI",
+  "description": "Transform your expense tracking with AI-powered receipt scanning",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-US",
+  "categories": ["finance", "productivity", "business"],
+  "icons": [
+    {
+      "src": "/favicons/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicons/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/images/dash-d-dark.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/images/dash-d-dark.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Upload Receipt",
+      "short_name": "Upload",
+      "description": "Quickly upload a new receipt",
+      "url": "/dashboard/upload",
+      "icons": [
+        {
+          "src": "/favicons/favicon-32x32.png",
+          "sizes": "32x32"
+        }
+      ]
+    },
+    {
+      "name": "View Analytics",
+      "short_name": "Analytics", 
+      "description": "View your spending analytics",
+      "url": "/dashboard/analytics",
+      "icons": [
+        {
+          "src": "/favicons/favicon-32x32.png",
+          "sizes": "32x32"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "dir": "ltr",
+  "display_override": ["window-controls-overlay", "standalone"]
 }
