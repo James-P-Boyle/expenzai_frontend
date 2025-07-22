@@ -126,7 +126,7 @@ export default function DashboardPage() {
     const avgWeeklySpending = getAverageWeeklySpending()
 
     return (
-        <>
+        <section className="flex flex-col gap-6">
             <div className="grid grid-cols-1 md:grid-cols-4 lg:gap-6 my-4">
                 <StatCard
                     title="This Week"
@@ -151,15 +151,16 @@ export default function DashboardPage() {
             </div>
 
             <WeeklyChart data={weeklyData} />
+
             <QuickActions />
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-2lg:gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-6">
                 <RecentReceipts receipts={recentReceipts} />
                 <TopCategories
                     categories={topCategories}
                     hasCategories={topCategories.length > 0}
                 />
             </div>
-        </>
+        </section>
     )
 }

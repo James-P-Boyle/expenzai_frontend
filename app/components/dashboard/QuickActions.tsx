@@ -9,14 +9,14 @@ export function QuickActions() {
             <h3 className="text-lg font-semibold mb-4 font-sans">
                 Quick Actions
             </h3>
-            <div className="flex gap-2 flex-wrap">
-                <Link href="/dashboard/upload">
+            <div className="flex gap-2 pb-4 flex-col md:flex-row w-full">
+                <Link href="/dashboard/upload" className="w-full">
                     <Button>
                         <Upload className="mr-2 h-4 w-4" />
                         Upload New Receipt
                     </Button>
                 </Link>
-                <Link href="/dashboard/weekly">
+                <Link href="/dashboard/weekly" className="w-full">
                     <Button variant="secondary">
                         <TrendingUp className="mr-2 h-4 w-4" />
                         View Weekly Summary

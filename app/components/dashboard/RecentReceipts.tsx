@@ -3,6 +3,7 @@ import { Receipt as ReceiptIcon, Upload } from 'lucide-react'
 import { Card } from '../ui/Card'
 import { Button } from '../ui/Button'
 import { Receipt } from '@/app/lib/types'
+import { formatDate } from '@/app/lib/utils'
 
 interface RecentReceiptsProps {
     receipts: Receipt[]
@@ -33,13 +34,13 @@ export function RecentReceipts({ receipts }: RecentReceiptsProps) {
                 <div className="space-y-3">
                     {receipts.map((receipt) => (
                         <Link key={receipt.id} href={`/dashboard/receipts/${receipt.id}`}>
-                            <div className="flex justify-between items-center p-3 rounded-full transition-colors">
+                            <div className="flex justify-between items-center p-2 rounded-full transition-colors">
                                 <div>
                                     <p className="font-medium font-sans">
                                         {receipt.store_name || 'Unknown Store'}
                                     </p>
                                     <p className="text-sm text-ci-muted font-serif">
-                                        {receipt.receipt_date || 'No date'} • {receipt.items.length} items
+                                        {receipt.receipt_date && formatDate(receipt.receipt_date)} <span className="text-ci-main">•</span> {receipt.items.length} items
                                     </p>
                                 </div>
                                 <div className="text-right">

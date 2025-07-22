@@ -67,7 +67,7 @@ export function ReceiptCard({ receipt }: ReceiptCardProps) {
                             <div className="flex flex-col md:flex-row md:items-center space-x-4 text-sm text-ci-muted">
                                 <div className="flex items-center">
                                     <Calendar className="h-4 w-4 mr-1" />
-                                    {formatDate(receipt.receipt_date || receipt.created_at.split('T')[0])}
+                                    {formatDate(receipt.receipt_date || receipt.created_at)}
                                 </div>
                                 <div>
                                     {receipt.items.length} item{receipt.items.length !== 1 ? 's' : ''}

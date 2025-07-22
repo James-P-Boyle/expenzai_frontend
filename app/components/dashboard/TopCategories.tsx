@@ -15,7 +15,7 @@ interface TopCategoriesProps {
 
 export function TopCategories({ categories, hasCategories }: TopCategoriesProps) {
     return (
-        <Card className="sm:p-4 lg:p-6">
+        <Card className="sm:p-4">
             <div className="flex justify-between items-center mb-4">
                 <h3 className="text-lg font-semibold font-sans">
                     Top Categories This Week
@@ -28,12 +28,12 @@ export function TopCategories({ categories, hasCategories }: TopCategoriesProps)
             </div>
 
             {hasCategories ? (
-                <div className="space-y-3">
+                <div className="">
                     {categories.slice(0, 3).map((category, index) => (
                         <Link
                             key={index}
                             href={`/dashboard/categories/${encodeURIComponent(category.category)}`}
-                            className="block p-3 rounded-full transition-colors hover:bg-gray-50"
+                            className="block p-2 rounded-full transition-colors"
                         >
                             <div className="flex justify-between items-center">
                                 <div>
