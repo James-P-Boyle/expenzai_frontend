@@ -33,9 +33,9 @@ export function ReceiptCard({ receipt }: ReceiptCardProps) {
             case 'completed':
                 return 'bg-ci-success-light text-ci-success'
             case 'processing':
-                return 'bg-ci-main text-ci-main'
+                return 'bg-ci-main text-ci-black'
             case 'failed':
-                return 'bg-red-100 text-red-800'
+                return 'bg-red-100 text-ci-danger'
             default:
                 return 'bg-gray-100 text-gray-800'
         }
