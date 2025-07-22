@@ -38,7 +38,7 @@ export function ReceiptFilters({
                     <select
                         value={statusFilter}
                         onChange={(e) => onStatusChange(e.target.value as ReceiptStatus | 'all')}
-                        className="w-full text-ci-muted px-3 py-2 border border-ci-muted-light rounded-md focus:ring-ci-main focus:border-ci-main ring-ci-main outline-0"
+                        className="w-full text-ci-muted px-3 py-2 border border-ci-muted-light rounded-md focus:ring-ci-main focus:border-ci-main ring-ci-main outline-0 h-full"
                     >
                         <option value="all">All Status</option>
                         <option value="completed">Completed</option>
