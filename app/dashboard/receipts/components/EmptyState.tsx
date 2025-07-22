@@ -10,7 +10,7 @@ interface ReceiptsEmptyStateProps {
 export default function ReceiptsEmptyState({ hasFilters }: ReceiptsEmptyStateProps) {
     if (hasFilters) {
         return (
-            <Card className="p-12 text-center">
+            <Card className="p-6 text-center">
                 <ReceiptIcon className="mx-auto h-12 w-12 text-ci-muted mb-4" />
                 <h3 className="text-lg font-medium mb-2">No matching receipts</h3>
                 <p className="text-ci-muted">
@@ -21,7 +21,7 @@ export default function ReceiptsEmptyState({ hasFilters }: ReceiptsEmptyStatePro
     }
 
     return (
-        <Card className="p-12 text-center">
+        <Card className="p-6 text-center">
             <ReceiptIcon className="mx-auto h-12 w-12 text-ci-muted mb-4" />
             <h3 className="text-lg font-medium mb-2">No receipts yet</h3>
             <p className="text-ci-muted mb-6">

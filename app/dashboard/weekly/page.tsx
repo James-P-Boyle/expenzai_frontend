@@ -3,27 +3,32 @@
 import { useState, useEffect, useCallback } from 'react'
 import { WeeklySummary } from '@/app/lib/types'
 import { api } from '@/app/lib/api'
-import WeekNavigator from '../../components/weekly/WeekNavigator'
+import WeekNavigator from './components/WeekNavigator'
 import ErrorState from '@/app/components/ErrorState'
 import EmptyState from '@/app/components/EmptyState'
-import SummaryStats from '../../components/weekly/SummaryStats'
-import SpendingCharts from '../../components/weekly/SpendingCharts'
-import CategoryDetailsTable from '../../components/weekly/CategoryDetailsTable'
+import SummaryStats from './components/SummaryStats'
+import SpendingCharts from './components/SpendingCharts'
+import CategoryDetailsTable from './components/CategoryDetailsTable'
 import { getErrorMessage } from '@/app/lib/error-utils'
+import LoadingSpinner from '@/app/components/ui/LoadingSpinner'
 
 export default function WeeklySummaryPage() {
-    const [weeklySummary, setWeeklySummary] = useState<WeeklySummary | null>(null)
-    const [selectedDate, setSelectedDate] = useState(new Date())
-    const [error, setError] = useState<string | null>(null)
+    const [ weeklySummary, setWeeklySummary ] = useState<WeeklySummary | null>(null)
+    const [ selectedDate, setSelectedDate ] = useState(new Date())
+    const [ error, setError ] = useState<string | null>(null)
+    const [ loading, setLoading ] = useState<boolean>(true)
 
     const fetchWeeklySummary = useCallback(async () => {
         try {
+            setLoading(true)
             const dateStr = selectedDate.toISOString().split('T')[0]
             const response = await api.getWeeklySummary(dateStr)
             setWeeklySummary(response)
             setError(null)
         } catch (err: unknown) {
             setError(getErrorMessage(err, 'Failed to fetch weekly summary'))
+        } finally {
+            setLoading(false)
         }
     }, [selectedDate])
 
@@ -56,6 +61,10 @@ export default function WeeklySummaryPage() {
                 // onCurrentWeek={goToCurrentWeek}
             />
 
+            {loading && (
+                <LoadingSpinner />
+            )}
+
             {error && (
                 <ErrorState error={error} onRetry={fetchWeeklySummary} />
             )}
@@ -63,11 +72,11 @@ export default function WeeklySummaryPage() {
             {!weeklySummary || weeklySummary.receipts_count === 0 ? (
                 <EmptyState />
             ) : (
-                <>
+                <section className="space-y-6 py-6">
                     <SummaryStats weeklySummary={weeklySummary} />
                     <SpendingCharts weeklySummary={weeklySummary} />
                     <CategoryDetailsTable weeklySummary={weeklySummary} />
-                </>
+                </section>
             )}
         </>
     )

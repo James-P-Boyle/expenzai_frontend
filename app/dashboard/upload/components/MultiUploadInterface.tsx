@@ -1,7 +1,8 @@
 import { useState, useRef } from 'react'
 import Image from 'next/image'
 import { Upload, FileImage, X, Trash2, Plus, Camera } from 'lucide-react'
-import { Button } from '../ui/Button'
+import { Button } from '@/app/components/ui/Button'
+
 
 interface FileWithPreview {
     file: File

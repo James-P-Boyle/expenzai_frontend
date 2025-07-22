@@ -19,7 +19,7 @@ export default function WeekNavigator({
 
     return (
         <Card className="p-4">
-            <div className="grid grid-cols-2 grid-rows-2 gap-1 md:flex items-center justify-between">
+            <div className="grid grid-cols-2 grid-rows-2 gap-2 md:flex items-center justify-between">
 
                 <Button onClick={onPreviousWeek} variant="secondary" size="sm">
                     <ChevronLeft className="size-5" />

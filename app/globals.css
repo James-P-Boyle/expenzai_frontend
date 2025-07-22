@@ -7,6 +7,7 @@
   --ci-main: #FFEB3B;
   --ci-white: #ffffff;
   --ci-black: #000000;
+  --ci-warn: #F8B500;
   --ci-success: #3BC14A;
   --ci-danger: #D0021B;
   --ci-success-light: #3bc14b40;
@@ -33,6 +34,7 @@
   --color-ci-white: var(--ci-white);
   --color-ci-black: var(--ci-black);
   --color-ci-success: var(--ci-success);
+  --color-ci-warn: var(--ci-warn);
   --color-ci-danger: var(--ci-danger);
   --color-ci-success-light: var(--ci-success-light);
   --color-ci-muted: var(--ci-muted);

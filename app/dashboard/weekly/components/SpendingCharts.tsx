@@ -42,7 +42,7 @@ export default function SpendingCharts({ weeklySummary }: SpendingChartsProps) {
                 <h3 className="font-bold pb-2">
                     Spending by Category
                 </h3>
-                <div className="h-60">
+                <div className="h-60 text-red-500">
                     <ResponsiveContainer width="100%" height="100%">
                         <PieChart>
                             <Pie

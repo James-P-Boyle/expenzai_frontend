@@ -5,7 +5,7 @@ import { Card } from '@/app/components/ui/Card'
 
 export default function EmptyState() {
     return (
-        <Card className="p-12 text-center">
+        <Card className="p-6 text-center">
             <ReceiptIcon className="mx-auto size-12 text-ci-muted mb-4" />
             <h3 className="text-lg font-bold mb-2">No receipts this week</h3>
             <p className="text-ci-muted mb-6 w-4/5 mx-auto">

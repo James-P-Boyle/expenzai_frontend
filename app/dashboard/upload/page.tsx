@@ -3,13 +3,14 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { api } from '@/app/lib/api'
-import UploadErrorState from '@/app/components/upload/ErrorState'
-import UploadMethodSelector from '@/app/components/upload/UploadMethodSelector'
-import MultiUploadInterface from '@/app/components/upload/MultiUploadInterface'
-import Tips from '@/app/components/upload/Tips'
+
 import { getErrorMessage } from '@/app/lib/error-utils'
 import { useFlash } from '@/app/context/FlashContext'
 import { useReceiptStatus } from '@/app/hooks/useReceiptStatus'
+import UploadErrorState from './components/ErrorState'
+import UploadMethodSelector from './components/UploadMethodSelector'
+import MultiUploadInterface from './components/MultiUploadInterface'
+import Tips from './components/Tips'
 
 
 type UploadMethod = 'choose' | 'camera' | 'file'

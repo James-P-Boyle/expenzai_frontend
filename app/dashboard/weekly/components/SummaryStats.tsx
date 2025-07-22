@@ -39,15 +39,15 @@ export default function SummaryStats({ weeklySummary }: SummaryStatsProps) {
     ]
 
     return (
-        <div className="flex flex-wrap justify-between md:justify-center gap-4">
+        <div className="flex flex-row flex-wrap justify-between md:justify-center gap-4">
             {stats.map((stat, index) => (
-                <Card key={index} className="">
+                <Card key={index} className="w-full flex-1">
                     <div className="flex items-center">
                         <div className={`p-3 ${stat.bgColor} rounded-full`}>
                             <stat.icon className={`h-6 w-6 ${stat.iconColor}`} />
                         </div>
                         <div className="ml-4">
-                            <p className="text-sm font-medium text-ci-muted">{stat.label}</p>
+                            <p className="text-sm font-medium text-ci-muted whitespace-nowrap">{stat.label}</p>
                             <p className="text-2xl font-bold">{stat.value}</p>
                         </div>
                     </div>
