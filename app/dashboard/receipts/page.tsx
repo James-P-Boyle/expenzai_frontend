@@ -9,6 +9,7 @@ import { ErrorState } from './components/ErrorState'
 import EmptyState from './components/EmptyState'
 import { ReceiptsList } from './components/ReceiptList'
 import { getErrorMessage } from '@/app/lib/error-utils'
+import LoadingSpinner from '@/app/components/ui/LoadingSpinner'
 
 export default function ReceiptsIndexPage() {
     const [receipts, setReceipts] = useState<Receipt[]>([])
@@ -63,6 +64,8 @@ export default function ReceiptsIndexPage() {
                 />
             )}
 
+            {isLoading && (<LoadingSpinner />)}
+            
             {filteredReceipts.length === 0 && !isLoading ? (
                 <EmptyState hasFilters={hasFilters} />
             ) : (
