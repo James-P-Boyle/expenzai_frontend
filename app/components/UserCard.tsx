@@ -22,12 +22,12 @@ export default function UserCard ({
     if (justIcon) {
         return (
             <button
-                    onClick={handleLogout}
-                    className="ml-3 p-1 rounded-full text-ci-muted hover:text-ci-muted"
-                    title="Logout"
-                >
-                    <LogOut className="h-5 w-5" />
-                </button>
+                onClick={handleLogout}
+                className="ml-3 p-1 rounded-full text-ci-muted hover:text-ci-muted"
+                title="Logout"
+            >
+                <LogOut className="h-5 w-5" />
+            </button>
         )
     }
 

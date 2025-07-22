@@ -1,20 +1,18 @@
-import UserCard from '@/app/components/UserCard'
 import { User } from '@/app/lib/types'
-import { Menu } from 'lucide-react'
+import { Menu, Upload } from 'lucide-react'
+import { Button } from '../ui/Button'
+import Link from 'next/link'
 
 
 interface TopBarProps {
     onMenuClick: () => void
-    isAuthenticated: boolean
-    user: User | null
-    onLogout: () => Promise<void>,
+    // isAuthenticated: boolean
+    // user: User | null
+    // onLogout: () => Promise<void>,
 }
 
 export default function TopBar({
-    onMenuClick,
-    isAuthenticated,
-    user,
-    onLogout
+    onMenuClick
 }: TopBarProps) {
     return (
         <div className="lg:hidden flex items-center justify-between px-4 py-3">
@@ -27,12 +25,11 @@ export default function TopBar({
 
             <h1 className="text-lg font-bold">Expenz<span className='text-ci-main'>Ai</span></h1>
 
-            <UserCard
-                isAuthenticated={isAuthenticated}
-                user={user}
-                handleLogout={onLogout}
-                justIcon
-            />
+             <Link href="/dashboard/upload">
+        
+                <Upload className="mr-2 h-4 w-4" />
+           
+            </Link>
         </div>
     )
 }
