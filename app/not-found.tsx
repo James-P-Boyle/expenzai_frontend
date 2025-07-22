@@ -17,18 +17,18 @@ export default function NotFound() {
                     </p>
                 </div>
 
-                <div className="flex gap-4 flex-col md:flex-row">
+                <div className="flex gap-4 flex-col">
                     <Link href="/" className="block">
-                        <Button className="w-full">
+                        <Button className="w-full" variant="secondary">
                             <Home className="mr-2 h-4 w-4" />
                             Back to Home
                         </Button>
                     </Link>
 
                     <Link href="/dashboard/upload" className="block">
-                        <Button variant="secondary" className="w-full">
+                        <Button className="w-full">
                             <Upload className="mr-2 h-4 w-4" />
-                            Upload
+                            Upload Receipt
                         </Button>
                     </Link>
                 </div>

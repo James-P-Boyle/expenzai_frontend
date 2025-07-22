@@ -132,12 +132,7 @@ export default function DashboardLayout({
 
             <div className="lg:pl-64 py-6 lex flex-col flex-1">
 
-                <TopBar
-                    onMenuClick={openMobileMenu}
-                    isAuthenticated={isAuthenticated}
-                    user={user}
-                    onLogout={handleLogout}
-                />
+                <TopBar onMenuClick={openMobileMenu}/>
 
                 <main className="flex-1 p-2 py-6 flex flex-col">
 
@@ -151,6 +146,7 @@ export default function DashboardLayout({
                     </div>
              
                 </main>
+
             </div>
             
             <FlashMessages />

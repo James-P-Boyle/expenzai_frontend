@@ -51,7 +51,8 @@ export default function ConsentBanner() {
                             Cookie Consent
                         </h3>
                         <p className="">
-                            We use cookies to enhance your experience, analyze site usage, and assist in our marketing efforts. 
+                            {/* We use cookies to enhance your experience, analyze site usage, and assist in our marketing efforts.  */}
+                            We use cookies to enhance your experience, and analyze site usage. 
                             By continuing to use our site, you consent to our use of cookies.{' '}
                             <Link 
                                 href="/privacy" 

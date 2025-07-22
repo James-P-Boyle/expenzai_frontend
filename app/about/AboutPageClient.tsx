@@ -5,6 +5,7 @@ import Navbar from "../components/partials/Navbar"
 import { Button } from "../components/ui/Button"
 import { useAuth } from "../context/AuthContext"
 import { Camera, Zap, TrendingUp, Shield, CheckCircle, Eye, Upload } from "lucide-react"
+import Footer from "../components/partials/Footer"
 
 export default function AboutPageClient() {
     const { isAuthenticated, isLoading } = useAuth()
@@ -14,7 +15,7 @@ export default function AboutPageClient() {
             <Navbar isAuthenticated={isAuthenticated} loading={isLoading} />
             
             {/* Hero Section */}
-            <section className="py-10">
+            <section>
                 <div className="container mx-auto px-4">
                     <div className="max-w-4xl mx-auto text-center">
                         <h1 className="text-4xl font-bold mb-6">
@@ -124,8 +125,8 @@ export default function AboutPageClient() {
             </section>
 
             {/* Call to Action */}
-            <section className="py-10 text-center">
-                <div className="container mx-auto px-4">
+            <section className="pt-10 text-center">
+                <div className="container mx-auto px-4 py-8">
                     <h2 className="text-3xl font-bold mb-4">
                         Ready to Start Tracking Smarter?
                     </h2>
@@ -142,6 +143,7 @@ export default function AboutPageClient() {
                         </Button>
                     </Link>
                 </div>
+                <Footer />
             </section>
         </>
     )

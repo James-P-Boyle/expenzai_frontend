@@ -7,12 +7,14 @@ import Link from 'next/link'
 import HeroImages from './components/HeroImages'
 import Hero from './components/Hero'
 import { Upload } from 'lucide-react'
+import Footer from './components/partials/Footer'
 
 export default function HomePage() {
     const { isAuthenticated, isLoading } = useAuth()
 
     return (
         <>
+        <section className="!min-h-screen flex flex-col">
             <Navbar isAuthenticated={isAuthenticated} loading={isLoading} />
 
             <Hero 
@@ -29,6 +31,10 @@ export default function HomePage() {
                     </Button>
                 </Link>
             </Hero>
-        </>
+
+
+        </section>
+                    <Footer />
+                    </>
     )
 }

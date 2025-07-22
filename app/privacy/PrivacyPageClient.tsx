@@ -1,5 +1,6 @@
 "use client"
 
+import Footer from "../components/partials/Footer"
 import Navbar from "../components/partials/Navbar"
 import { useAuth } from "../context/AuthContext"
 
@@ -11,7 +12,7 @@ export default function PrivacyPageClient() {
         <>
             <Navbar isAuthenticated={isAuthenticated} loading={isLoading} />
 
-            <section className="py-20">
+            <section className="px-2">
                 <div className="max-w-4xl mx-auto text-center lg:text-left mb-4">
                     <h1 className="text-4xl font-bold">
                         Privacy Policy & Data Protection
@@ -247,9 +248,8 @@ export default function PrivacyPageClient() {
                         </section>
                     </div>
                 </div>
+                <Footer />
             </section>
-
-
         </>
 
     )

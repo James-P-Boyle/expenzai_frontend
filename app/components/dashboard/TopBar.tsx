@@ -25,10 +25,10 @@ export default function TopBar({
 
             <h1 className="text-lg font-bold">Expenz<span className='text-ci-main'>Ai</span></h1>
 
-             <Link href="/dashboard/upload">
-        
+            <Link href="/dashboard/upload">
+
                 <Upload className="mr-2 h-4 w-4" />
-           
+
             </Link>
         </div>
     )

@@ -16,11 +16,10 @@ export default function Navbar({
 
     const navLinks = [
         { href: '/about', label: 'About' },
-        { href: '/privacy', label: 'Privacy' },
     ]
 
     return (
-        <header className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[292px] md:min-h-0">
+        <header className="max-w-7xl mx-auto px-4 mb-10 sm:px-6 lg:px-8 min-h-[292px] md:min-h-0 w-full">
             <div className="flex justify-between items-center flex-col md:flex-row gap-2 lg:gap-4">
                 {!loading && (
                     <> 
