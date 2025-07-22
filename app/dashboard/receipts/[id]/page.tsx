@@ -59,16 +59,18 @@ export default function ReceiptDetailsPage() {
         fetchReceipt()
     }, [fetchReceipt])
 
-    const handleUpdateItem = useCallback(async (itemId: number, category: string) => {
+    const handleUpdateItem = useCallback(async (itemId: number, updates: { name?: string; category?: string }) => {
         if (!receipt) return
-
+    
         setIsUpdating(true)
         try {
+            console.log('Sending updates to API:', updates) 
+            
             await api.updateItem(itemId, {
-                category: category,
+                ...updates,
                 is_uncertain: false
             })
-
+    
             // Optimistic update
             setReceipt(prevReceipt => {
                 if (!prevReceipt) return prevReceipt
@@ -77,12 +79,18 @@ export default function ReceiptDetailsPage() {
                     ...prevReceipt,
                     items: prevReceipt.items.map(item =>
                         item.id === itemId
-                            ? { ...item, category: category, is_uncertain: false }
+                            ? { 
+                                ...item, 
+                                ...(updates.name && { name: updates.name }),
+                                ...(updates.category && { category: updates.category }),
+                                is_uncertain: false 
+                              }
                             : item
                     )
                 }
             })
         } catch (err: unknown) {
+            console.error('Update failed:', err)
             alert(err instanceof Error ? err.message : 'Failed to update item')
             // Revert optimistic update by refetching
             await fetchReceipt()

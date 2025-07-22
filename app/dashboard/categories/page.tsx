@@ -81,7 +81,7 @@ export default function CategoriesIndexPage() {
               <Link
                 key={index}
                 href={`/dashboard/categories/${encodeURIComponent(category.category)}`}
-                className="block p-4 rounded-lg border transition-colors hover:bg-gray-50"
+                className="block p-4 rounded-lg transition-colors"
               >
                 <div className="flex justify-between items-center">
                   <div>
@@ -121,11 +121,11 @@ export default function CategoriesIndexPage() {
               <Link
                 key={index}
                 href={`/dashboard/categories/${encodeURIComponent(category.category)}`}
-                className="block p-4 rounded-lg border transition-colors hover:bg-gray-50"
+                className="block p-4 rounded-lg transition-colors group"
               >
                 <div className="flex justify-between items-start">
                   <div className="flex-1">
-                    <h3 className="font-semibold font-sans text-lg">{category.category}</h3>
+                    <h3 className="font-semibold font-sans text-lg group-hover:underline group-hover:text-ci-main transition-all">{category.category}</h3>
                     <div className="flex gap-4 mt-1">
                       <p className="text-sm text-ci-muted font-serif">
                         {category.count} items
@@ -138,7 +138,7 @@ export default function CategoriesIndexPage() {
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-xl font-bold font-sans">€{category.total.toFixed(2)}</p>
+                    <p className="text-xl font-bold font-sans group-hover:text-ci-main">€{category.total.toFixed(2)}</p>
                     <p className="text-sm text-ci-muted font-serif">
                       avg €{category.avgPrice.toFixed(2)}
                     </p>

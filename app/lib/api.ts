@@ -272,11 +272,28 @@ class ApiClient {
     return this.handleResponse<{ message: string }>(response)
   }
 
+  async getItem(
+    id: number,
+    token?: string
+  ): Promise<{ data: ReceiptItem }> {
+    const response = await fetch(`${API_BASE_URL}/items/${id}`, {
+      method: "GET",
+      headers: this.getAuthHeaders(token),
+    })
+  
+    return this.handleResponse<{ data: ReceiptItem }>(response)
+  }
+  
   async updateItem(
     id: number,
-    data: { category: string; is_uncertain: boolean },
+    data: {
+      name?: string
+      category?: string
+      price?: number
+      is_uncertain?: boolean
+    },
     token?: string
-  ): Promise<ReceiptItem> {
+  ): Promise<{ data: ReceiptItem; message: string }> {
     const response = await fetch(`${API_BASE_URL}/items/${id}`, {
       method: "PUT",
       headers: {
@@ -285,8 +302,8 @@ class ApiClient {
       },
       body: JSON.stringify(data),
     })
-
-    return this.handleResponse<ReceiptItem>(response)
+  
+    return this.handleResponse<{ data: ReceiptItem; message: string }>(response)
   }
 
   // Categories
