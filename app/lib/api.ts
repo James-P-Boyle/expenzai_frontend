@@ -411,6 +411,37 @@ class ApiClient {
 
     return this.handleResponse<{ message: string }>(response)
   }
+
+  // Email Verification Methods
+  async verifyEmail(token: string, email: string): Promise<{
+    message: string
+    verified: boolean
+    user?: {
+      id: number
+      name: string
+      email: string
+      email_verified_at: string
+      user_tier: string
+    }
+  }> {
+    const response = await fetch(`${API_BASE_URL}/verify-email?token=${token}&email=${encodeURIComponent(email)}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+
+    return this.handleResponse(response)
+  }
+
+  async resendVerification(token?: string): Promise<{ message: string }> {
+    const response = await fetch(`${API_BASE_URL}/resend-verification`, {
+      method: "POST",
+      headers: this.getAuthHeaders(token),
+    })
+
+    return this.handleResponse<{ message: string }>(response)
+  }
 }
 
 export const api = new ApiClient()
