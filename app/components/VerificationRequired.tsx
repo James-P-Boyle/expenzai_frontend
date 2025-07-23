@@ -33,9 +33,6 @@ export default function VerificationRequired() {
         
         const freshUserData = await refreshUser()
         
-        console.log('Fresh user data:', freshUserData)
-        console.log('Is verified:', !!freshUserData?.email_verified_at)
-        
         setIsChecking(false)
     }
 
