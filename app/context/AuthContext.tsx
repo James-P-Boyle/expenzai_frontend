@@ -12,6 +12,9 @@ interface AuthContextType {
     register: (credentials: RegisterCredentials) => Promise<void>
     logout: () => void
     isAuthenticated: boolean
+    isVerified: boolean
+    canAccessFullDashboard: boolean
+    refreshUser: () => Promise<void>
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
@@ -23,6 +26,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const [isLoading, setIsLoading] = useState(true)
 
     const isAuthenticated = !!user && !!token
+    const isVerified = !!user?.email_verified_at
+    const canAccessFullDashboard = isAuthenticated && isVerified
 
     // Load token from localStorage on mount
     useEffect(() => {
@@ -58,6 +63,28 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         localStorage.removeItem('user')
     }
 
+    const refreshUser = async () => {
+        if (!token) return
+        
+        try {
+            // Fetch updated user data from API
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Accept': 'application/json'
+                }
+            })
+            
+            if (response.ok) {
+                const userData = await response.json()
+                setUser(userData)
+                localStorage.setItem('user', JSON.stringify(userData))
+            }
+        } catch (error) {
+            console.error('Failed to refresh user data:', error)
+        }
+    }
+
     const login = async (credentials: LoginCredentials) => {
         try {
             const response = await api.login(credentials)
@@ -71,6 +98,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         try {
             const response = await api.register(credentials)
             saveAuthData(response)
+            
+            // Show transfer message if receipts were transferred
+            if (response.transferred_receipts && response.transferred_receipts > 0) {
+                // You can add a flash message here or return this info
+                console.log(`✅ Successfully transferred ${response.transferred_receipts} receipts to your account!`)
+            }
         } catch (error) {
             throw error
         }
@@ -97,6 +130,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         register,
         logout,
         isAuthenticated,
+        isVerified,
+        canAccessFullDashboard,
+        refreshUser,
     }
 
     return (

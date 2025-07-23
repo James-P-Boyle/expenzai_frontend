@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import { useState } from 'react'
 import { usePathname } from 'next/navigation'
 import {
     Home,
@@ -12,16 +12,17 @@ import {
     Cog
 } from 'lucide-react'
 
-import { useState  } from 'react'
 import { useAuth } from '../context/AuthContext'
 import LoadingSpinner from '../components/ui/LoadingSpinner'
 import MobileMenu from '../components/dashboard/MobileMenu'
 import Sidebar from '../components/dashboard/Sidebar'
 import TopBar from '../components/dashboard/TopBar'
 import Header from '../components/dashboard/Header'
+import VerificationRequired from '../components/VerificationRequired'
 
 import FlashMessages from '../components/FlashMessages'
 import { FlashProvider } from '../context/FlashContext'
+import SignupPrompt from '../components/SignupPrompt'
 
 const navigation = [
     { name: 'Upload Receipt', href: '/dashboard/upload', icon: Upload },
@@ -30,6 +31,14 @@ const navigation = [
     { name: 'Weekly Summary', href: '/dashboard/weekly', icon: BarChart3 },
     { name: 'Categories', href: '/dashboard/categories', icon: Tag },
     { name: 'Settings', href: '/dashboard/settings', icon: Cog },
+]
+
+// Routes that require email verification
+const verificationRequiredRoutes = [
+    '/dashboard',
+    '/dashboard/weekly',
+    '/dashboard/categories',
+    '/dashboard/settings'
 ]
 
 const getHeaderConfig = (pathname: string) => {
@@ -59,7 +68,7 @@ const getHeaderConfig = (pathname: string) => {
         },
         '/dashboard/settings': {
             title: 'Update Settings',
-            subtitle: 'Mange your consent settings'
+            subtitle: 'Manage your consent settings'
         },
     }
     
@@ -84,18 +93,14 @@ export default function DashboardLayout({
 }: {
     children: React.ReactNode
 }) {
-    const { isAuthenticated, isLoading, user, logout } = useAuth()
+    const { isAuthenticated, isLoading, user, logout, isVerified } = useAuth()
+
     const router = useRouter()
     const pathname = usePathname()
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
     const headerConfig = getHeaderConfig(pathname)
-
-    useEffect(() => {
-        if (!isLoading && !isAuthenticated) {
-            router.push('/auth/login')
-        }
-    }, [isAuthenticated, isLoading, router])
+    const requiresVerification = verificationRequiredRoutes.includes(pathname)
 
     const handleLogout = async () => {
         logout()
@@ -105,48 +110,55 @@ export default function DashboardLayout({
     const closeMobileMenu = () => setIsMobileMenuOpen(false)
     const openMobileMenu = () => setIsMobileMenuOpen(true)
 
-    if (isLoading) {
-        return <LoadingSpinner />
-    }
-
-    if (!isAuthenticated) {
-        return null
-    }
+    // Filter navigation based on verification status
+    const filteredNavigation = navigation.map(item => ({
+        ...item,
+        disabled: verificationRequiredRoutes.includes(item.href) && !isVerified
+    }))
 
     return (
         <FlashProvider>
             <MobileMenu
                 isOpen={isMobileMenuOpen}
                 onClose={closeMobileMenu}
-                navigation={navigation}
+                navigation={filteredNavigation}
                 currentPath={pathname}
             />
 
             <Sidebar
-                navigation={navigation}
+                navigation={filteredNavigation}
                 currentPath={pathname}
                 isAuthenticated={isAuthenticated}
                 user={user}
                 onLogout={handleLogout}
             />
 
-            <div className="lg:pl-64 py-6 lex flex-col flex-1">
-
+            <div className="lg:pl-64 py-6 flex flex-col flex-1">
                 <TopBar onMenuClick={openMobileMenu}/>
 
                 <main className="flex-1 p-2 py-6 flex flex-col">
-
                     <Header 
                         title={headerConfig.title}
                         subtitle={headerConfig.subtitle}
                     />
 
                     <div>
-                        {children}
-                    </div>
-             
+     
+                    {requiresVerification && !isLoading ? (
+                        user ? (
+                            isVerified ? (
+                                children
+                            ) : (
+                                <VerificationRequired />
+                            )
+                        ) : (
+                            <SignupPrompt />
+                        )
+                    ) : (
+                        children
+                    )}
+                    </div>     
                 </main>
-
             </div>
             
             <FlashMessages />

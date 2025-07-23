@@ -16,6 +16,7 @@ export interface User {
   id: number;
   name: string;
   email: string;
+  email_verified_at: string;
   created_at: string;
   updated_at: string;
 }
@@ -23,8 +24,15 @@ export interface User {
 export interface AuthResponse {
   user: User;
   token: string;
+  transferred_receipts: number;
 }
 
+export interface AnonymousReceiptsResponse {
+  data: Receipt[]
+  remaining_uploads: number
+  total_count: number
+  session_id: string
+}
 export interface ReceiptItem {
   id: number;
   receipt_id: number;

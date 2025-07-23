@@ -165,7 +165,7 @@ export function MultiFileUpload({ onFilesUpload, onCancel, isUploading = false }
               </button>
               <button
                 onClick={removeAllFiles}
-                className="flex items-center gap-1 px-3 py-1 text-sm text-red-600 hover:text-red-700"
+                className="flex items-center gap-1 px-3 py-1 text-sm text-ci-danger hover:text-red-700"
                 disabled={isUploading}
               >
                 <Trash2 className="h-4 w-4" />
@@ -204,10 +204,10 @@ export function MultiFileUpload({ onFilesUpload, onCancel, isUploading = false }
           </div>
 
           {/* Upload Summary */}
-          <div className="bg-gray-50 rounded-lg p-4">
+          <div className="rounded-lg p-4 bg-red-500">
             <div className="flex justify-between items-center mb-3">
               <span className="font-medium">Ready to upload:</span>
-              <span className="text-sm text-gray-600">
+              <span className="text-sm">
                 {selectedFiles.length} files • {totalSizeMB} MB total
               </span>
             </div>

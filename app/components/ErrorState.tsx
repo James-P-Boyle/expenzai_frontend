@@ -9,7 +9,7 @@ interface ErrorStateProps {
 export default function ErrorState({ error, onRetry }: ErrorStateProps) {
     return (
         <Card className="p-6 mb-6">
-            <div className="text-center text-red-600">
+            <div className="text-center text-ci-danger">
                 <p>{error}</p>
                 <Button onClick={onRetry} variant="secondary" className="mt-4">
                     Try Again

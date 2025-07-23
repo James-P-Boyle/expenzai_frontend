@@ -122,13 +122,11 @@ export default function MultiUploadInterface({
 
             {/* Upload Area */}
             <div
-                className={`
-          relative border-2 border-dashed rounded-lg p-6 text-center transition-colors mb-4
-          ${dragActive
+                className={`relative border-2 border-dashed rounded-lg p-6 text-center transition-colors mb-4
+                    ${dragActive
                         ? 'border-ci-main bg-ci-main/10'
-                        : 'border-ci-muted-light hover:border-ci-muted'
+                        : 'border-ci-muted-light hover:border-ci-muted'} `
                     }
-        `}
                 onDragEnter={handleDrag}
                 onDragLeave={handleDrag}
                 onDragOver={handleDrag}
@@ -243,7 +241,7 @@ export default function MultiUploadInterface({
                     </div>
 
                     {/* Upload Summary */}
-                    <div className="bg-black/40 rounded-lg px-4 py-8">
+                    <div className="rounded-lg px-4 py-8">
                         <div className="flex justify-between items-center mb-3">
                             <span className="font-medium text-ci-text">Ready to upload:</span>
                             <span className="text-sm text-ci-muted">

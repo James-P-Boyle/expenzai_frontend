@@ -41,20 +41,38 @@ export default function ReceiptDetailsPage() {
 
     const fetchReceipt = useCallback(async () => {
         if (!receiptId) return
-
+    
         try {
             setIsLoading(true)
             setError(null)
-            const response = await api.getReceipt(receiptId)
+            
+            const isAuthenticated = !!localStorage.getItem('auth_token')
+            let response
+            
+            if (isAuthenticated) {
+                response = await api.getReceipt(receiptId)
+            } else {
+                response = await api.getAnonymousReceipt(receiptId)
+            }
+            
             setReceipt(response)
         } catch (err: unknown) {
-            setError(err instanceof Error ? err.message : 'Failed to fetch receipt')
+            const errorMessage = err instanceof Error ? err.message : 'Failed to fetch receipt'
+            
+            if (errorMessage.includes('404') || errorMessage.includes('not found')) {
+                setError('Receipt not found or you don\'t have access to view it.')
+            } else if (errorMessage.includes('401') || errorMessage.includes('Unauthenticated')) {
+                setError('Access denied. This receipt may belong to another user.')
+            } else {
+                setError(errorMessage)
+            }
+            
             setReceipt(null)
         } finally {
             setIsLoading(false)
         }
     }, [receiptId])
-
+    
     useEffect(() => {
         fetchReceipt()
     }, [fetchReceipt])
