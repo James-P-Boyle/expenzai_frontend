@@ -29,7 +29,8 @@ export default function robots(): MetadataRoute.Robots {
                     '/private/*',       // Any private sections
                     '/temp/*',          // Temporary files
                     '/*.json$',         // JSON files
-                    '/*.xml$',          // XML files (except sitemap)
+                    '/*.xml$',          // XML files
+                    '!/sitemap.xml',    // Allow sitemap
                 ],
             },
             {
