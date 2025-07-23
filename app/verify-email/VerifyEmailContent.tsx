@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { CheckCircle, XCircle, Mail, Loader2 } from 'lucide-react'
-import { api } from '../../lib/api'
-import { Button } from '../../components/ui/Button'
+import { api } from '../lib/api'
+import { Button } from '../components/ui/Button'
 
 export default function VerifyEmailContent() {
     const router = useRouter()
@@ -25,14 +25,11 @@ export default function VerifyEmailContent() {
 
         const verifyEmail = async () => {
             try {
-                const response = await api.post('/auth/verify-email', {
-                    token,
-                    email
-                })
+                const response = await api.verifyEmail(token, email)
 
-                if (response.data.success) {
+                if (response.verified) {
                     setStatus('success')
-                    setMessage('Your email has been verified successfully!')
+                    setMessage(response.message || 'Your email has been verified successfully!')
                     
                     // Redirect to login after 3 seconds
                     setTimeout(() => {
@@ -40,11 +37,11 @@ export default function VerifyEmailContent() {
                     }, 3000)
                 } else {
                     setStatus('error')
-                    setMessage(response.data.message || 'Verification failed')
+                    setMessage(response.message || 'Verification failed')
                 }
             } catch (error: any) {
                 setStatus('error')
-                setMessage(error.response?.data?.message || 'An error occurred during verification')
+                setMessage(error.message || 'An error occurred during verification')
             }
         }
 
@@ -52,21 +49,12 @@ export default function VerifyEmailContent() {
     }, [token, email, router])
 
     const handleResendVerification = async () => {
-        if (!email) return
-
         setIsResending(true)
         try {
-            const response = await api.post('/auth/resend-verification', {
-                email
-            })
-
-            if (response.data.success) {
-                setMessage('Verification email sent! Please check your inbox.')
-            } else {
-                setMessage(response.data.message || 'Failed to resend verification email')
-            }
+            const response = await api.resendVerification()
+            setMessage(response.message || 'Verification email sent! Please check your inbox.')
         } catch (error: any) {
-            setMessage(error.response?.data?.message || 'An error occurred while resending')
+            setMessage(error.message || 'An error occurred while resending')
         } finally {
             setIsResending(false)
         }
@@ -116,9 +104,9 @@ export default function VerifyEmailContent() {
                         <div className="space-y-4">
                             <Button
                                 onClick={handleResendVerification}
-                                disabled={isResending || !email}
+                                disabled={isResending}
                                 className="w-full"
-                                variant="outline"
+                                variant="secondary"
                             >
                                 {isResending ? (
                                     <>
@@ -135,7 +123,7 @@ export default function VerifyEmailContent() {
                             
                             <Button
                                 onClick={() => router.push('/auth/login')}
-                                variant="ghost"
+                                variant="secondary"
                                 className="w-full"
                             >
                                 Back to Login

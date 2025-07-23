@@ -4,10 +4,10 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { TrendingUp, Receipt as ReceiptIcon, Euro, Package } from 'lucide-react'
 import { Card } from '../../components/ui/Card'
-import { Button } from '../../components/ui/Button'
 import LoadingSpinner from '../../components/ui/LoadingSpinner'
 import { api, CategorySummary } from '../../lib/api'
 import { StatCard } from '@/app/components/dashboard/StatsCard'
+import { Button } from '@/app/components/ui/Button'
 
 
 export default function CategoriesIndexPage() {
