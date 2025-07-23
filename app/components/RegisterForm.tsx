@@ -54,7 +54,7 @@ export default function RegisterForm({ onSuccess, showLinks = true, className = 
             if (onSuccess) {
                 onSuccess()
             } else {
-                router.push('/dashboard')
+                router.push('/dashboard/upload')
             }
         } catch (err: unknown) {
             setError(getErrorMessage(err, 'Registration failed'))

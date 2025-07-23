@@ -34,7 +34,7 @@ export default function LoginForm({ onSuccess, showLinks = true, className = "" 
             if (onSuccess) {
                 onSuccess()
             } else {
-                router.push('/dashboard')
+                router.push('/dashboard/upload')
             }
         } catch (err: unknown) {
             setError(getErrorMessage(err, 'Login failed'))
