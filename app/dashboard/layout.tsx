@@ -9,7 +9,8 @@ import {
     Receipt,
     BarChart3,
     Tag,
-    Cog
+    Cog,
+    CreditCard
 } from 'lucide-react'
 
 import { useAuth } from '../context/AuthContext'
@@ -30,14 +31,15 @@ const navigation = [
     { name: 'My Receipts', href: '/dashboard/receipts', icon: Receipt },
     { name: 'Weekly Summary', href: '/dashboard/weekly', icon: BarChart3 },
     { name: 'Categories', href: '/dashboard/categories', icon: Tag },
+    { name: 'Subscription', href: '/dashboard/subscription', icon: CreditCard },
     { name: 'Settings', href: '/dashboard/settings', icon: Cog },
 ]
 
-// Routes that require email verification
 const verificationRequiredRoutes = [
     '/dashboard',
     '/dashboard/weekly',
     '/dashboard/categories',
+    '/dashboard/subscription',
     '/dashboard/settings'
 ]
 
@@ -118,6 +120,8 @@ export default function DashboardLayout({
 
     return (
         <FlashProvider>
+              
+            {/* <AuthDebug /> */}
             <MobileMenu
                 isOpen={isMobileMenuOpen}
                 onClose={closeMobileMenu}

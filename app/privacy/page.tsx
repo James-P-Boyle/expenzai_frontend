@@ -1,4 +1,3 @@
-// app/privacy/page.tsx
 import { Metadata } from 'next'
 import PrivacyPageClient from './PrivacyPageClient'
 

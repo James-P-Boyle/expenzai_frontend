@@ -182,3 +182,45 @@ export interface UploadFileData {
   original_name: string
   file_size: number
 }
+
+// Subscriptions
+export interface SubscriptionPlan {
+  id: string;
+  name: string;
+  price_monthly: number;
+  price_yearly: number;
+  features: string[];
+  stripe_price_id_monthly: string;
+  stripe_price_id_yearly: string;
+  upload_limit: number; // -1 for unlimited
+  is_popular?: boolean;
+  coming_soon?: boolean;
+}
+
+export interface Subscription {
+  id: string;
+  user_id: number;
+  stripe_subscription_id: string;
+  stripe_customer_id: string;
+  plan_id: string;
+  status: 'active' | 'cancelled' | 'past_due' | 'trialing';
+  billing_interval: 'monthly' | 'yearly';
+  current_period_start: string;
+  current_period_end: string;
+  cancel_at_period_end: boolean;
+  trial_end?: string;
+  created_at: string;
+  updated_at: string;
+  plan: SubscriptionPlan;
+}
+
+export interface CreateSubscriptionResponse {
+  subscription: Subscription;
+  checkout_url?: string;
+  client_secret?: string;
+}
+
+export interface BillingPortalResponse {
+  url: string;
+}
+

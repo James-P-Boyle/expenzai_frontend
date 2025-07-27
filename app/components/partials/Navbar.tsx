@@ -16,6 +16,7 @@ export default function Navbar({
 
     const navLinks = [
         { href: '/about', label: 'About' },
+        { href: '/pricing', label: 'Pricing' },
     ]
 
     return (
