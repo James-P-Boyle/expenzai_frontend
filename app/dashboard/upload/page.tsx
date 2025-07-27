@@ -3,7 +3,6 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { api } from '@/app/lib/api'
-
 import { getErrorMessage } from '@/app/lib/error-utils'
 import { useFlash } from '@/app/context/FlashContext'
 import { useReceiptStatus } from '@/app/hooks/useReceiptStatus'
@@ -12,7 +11,7 @@ import UploadMethodSelector from './components/UploadMethodSelector'
 import MultiUploadInterface from './components/MultiUploadInterface'
 import Tips from './components/Tips'
 import AnonymousSessionBanner from '@/app/components/AnonymousSessionBanner'
-import { Receipt } from '@/app/lib/types'
+import type { MultiUploadResponse } from '@/app/lib/types'
 
 type UploadMethod = 'choose' | 'camera' | 'file'
 type UploadStatus = 'idle' | 'uploading' | 'error'
@@ -40,7 +39,7 @@ export default function UploadPage() {
     try {
       // Check if user is authenticated and use appropriate upload method
       const isAuthenticated = !!localStorage.getItem('auth_token')
-      let response
+      let response: MultiUploadResponse
       
       if (isAuthenticated) {
         response = await api.uploadReceipts(files)
@@ -50,41 +49,48 @@ export default function UploadPage() {
       
       // Show upload success message
       const uploadedCount = response.total_uploaded
-      const successMessage = isAuthenticated 
-        ? `${uploadedCount} ${uploadedCount === 1 ? 'receipt' : 'receipts'} uploaded successfully!`
-        : `${uploadedCount} ${uploadedCount === 1 ? 'receipt' : 'receipts'} uploaded successfully! ${response.remaining_uploads || 0} uploads remaining.`
+      let successMessage: string
+      
+      if (isAuthenticated) {
+        successMessage = `${uploadedCount} ${uploadedCount === 1 ? 'receipt' : 'receipts'} uploaded successfully!`
+      } else {
+        const remaining = response.remaining_uploads ?? 0
+        successMessage = `${uploadedCount} ${uploadedCount === 1 ? 'receipt' : 'receipts'} uploaded successfully! ${remaining} uploads remaining.`
+      }
       
       addFlash('success', successMessage)
       
       // Show signup prompt if anonymous user has reached limit
       if (!isAuthenticated && response.signup_prompt) {
-        addFlash('error', response.signup_prompt)
+        addFlash('warning', response.signup_prompt)
       }
       
       // Start monitoring the uploaded receipts for processing completion
-      const receiptIds = response.receipts?.map((r: any) => r.id) || []
+      const receiptIds = response.receipts?.map((receipt) => receipt.id) || []
       setPendingReceiptIds(receiptIds)
       
       // Reset to upload interface
       setUploadMethod('choose')
       setUploadStatus('idle')
       
-    } catch (err: any) {
+    } catch (err: unknown) {
+      console.error('Upload failed:', err)
+      
       // Handle upload limit reached for anonymous users
-      if (err.message?.includes('upload_limit_reached') || err.message?.includes('limit of 3 uploads')) {
+      const errorMessage = getErrorMessage(err, 'Upload failed')
+      
+      if (errorMessage.includes('upload_limit_reached') || 
+          errorMessage.includes('limit of 3 uploads') ||
+          errorMessage.includes('reached the limit')) {
         setError('You\'ve reached the free upload limit. Sign up to continue uploading!')
         addFlash('warning', 'Upload limit reached! Sign up for unlimited uploads.')
       } else {
-        setError(getErrorMessage(err, 'Upload failed'))
+        setError(errorMessage)
         addFlash('error', 'Upload failed. Please try again.')
       }
       setUploadStatus('error')
     }
-}
-
-  // const handleFileUpload = async (file: File) => {
-  //   await handleMultiFileUpload([file])
-  // }
+  }
 
   const resetUpload = () => {
     setUploadMethod('choose')

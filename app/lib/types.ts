@@ -175,6 +175,24 @@ export interface MultiUploadResponse {
     original_filename: string
   }>
   total_uploaded: number
+  remaining_uploads?: number 
+  signup_prompt?: string
+  session_id?: string
+  user_id?: number 
+}
+
+export interface AnonymousUploadResponse extends MultiUploadResponse {
+  remaining_uploads: number
+  signup_prompt?: string
+  session_id: string
+}
+
+export interface UploadLimitInfo {
+  current_uploads: number
+  limit: number
+  remaining: number
+  is_anonymous: boolean
+  session_id?: string
 }
 
 export interface UploadFileData {
