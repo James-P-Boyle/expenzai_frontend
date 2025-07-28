@@ -61,15 +61,11 @@ export default function WeeklySummaryPage() {
                 // onCurrentWeek={goToCurrentWeek}
             />
 
-            {loading && (
+            {loading ? (
                 <LoadingSpinner />
-            )}
-
-            {error && (
+            ) : error ? (
                 <ErrorState error={error} onRetry={fetchWeeklySummary} />
-            )}
-
-            {!weeklySummary || weeklySummary.receipts_count === 0 ? (
+            ) : (!weeklySummary || weeklySummary.receipts_count === 0) ? (
                 <EmptyState />
             ) : (
                 <section className="space-y-6 py-6">
