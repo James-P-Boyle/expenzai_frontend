@@ -33,7 +33,7 @@ export default function HomePage() {
                         </Button>
                     </Link>
                     <InstallPrompt />
-                    <PWADebug />
+                    {/* <PWADebug /> */}
                 </Hero>
 
 

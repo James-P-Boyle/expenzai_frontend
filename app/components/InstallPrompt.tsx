@@ -99,23 +99,23 @@ export default function InstallPrompt() {
   }
 
   return (
-    <div className="mt-4 p-4 bg-blue-50 border-2 border-blue-200 rounded-lg shadow-lg">
-      <div className="flex items-center gap-2 mb-2">
-        <Smartphone className="h-5 w-5 text-blue-600" />
-        <h3 className="text-lg font-semibold text-blue-900">Install ExpenzAI</h3>
-        {deferredPrompt && <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Ready!</span>}
+    <div className="mt-10 p-4 border-2 border-ci-main/20 rounded-lg">
+      <div className="flex items-center gap-2 mb-2 justify-center">
+        <Smartphone className="h-5 w-5 text-ci-main" />
+        <h3 className="text-lg font-semibold text-ci-main">Install ExpenzAI</h3>
+        {deferredPrompt && <span className="text-xs bg-ci-success/20 text-ci-success px-2 py-1 rounded">Ready!</span>}
       </div>
       
-      <p className="text-sm text-blue-700 mb-3">
+      <p className="text-sm text-ci-main mb-3">
         Get the full app experience with offline access and quick launch from your home screen.
       </p>
 
       {isIOS ? (
         <div className="space-y-2">
-          <p className="text-sm text-blue-600">
+          <p className="text-sm text-ci-muted">
             To install on iOS:
           </p>
-          <ol className="text-sm text-blue-600 space-y-1 ml-4">
+          <ol className="text-sm text-ci-muted space-y-1 ml-4">
             <li>1. Tap the Share button <span className="inline-block">⎋</span></li>
             <li>2. Select "Add to Home Screen" <span className="inline-block">➕</span></li>
             <li>3. Tap "Add" to confirm</li>
@@ -125,13 +125,12 @@ export default function InstallPrompt() {
         <Button
           onClick={handleInstallClick}
           variant="secondary"
-          className="bg-blue-600 hover:bg-blue-700 text-white"
         >
           <Download className="mr-2 h-4 w-4" />
           Add to Home Screen
         </Button>
       ) : (
-        <p className="text-sm text-blue-600">
+        <p className="text-sm text-ci-muted">
           Install option will appear when available in your browser.
         </p>
       )}
