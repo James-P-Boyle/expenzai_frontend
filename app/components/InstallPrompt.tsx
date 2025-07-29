@@ -6,7 +6,7 @@ import { Download, Smartphone } from 'lucide-react'
 
 interface BeforeInstallPromptEvent extends Event {
   prompt(): Promise<void>
-  userChoice: Promise<{ outcome: 'accepted' | 'dismissed' platform: string }>
+  userChoice: Promise<{ outcome: 'accepted' | 'dismissed'; platform: string }>
 }
 
 export default function InstallPrompt() {
