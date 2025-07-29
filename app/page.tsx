@@ -8,6 +8,8 @@ import HeroImages from './components/HeroImages'
 import Hero from './components/Hero'
 import { Upload } from 'lucide-react'
 import Footer from './components/partials/Footer'
+import InstallPrompt from './components/InstallPrompt'
+import PWADebug from './components/PWADebug'
 
 export default function HomePage() {
     const { isAuthenticated, isLoading } = useAuth()
@@ -30,6 +32,8 @@ export default function HomePage() {
                             Start Tracking
                         </Button>
                     </Link>
+                    <InstallPrompt />
+                    <PWADebug />
                 </Hero>
 
 
