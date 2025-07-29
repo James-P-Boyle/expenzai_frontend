@@ -1,87 +1,101 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
-import { Button } from './ui/Button';
-import { Download, Smartphone } from 'lucide-react';
+import { useEffect, useState } from 'react'
+import { Button } from './ui/Button'
+import { Download, Smartphone } from 'lucide-react'
 
 interface BeforeInstallPromptEvent extends Event {
-  prompt(): Promise<void>;
-  userChoice: Promise<{ outcome: 'accepted' | 'dismissed'; platform: string }>;
+  prompt(): Promise<void>
+  userChoice: Promise<{ outcome: 'accepted' | 'dismissed' platform: string }>
 }
 
 export default function InstallPrompt() {
-  const [isIOS, setIsIOS] = useState(false);
-  const [isStandalone, setIsStandalone] = useState(false);
-  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
-  const [showPrompt, setShowPrompt] = useState(false);
+  const [isIOS, setIsIOS] = useState(false)
+  const [isStandalone, setIsStandalone] = useState(false)
+  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null)
+  const [showPrompt, setShowPrompt] = useState(false)
 
   useEffect(() => {
     // Detect iOS
-    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream;
-    setIsIOS(iOS);
+    const iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !(window as any).MSStream
+    setIsIOS(iOS)
     
     // Detect if already installed (standalone mode)
     const standalone = window.matchMedia('(display-mode: standalone)').matches || 
-                      (window.navigator as any).standalone === true;
-    setIsStandalone(standalone);
+                      (window.navigator as any).standalone === true
+    setIsStandalone(standalone)
 
     // Only show prompt if not already installed
     if (!standalone) {
-      setShowPrompt(true);
+      setShowPrompt(true)
     }
 
     // Listen for beforeinstallprompt event (non-iOS browsers)
     const handleBeforeInstallPrompt = (e: BeforeInstallPromptEvent) => {
-      console.log('📥 Install prompt event received');
-      e.preventDefault();
-      console.log('🛑 preventDefault() called - storing event for later use');
-      setDeferredPrompt(e);
-      setShowPrompt(true); // Make sure we show the prompt UI
-    };
+      console.log('📥 Install prompt event received')
+      e.preventDefault()
+      console.log('🛑 preventDefault() called - storing event for later use')
+      setDeferredPrompt(e)
+      setShowPrompt(true) // Make sure we show the prompt UI
+    }
 
-    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt as EventListener);
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt as EventListener)
 
     return () => {
-      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt as EventListener);
-    };
-  }, []);
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt as EventListener)
+    }
+  }, [])
 
   const handleInstallClick = async () => {
     if (deferredPrompt) {
       try {
-        console.log('🚀 Calling prompt() on deferred event');
-        const promptResult = await deferredPrompt.prompt();
-        console.log('📱 Prompt result:', promptResult);
+        console.log('🚀 Calling prompt() on deferred event')
         
-        const { outcome } = await deferredPrompt.userChoice;
-        console.log(`✅ Install prompt outcome: ${outcome}`);
+        // Add a small delay to ensure event is fully processed
+        await new Promise(resolve => setTimeout(resolve, 100))
+        
+        const promptResult = await deferredPrompt.prompt()
+        console.log('📱 Prompt result:', promptResult)
+        
+        const { outcome } = await deferredPrompt.userChoice
+        console.log(`✅ Install prompt outcome: ${outcome}`)
         
         if (outcome === 'accepted') {
-          console.log('🎉 User accepted the install prompt');
-          setShowPrompt(false);
+          console.log('🎉 User accepted the install prompt')
+          setShowPrompt(false)
         } else {
-          console.log('❌ User dismissed the install prompt');
+          console.log('❌ User dismissed the install prompt')
         }
         
-        setDeferredPrompt(null);
+        setDeferredPrompt(null)
       } catch (error) {
-        console.error('❌ Error showing install prompt:', error);
+        console.error('❌ Error showing install prompt:', error)
+        
+        // Try alternative approach
+        if (deferredPrompt && typeof deferredPrompt.prompt === 'function') {
+          try {
+            console.log('🔄 Trying alternative prompt approach...')
+            deferredPrompt.prompt()
+          } catch (altError) {
+            console.error('❌ Alternative approach also failed:', altError)
+          }
+        }
       }
     } else {
-      console.log('⚠️ No deferred prompt available');
+      console.log('⚠️ No deferred prompt available')
     }
-  };
+  }
 
   // Don't show if already installed
   if (isStandalone) {
-    return null;
+    return null
   }
 
   // TEMPORARY: Force show for debugging
-  const forceShow = true;
+  const forceShow = true
 
   if (!showPrompt && !forceShow) {
-    return null;
+    return null
   }
 
   return (
@@ -122,5 +136,5 @@ export default function InstallPrompt() {
         </p>
       )}
     </div>
-  );
+  )
 }
