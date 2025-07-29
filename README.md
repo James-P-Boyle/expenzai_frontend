@@ -57,7 +57,7 @@ NEXT_PUBLIC_APP_NAME=Receipt Tracker
 ```
 
 ```bash
-# Run the development server
+# Run the development server..
 npm run dev
 ```
 
