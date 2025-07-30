@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Logo from '@/app/components/ui/Logo'
-import RegisterForm from '@/app/components/RegisterForm'
+import LoginForm from '@/app/components/LoginForm'
 
 export default function LoginPage() {
 
@@ -20,7 +20,7 @@ export default function LoginPage() {
                     </p>
                 </div>
 
-                <RegisterForm />
+                <LoginForm />
             </div>
         </div>
     )

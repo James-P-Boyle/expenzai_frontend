@@ -77,6 +77,28 @@ export default function ReceiptDetailsPage() {
         fetchReceipt()
     }, [fetchReceipt])
 
+    const handleUpdateReceipt = useCallback(async (updates: { receipt_date?: string }) => {
+        if (!receipt) return
+
+        setIsUpdating(true)
+        try {
+            console.log('Updating receipt:', updates)
+            
+            const response = await api.updateReceipt(receipt.id, updates)
+            
+            // Update the receipt state
+            setReceipt(response.data)
+            
+        } catch (err: unknown) {
+            console.error('Receipt update failed:', err)
+            alert(err instanceof Error ? err.message : 'Failed to update receipt')
+            // Revert by refetching
+            await fetchReceipt()
+        } finally {
+            setIsUpdating(false)
+        }
+    }, [receipt, fetchReceipt])
+
     const handleUpdateItem = useCallback(async (itemId: number, updates: { name?: string; category?: string }) => {
         if (!receipt) return
     
@@ -132,6 +154,8 @@ export default function ReceiptDetailsPage() {
         fetchReceipt()
     }, [fetchReceipt])
 
+    // Check if user can edit (only authenticated users)
+    const canEdit = !!localStorage.getItem('auth_token')
  
     if (isLoading) {
         return (<LoadingSpinner />)
@@ -151,7 +175,11 @@ export default function ReceiptDetailsPage() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 {/* Receipt Info */}
                 <div className="lg:col-span-2 space-y-6">
-                    <ReceiptSummaryCard receipt={receipt} />
+                    <ReceiptSummaryCard 
+                        receipt={receipt} 
+                        onUpdateReceipt={handleUpdateReceipt}
+                        isUpdating={isUpdating}
+                    />
 
                     <ReceiptItemsCard 
                         receipt={receipt}
