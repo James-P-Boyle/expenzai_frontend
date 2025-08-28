@@ -22,7 +22,6 @@ export default function robots(): MetadataRoute.Robots {
                 userAgent: '*',
                 allow: '/',
                 disallow: [
-                    '/dashboard/*',     // Protected user areas
                     '/api/*',           // API endpoints
                     '/_next/*',         // Next.js internal files
                     '/admin/*',         // Admin areas if you have any
